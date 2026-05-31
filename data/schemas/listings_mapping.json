@@ -1,0 +1,58 @@
+{
+  "mappings": {
+    "properties": {
+      "listing_id": { "type": "keyword" },
+      "host_id": { "type": "keyword" },
+      "host_name": { "type": "keyword" },
+      "title": { "type": "text" },
+      "description": { "type": "text" },
+      "description_embedding": {
+        "type": "dense_vector",
+        "dims": 1536,
+        "index": true,
+        "similarity": "cosine"
+      },
+      "location": {
+        "properties": {
+          "address": { "type": "text" },
+          "city": { "type": "keyword" },
+          "state": { "type": "keyword" },
+          "zip": { "type": "keyword" },
+          "lat": { "type": "float" },
+          "lon": { "type": "float" },
+          "geo_point": { "type": "geo_point" }
+        }
+      },
+      "stadium_distances": {
+        "properties": {
+          "metlife_minutes": { "type": "integer" },
+          "metlife_transit_mode": { "type": "keyword" }
+        }
+      },
+      "pricing": {
+        "properties": {
+          "price_per_night": { "type": "double" },
+          "cleaning_fee": { "type": "double" },
+          "currency": { "type": "keyword" }
+        }
+      },
+      "availability": {
+        "type": "nested",
+        "properties": {
+          "date": { "type": "date", "format": "yyyy-MM-dd" },
+          "available": { "type": "boolean" }
+        }
+      },
+      "amenities": { "type": "keyword" },
+      "house_rules": { "type": "text" },
+      "languages_spoken": { "type": "keyword" },
+      "team_welcome": { "type": "keyword" },
+      "max_guests": { "type": "integer" },
+      "photos": { "type": "keyword" },
+      "host_verified": { "type": "boolean" },
+      "status": { "type": "keyword" },
+      "created_at": { "type": "date" },
+      "updated_at": { "type": "date" }
+    }
+  }
+}

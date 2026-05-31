@@ -1,0 +1,15 @@
+{
+  "mappings": {
+    "properties": {
+      "match_id": { "type": "keyword" },
+      "date": { "type": "date", "format": "yyyy-MM-dd" },
+      "time": { "type": "keyword" },
+      "stadium": { "type": "keyword" },
+      "home_team": { "type": "keyword" },
+      "away_team": { "type": "keyword" },
+      "round": { "type": "keyword" },
+      "expected_attendance": { "type": "keyword" },
+      "surge_indicator": { "type": "boolean" }
+    }
+  }
+}

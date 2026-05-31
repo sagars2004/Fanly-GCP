@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Harmonious Light Palette */
+  --background: 240 20% 98%;
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  --primary: 250 84% 54%; /* Deep Indigo */
+  --primary-foreground: 210 20% 98%;
+  --secondary: 160 84% 39%; /* Vibrant Emerald/Teal for Soccer Pitch feel */
+  --secondary-foreground: 210 20% 98%;
+  --accent: 45 93% 47%; /* Golden Soccer Ball Gold */
+  --accent-foreground: 224 71.4% 4.1%;
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 250 84% 54%;
+  --radius: 1rem;
+}
+
+.dark {
+  /* Premium Dark Mode */
+  --background: 224 71% 4%;
+  --foreground: 210 20% 98%;
+  --card: 224 71% 7%;
+  --card-foreground: 210 20% 98%;
+  --popover: 224 71% 7%;
+  --popover-foreground: 210 20% 98%;
+  --primary: 250 84% 64%;
+  --primary-foreground: 224 71.4% 4.1%;
+  --secondary: 160 84% 45%;
+  --secondary-foreground: 224 71.4% 4.1%;
+  --accent: 45 93% 54%;
+  --accent-foreground: 224 71.4% 4.1%;
+  --muted: 224 71% 12%;
+  --muted-foreground: 217.9 10.6% 64.9%;
+  --destructive: 0 62.8% 50.6%;
+  --destructive-foreground: 210 20% 98%;
+  --border: 224 71% 12%;
+  --input: 224 71% 12%;
+  --ring: 250 84% 64%;
+}
+
+* {
+  border-color: hsl(var(--border));
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Premium Visual Utility Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.05);
+}
+
+.dark .glass-panel {
+  background: rgba(13, 17, 30, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 10% 20%, rgba(98, 0, 234, 0.08) 0%, rgba(0, 229, 255, 0.03) 90%);
+}
+
+.dark .hero-gradient {
+  background: radial-gradient(circle at 10% 20%, rgba(98, 0, 234, 0.2) 0%, rgba(0, 0, 0, 0) 90%);
+}
+
+/* Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+/* Custom interactive active outline card */
+.card-hover-effect {
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-effect:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  border-color: hsl(var(--primary) / 0.4);
+}
+.dark .card-hover-effect:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}

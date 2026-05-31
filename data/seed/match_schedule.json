@@ -1,0 +1,79 @@
+[
+  {
+    "match_id": "match_001",
+    "date": "2026-06-18",
+    "time": "15:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Brazil",
+    "away_team": "Germany",
+    "round": "Group Stage",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_002",
+    "date": "2026-06-20",
+    "time": "18:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Brazil",
+    "away_team": "Argentina",
+    "round": "Group Stage",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_003",
+    "date": "2026-06-23",
+    "time": "20:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "USA",
+    "away_team": "England",
+    "round": "Group Stage",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_004",
+    "date": "2026-06-26",
+    "time": "16:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Morocco",
+    "away_team": "Spain",
+    "round": "Group Stage",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_005",
+    "date": "2026-07-02",
+    "time": "17:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Winner Group A",
+    "away_team": "Runner-up Group C",
+    "round": "Round of 32",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_006",
+    "date": "2026-07-09",
+    "time": "20:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Winner QF1",
+    "away_team": "Winner QF2",
+    "round": "Quarter-Final",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  },
+  {
+    "match_id": "match_007",
+    "date": "2026-07-19",
+    "time": "14:00",
+    "stadium": "MetLife Stadium",
+    "home_team": "Winner SF1",
+    "away_team": "Winner SF2",
+    "round": "World Cup Final",
+    "expected_attendance": "high",
+    "surge_indicator": true
+  }
+]

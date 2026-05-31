@@ -1,0 +1,419 @@
+[
+  {
+    "listing_id": "list_001",
+    "host_id": "host_maria",
+    "host_name": "Maria Silva",
+    "title": "Cozy Harrison Room - 10 Mins from MetLife Stadium",
+    "description": "Welcome to my home! I have a comfortable spare room in Harrison, NJ. Very clean, quiet, and friendly household. I speak Spanish, Portuguese, and English and would love to host soccer fans. It is just a 10-minute drive to MetLife Stadium, or you can take the PATH train from Harrison Station which is a 5-minute walk away.",
+    "location": {
+      "address": "202 Harrison Ave",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.7455,
+      "lon": -74.1568,
+      "geo_point": { "lat": 40.7455, "lon": -74.1568 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 10,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 75.0,
+      "cleaning_fee": 15.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-15", "available": true },
+      { "date": "2026-06-16", "available": true },
+      { "date": "2026-06-17", "available": true },
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true },
+      { "date": "2026-06-23", "available": true },
+      { "date": "2026-06-24", "available": true },
+      { "date": "2026-06-25", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Coffee Maker", "Towels", "Hangers", "Shared Bath"],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": ["English", "Spanish", "Portuguese"],
+    "team_welcome": ["Brazil", "Argentina", "Portugal", "All"],
+    "max_guests": 2,
+    "photos": ["/images/harrison_room.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_002",
+    "host_id": "host_john",
+    "host_name": "John Doe",
+    "title": "Hoboken Waterfront Apartment (Private Couch/Shared Space)",
+    "description": "Offering a comfortable couch in my luxury Hoboken apartment with amazing views of the Manhattan skyline. Super easy transit to NYC via PATH and to MetLife Stadium via NJ Transit. I love soccer, active fan, happy to talk matches over beer. Fast WiFi, gym access.",
+    "location": {
+      "address": "1400 Hudson St",
+      "city": "Hoboken",
+      "state": "NJ",
+      "zip": "07030",
+      "lat": 40.7533,
+      "lon": -74.0249,
+      "geo_point": { "lat": 40.7533, "lon": -74.0249 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 20,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 55.0,
+      "cleaning_fee": 10.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-15", "available": true },
+      { "date": "2026-06-16", "available": true },
+      { "date": "2026-06-17", "available": true },
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": false },
+      { "date": "2026-06-20", "available": false },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Gym", "Kitchen", "Elevator"],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": ["English"],
+    "team_welcome": ["USA", "England", "Germany", "All"],
+    "max_guests": 1,
+    "photos": ["/images/hoboken_waterfront.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_003",
+    "host_id": "host_youssef",
+    "host_name": "Youssef El-Mourabit",
+    "title": "Spacious Room in Union City - Arab Fan Hub",
+    "description": "Big room in a clean apartment in Union City. We speak Arabic, French, and English. Very close to bus lines straight to Port Authority (NYC) and Secaucus Junction for MetLife transfers. Moroccan fans are highly welcome, but we welcome everyone! Halal-friendly kitchen.",
+    "location": {
+      "address": "4200 Bergenline Ave",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.7852,
+      "lon": -74.0298,
+      "geo_point": { "lat": 40.7852, "lon": -74.0298 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 15,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 65.0,
+      "cleaning_fee": 0.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true },
+      { "date": "2026-06-23", "available": true },
+      { "date": "2026-06-24", "available": true }
+    ],
+    "amenities": ["WiFi", "Kitchen", "Halal Food Nearby", "Private Room", "Fan/Heater"],
+    "house_rules": "No alcohol inside the apartment. Quiet, respectful hosting. Feel free to cook!",
+    "languages_spoken": ["Arabic", "French", "English"],
+    "team_welcome": ["Morocco", "Saudi Arabia", "Egypt", "Tunisia", "All"],
+    "max_guests": 3,
+    "photos": ["/images/union_city_apartment.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_004",
+    "host_id": "host_mateo",
+    "host_name": "Mateo Rossi",
+    "title": "Newark Ironbound Cultural Loft (Entire Unit)",
+    "description": "Entire 1-bedroom industrial loft in Newark's Ironbound district, famous for its amazing Spanish and Portuguese restaurants. Just a 3-minute walk to Newark Penn Station, where you can take a direct train to MetLife Stadium or NYC. Modern kitchen, washing machine, secure entrance.",
+    "location": {
+      "address": "15 Ferry St",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.7336,
+      "lon": -74.1623,
+      "geo_point": { "lat": 40.7336, "lon": -74.1623 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 18,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 120.0,
+      "cleaning_fee": 30.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-15", "available": true },
+      { "date": "2026-06-16", "available": true },
+      { "date": "2026-06-17", "available": true },
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Washing Machine", "Kitchen", "TV", "Iron"],
+    "house_rules": "No smoking, no loud music. Treat the space with care. Enjoy the neighborhood!",
+    "languages_spoken": ["English", "Spanish", "Italian"],
+    "team_welcome": ["Italy", "Spain", "Mexico", "All"],
+    "max_guests": 4,
+    "photos": ["/images/newark_loft.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_005",
+    "host_id": "host_steve",
+    "host_name": "Steve Miller",
+    "title": "Steps to MetLife Stadium - East Rutherford Townhouse Room",
+    "description": "Literally as close as you can get to the venue! A private guest bedroom in my townhouse in East Rutherford. You can walk to MetLife Stadium in 20 minutes, saving you hours of transit line chaos. Shared bathroom, driveway parking included. I will be attending the matches too!",
+    "location": {
+      "address": "75 Paterson Ave",
+      "city": "East Rutherford",
+      "state": "NJ",
+      "zip": "07073",
+      "lat": 40.8329,
+      "lon": -74.0954,
+      "geo_point": { "lat": 40.8329, "lon": -74.0954 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 5,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 150.0,
+      "cleaning_fee": 20.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-15", "available": true },
+      { "date": "2026-06-16", "available": true },
+      { "date": "2026-06-17", "available": false },
+      { "date": "2026-06-18", "available": false },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Parking", "Washing Machine", "Private Bath"],
+    "house_rules": "No parties, no outside guests. I want to maintain a peaceful, clean home before and after game days.",
+    "languages_spoken": ["English"],
+    "team_welcome": ["All"],
+    "max_guests": 2,
+    "photos": ["/images/east_rutherford_townhouse.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_006",
+    "host_id": "host_luc",
+    "host_name": "Luc Dubois",
+    "title": "Midtown Manhattan Studio - Easy Bus to MetLife",
+    "description": "Stay in the heart of NYC! Private studio in Midtown West. Just two blocks from the Port Authority Bus Terminal, where you can board the direct 351 Express Bus straight to MetLife Stadium on match days. Everything NYC has to offer is right outside.",
+    "location": {
+      "address": "350 W 42nd St",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.7589,
+      "lon": -73.9922,
+      "geo_point": { "lat": 40.7589, "lon": -73.9922 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 25,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 160.0,
+      "cleaning_fee": 40.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Kitchen", "Elevator", "TV", "Iron"],
+    "house_rules": "Please keep noise down at night. Strictly no smoking or parties. NYC Local Law regulations apply (this is my primary home).",
+    "languages_spoken": ["English", "French"],
+    "team_welcome": ["France", "Canada", "All"],
+    "max_guests": 2,
+    "photos": ["/images/midtown_studio.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_007",
+    "host_id": "host_sandra",
+    "host_name": "Sandra Miller",
+    "title": "Jersey City Cozy Bedroom - Path Train to NYC/MetLife",
+    "description": "Lovely private room in Jersey City Heights. Easy access to Hoboken and Secaucus. I speak English and Spanish. Safe and residential neighborhood. Nice backyard patio to relax in. Clean bed, towels, and morning coffee provided.",
+    "location": {
+      "address": "88 Franklin St",
+      "city": "Jersey City",
+      "state": "NJ",
+      "zip": "07307",
+      "lat": 40.7441,
+      "lon": -74.0435,
+      "geo_point": { "lat": 40.7441, "lon": -74.0435 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 15,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 68.0,
+      "cleaning_fee": 15.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Air Conditioning", "Backyard", "Coffee Maker"],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": ["English", "Spanish"],
+    "team_welcome": ["Colombia", "Peru", "Ecuador", "All"],
+    "max_guests": 2,
+    "photos": ["/images/jc_heights.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_008",
+    "host_id": "host_tarek",
+    "host_name": "Tarek Mansour",
+    "title": "Newark Ironbound Private Studio - 2 Stops to MetLife",
+    "description": "Private studio apartment in a multi-family house in Newark. Walking distance to Harrison PATH and Newark Penn Station. We speak Arabic and English. Very close to Brazilian bakeries and cafes. Clean, secure, and fully equipped kitchen.",
+    "location": {
+      "address": "120 Adams St",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.7312,
+      "lon": -74.1582,
+      "geo_point": { "lat": 40.7312, "lon": -74.1582 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 17,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 85.0,
+      "cleaning_fee": 20.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Kitchen", "Air Conditioning", "Coffee Maker"],
+    "house_rules": "Please take off shoes. No loud noise. Halal-friendly space.",
+    "languages_spoken": ["English", "Arabic"],
+    "team_welcome": ["Morocco", "Egypt", "All"],
+    "max_guests": 2,
+    "photos": ["/images/newark_studio.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_009",
+    "host_id": "host_lucas",
+    "host_name": "Lucas Santos",
+    "title": "Brazilian Fan Haven in Newark (Cozy Private Room)",
+    "description": "Hey guys! I have a spare room in Harrison/Newark area. I'm a massive Brazil supporter and will be hosting watch parties for all matches. I speak fluent Portuguese and English. Come stay with a friendly host and enjoy the World Cup vibes!",
+    "location": {
+      "address": "40 Cleveland Ave",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.7482,
+      "lon": -74.1611,
+      "geo_point": { "lat": 40.7482, "lon": -74.1611 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 12,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 70.0,
+      "cleaning_fee": 10.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "TV", "Coffee Maker", "Shared Bath", "Shared Kitchen"],
+    "house_rules": "Brazil fans preferred but all welcome! Feel free to cheer and support, but quiet down after midnight.",
+    "languages_spoken": ["English", "Portuguese"],
+    "team_welcome": ["Brazil", "Portugal", "All"],
+    "max_guests": 2,
+    "photos": ["/images/brazil_haven.jpg"],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_010",
+    "host_id": "host_carlos_h",
+    "host_name": "Carlos Herrera",
+    "title": "Harrison Bedroom - Spanish Speaker Host",
+    "description": "Habitación privada cómoda en Harrison, cerca del PATH. Hablo español e inglés. Ideal para aficionados del fútbol. Cocina compartida y baño compartido. A solo 15 minutos en carro de MetLife.",
+    "location": {
+      "address": "300 Jersey St",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.7461,
+      "lon": -74.1523,
+      "geo_point": { "lat": 40.7461, "lon": -74.1523 }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 11,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 60.0,
+      "cleaning_fee": 10.0,
+      "currency": "USD"
+    },
+    "availability": [
+      { "date": "2026-06-18", "available": true },
+      { "date": "2026-06-19", "available": true },
+      { "date": "2026-06-20", "available": true },
+      { "date": "2026-06-21", "available": true },
+      { "date": "2026-06-22", "available": true }
+    ],
+    "amenities": ["WiFi", "Shared Kitchen", "Air Conditioning"],
+    "house_rules": "No fumar. Mantener limpio el espacio común. Horas de silencio a partir de las 10 PM.",
+    "languages_spoken": ["English", "Spanish"],
+    "team_welcome": ["Mexico", "Argentina", "Colombia", "All"],
+    "max_guests": 2,
+    "photos": ["/images/spanish_host.jpg"],
+    "host_verified": true,
+    "status": "active"
+  }
+]
