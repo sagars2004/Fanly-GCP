@@ -1,5 +1,6 @@
 import os
 import uuid
+import json
 from datetime import datetime
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,6 +11,9 @@ from typing import List, Optional, Dict, Any
 from agent.tools.search_listings import search_listings
 from agent.tools.check_match_schedule import check_match_schedule
 from agent.tools.generate_contract import generate_contract
+from google.genai import types
+from agent.tools.ai_client import get_genai_client
+from agent.tools.elastic_mcp import ElasticMCPClient
 
 app = FastAPI(title="Fanly API", description="World Cup AI P2P Housing Agent API")
 
@@ -80,13 +84,13 @@ class ChatRequest(BaseModel):
     messages: List[ChatMessage]
     language: Optional[str] = "en"
 
-# Endpoints
 @app.get("/api/health")
 def health():
+    mcp_active = ElasticMCPClient().is_configured()
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
-        "mode": "Local Mock Mode" if not os.getenv("ELASTIC_URL") else "Elastic Cloud Mode"
+        "mode": "Elastic MCP Agent Mode" if mcp_active else "Local Mock Agent Mode"
     }
 
 # Listings endpoints
@@ -258,7 +262,7 @@ def get_matches(date_range: Optional[str] = None, stadium: Optional[str] = None)
 
 # AI Chat Matcher endpoint
 @app.post("/api/chat")
-def run_chat_agent(payload: ChatRequest):
+async def run_chat_agent(payload: ChatRequest):
     user_messages = payload.messages
     if not user_messages:
         raise HTTPException(status_code=400, detail="Empty messages")
@@ -312,7 +316,7 @@ def run_chat_agent(payload: ChatRequest):
         # Get the first price-like number
         max_price = float(prices[0])
         
-    # Call tools
+    # Call local tools as baseline / backup
     matches = check_match_schedule(date_range=dates, stadium="MetLife Stadium")
     listings = search_listings(
         query=user_query,
@@ -322,40 +326,183 @@ def run_chat_agent(payload: ChatRequest):
         team_preference=team
     )
     
-    # Call Gemini to write the explanation if API key is present
+    recommended_listings = []
+    matched_matches = []
+    
+    # Try calling Google GenAI with MCP/Local functions
+    use_vertex = os.getenv("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("true", "1", "yes")
     gemini_key = os.getenv("GEMINI_API_KEY")
-    if gemini_key:
+    
+    if gemini_key or use_vertex:
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=gemini_key)
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            client = get_genai_client()
+            mcp_client = ElasticMCPClient()
             
-            # Format system prompt and tool outputs into the model context
-            with open(os.path.join(project_root, "agent", "prompts", "system_prompt.txt"), "r") as f:
-                system_prompt = f.read()
+            # Read system prompt
+            system_instruction = "You are a helpful World Cup peer-to-peer housing assistant agent."
+            system_prompt_path = os.path.join(project_root, "agent", "prompts", "system_prompt.txt")
+            if os.path.exists(system_prompt_path):
+                with open(system_prompt_path, "r") as f:
+                    system_instruction = f.read()
+                    
+            # Build conversation history
+            contents = []
+            for msg in payload.messages:
+                contents.append(
+                    types.Content(
+                        role="user" if msg.role == "user" else "model",
+                        parts=[types.Part.from_text(text=msg.content)]
+                    )
+                )
                 
-            prompt = f"""
-            {system_prompt}
+            # Determine tools available
+            if mcp_client.is_configured():
+                print("[ChatAgent] Elastic MCP client is configured. Hooking up elastic search tools.")
+                tools = [mcp_client.list_indices, mcp_client.get_mappings, mcp_client.search]
+            else:
+                print("[ChatAgent] Elastic MCP client is NOT configured. Hooking up local tools wrappers.")
+                # Local wrapper tools
+                def search_listings_tool(query: Optional[str] = None, dates: Optional[str] = None, max_price: Optional[float] = None, languages: Optional[List[str]] = None, team_preference: Optional[str] = None) -> str:
+                    """Search local listings database.
+                    
+                    Args:
+                        query: General text search term.
+                        dates: Check-in/out date range.
+                        max_price: Maximum price filter.
+                        languages: Host languages spoken.
+                        team_preference: Team preference matches.
+                    """
+                    res = search_listings(query=query, dates=dates, max_price=max_price, languages=languages, team_preference=team_preference)
+                    stripped = [{k: v for k, v in l.items() if k != 'description_embedding'} for l in res]
+                    return json.dumps(stripped)
+                    
+                def check_match_schedule_tool(date_range: Optional[str] = None, stadium: Optional[str] = None) -> str:
+                    """Check the FIFA match schedule.
+                    
+                    Args:
+                        date_range: Date range to check.
+                        stadium: Stadium filter.
+                    """
+                    res = check_match_schedule(date_range=date_range, stadium=stadium)
+                    return json.dumps(res)
+                    
+                tools = [search_listings_tool, check_match_schedule_tool]
+                
+            config = types.GenerateContentConfig(
+                system_instruction=system_instruction,
+                tools=tools,
+                automatic_function_calling=types.AutomaticFunctionCallingConfig(disable=True)
+            )
             
-            TOOL INPUTS & OUTPUTS:
-            - User Query: {user_query}
-            - Detected Language: {lang}
-            - Date range: {dates}
-            - Matches Found: {matches}
-            - Listings Found: {[{k: v for k, v in l.items() if k != 'description_embedding'} for l in listings]}
+            # Initial chat prediction
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=contents,
+                config=config
+            )
             
-            Write your response back to the user in the language they used. Highlight why these listings are recommended, transit details for their match day, and invite them to select a room or ask any question.
-            """
-            response = model.generate_content(prompt)
+            # Function Calling Execution Loop
+            loop_limit = 5
+            loop_count = 0
+            while response.function_calls and loop_count < loop_limit:
+                loop_count += 1
+                tool_responses = []
+                for call in response.function_calls:
+                    print(f"[ChatAgent] Model wants to call tool: {call.name} with args: {call.args}")
+                    
+                    if call.name == "list_indices":
+                        result_str = await mcp_client.list_indices()
+                    elif call.name == "get_mappings":
+                        result_str = await mcp_client.get_mappings(index=call.args.get("index"))
+                    elif call.name == "search":
+                        idx = call.args.get("index")
+                        body = call.args.get("body")
+                        if isinstance(body, str):
+                            try:
+                                body = json.loads(body)
+                            except:
+                                pass
+                        result_str = await mcp_client.search(index=idx, body=body)
+                        
+                        # Try parsing listings/matches found
+                        try:
+                            data = json.loads(result_str)
+                            hits = []
+                            if isinstance(data, list):
+                                hits = data
+                            elif isinstance(data, dict):
+                                if "hits" in data and "hits" in data["hits"]:
+                                    hits = [h["_source"] for h in data["hits"]["hits"]]
+                                elif "hits" in data:
+                                    hits = data["hits"]
+                                    
+                            if idx == "fanly_listings":
+                                recommended_listings = hits
+                            elif idx == "fanly_matches":
+                                matched_matches = hits
+                        except Exception as parse_ex:
+                            print(f"[ChatAgent] Error parsing MCP search result: {parse_ex}")
+                            
+                    elif call.name == "search_listings_tool":
+                        q = call.args.get("query")
+                        d = call.args.get("dates")
+                        p = call.args.get("max_price")
+                        l = call.args.get("languages")
+                        t = call.args.get("team_preference")
+                        res = search_listings(query=q, dates=d, max_price=p, languages=l, team_preference=t)
+                        recommended_listings = res
+                        result_str = json.dumps([{k: v for k, v in item.items() if k != 'description_embedding'} for item in res])
+                        
+                    elif call.name == "check_match_schedule_tool":
+                        dr = call.args.get("date_range")
+                        st = call.args.get("stadium")
+                        res = check_match_schedule(date_range=dr, stadium=st)
+                        matched_matches = res
+                        result_str = json.dumps(res)
+                    else:
+                        result_str = f"Error: Unknown tool: {call.name}"
+                        
+                    tool_responses.append(
+                        types.Part.from_function_response(
+                            name=call.name,
+                            response={"result": result_str}
+                        )
+                    )
+                    
+                # Append functions and results to contents history
+                contents.append(
+                    types.Content(
+                        role="model",
+                        parts=[types.Part.from_function_calls(function_calls=response.function_calls)]
+                    )
+                )
+                contents.append(
+                    types.Content(
+                        role="user",
+                        parts=tool_responses
+                    )
+                )
+                
+                # Fetch next content step
+                response = client.models.generate_content(
+                    model="gemini-1.5-flash",
+                    contents=contents,
+                    config=config
+                )
+                
             if response.text:
+                if not recommended_listings:
+                    recommended_listings = listings
+                if not matched_matches:
+                    matched_matches = matches
                 return {
                     "role": "assistant",
                     "content": response.text.strip(),
-                    "recommended_listings": listings,
-                    "matched_matches": matches
+                    "recommended_listings": recommended_listings,
+                    "matched_matches": matched_matches
                 }
         except Exception as e:
-            print(f"Gemini API Chat call failed: {e}. Falling back to rule-based template.")
+            print(f"[ChatAgent] Gemini SDK call failed: {e}. Falling back to rule-based template.")
             
     # Local fallback templates based on language
     responses = {
@@ -392,12 +539,12 @@ Recommended host listings:
         "fr": f"""Bonjour! J'ai trouvé d'excellentes options d'hébergement près du MetLife Stadium pour les dates demandées.
 
 Calendrier des matchs confirmés:
-{chr(10).join([f'- {m["home_team"]} vs {m["away_team"]} le {m["date"]} à {m["time"]} ({m["round"]})' for m in matches]) if matches else '- Aucun match officiel de haute affluence n\\'est prévu à ces dates.'}
+{chr(10).join([f'- {m["home_team"]} vs {m["away_team"]} le {m["date"]} à {m["time"]} ({m["round"]})' for m in matches]) if matches else '- Aucun match officiel de haute affluence n’est prévu à ces dates.'}
 
 Hébergements recommandés (hôtes francophones ou ouverts):
-{chr(10).join([f'- **{l["title"]}** à {l["location"]["city"]}, NJ (${l["pricing"]["price_per_night"]}/nuit). Distance: {l["stadium_distances"]["metlife_minutes"]} min ({l["stadium_distances"]["metlife_transit_mode"]}). Hôte: {l["host_name"]} (parle {", ".join(l["languages_spoken"])}).' for l in listings]) if listings else '- Aucun logement ne correspond à ces critères. Essayez d\\'élargir vos dates ou votre budget.'}
+{chr(10).join([f'- **{l["title"]}** à {l["location"]["city"]}, NJ (${l["pricing"]["price_per_night"]}/nuit). Distance: {l["stadium_distances"]["metlife_minutes"]} min ({l["stadium_distances"]["metlife_transit_mode"]}). Hôte: {l["host_name"]} (parle {", ".join(l["languages_spoken"])}).' for l in listings]) if listings else '- Aucun logement ne correspond à ces critères. Essayez d’élargir vos dates ou votre budget.'}
 
-**Info Transport:** Les jours de match à forte affluence, les routes autour du stade sont très encombrées. Nous vous conseillons d\\'utiliser les trains de la NJ Transit via Secaucus. Cliquez sur "Demander l\\'hébergement" pour générer votre accord de particulier à particulier!""",
+**Info Transport:** Les jours de match à forte affluence, les routes autour du stade sont très encombrées. Nous vous conseillons d'utiliser les trains de la NJ Transit via Secaucus. Cliquez sur "Demander l'hébergement" pour générer votre accord de particulier à particulier!""",
 
         "ar": f"""مرحبًا! لقد عثرت على بعض خيارات الاستضافة الرائعة بالقرب من ملعب MetLife خلال التواريخ المطلوبة!
 

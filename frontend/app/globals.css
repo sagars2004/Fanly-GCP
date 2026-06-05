@@ -14,7 +14,7 @@
   --card-foreground: 224 71.4% 4.1%;
   --popover: 0 0% 100%;
   --popover-foreground: 224 71.4% 4.1%;
-  --primary: 250 84% 54%; /* Deep Indigo */
+  --primary: 350 100% 61%; /* Airbnb pink-red */
   --primary-foreground: 210 20% 98%;
   --secondary: 160 84% 39%; /* Vibrant Emerald/Teal for Soccer Pitch feel */
   --secondary-foreground: 210 20% 98%;
@@ -26,7 +26,7 @@
   --destructive-foreground: 210 20% 98%;
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 250 84% 54%;
+  --ring: 350 100% 61%;
   --radius: 1rem;
 }
 
@@ -38,7 +38,7 @@
   --card-foreground: 210 20% 98%;
   --popover: 224 71% 7%;
   --popover-foreground: 210 20% 98%;
-  --primary: 250 84% 64%;
+  --primary: 350 100% 66%;
   --primary-foreground: 224 71.4% 4.1%;
   --secondary: 160 84% 45%;
   --secondary-foreground: 224 71.4% 4.1%;
@@ -50,7 +50,7 @@
   --destructive-foreground: 210 20% 98%;
   --border: 224 71% 12%;
   --input: 224 71% 12%;
-  --ring: 250 84% 64%;
+  --ring: 350 100% 66%;
 }
 
 * {

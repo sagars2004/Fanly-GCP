@@ -8,7 +8,7 @@
       "description": { "type": "text" },
       "description_embedding": {
         "type": "dense_vector",
-        "dims": 1536,
+        "dims": 768,
         "index": true,
         "similarity": "cosine"
       },

@@ -1,418 +1,5861 @@
 [
   {
     "listing_id": "list_001",
-    "host_id": "host_maria",
+    "host_id": "host_maria_1",
     "host_name": "Maria Silva",
-    "title": "Cozy Harrison Room - 10 Mins from MetLife Stadium",
-    "description": "Welcome to my home! I have a comfortable spare room in Harrison, NJ. Very clean, quiet, and friendly household. I speak Spanish, Portuguese, and English and would love to host soccer fans. It is just a 10-minute drive to MetLife Stadium, or you can take the PATH train from Harrison Station which is a 5-minute walk away.",
+    "title": "Cozy New York Room - Near MetLife Transit Hub",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Japanese, English. Highly welcoming to Portugal fans.",
     "location": {
-      "address": "202 Harrison Ave",
-      "city": "Harrison",
-      "state": "NJ",
-      "zip": "07029",
-      "lat": 40.7455,
-      "lon": -74.1568,
-      "geo_point": { "lat": 40.7455, "lon": -74.1568 }
+      "address": "19 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.75285,
+      "lon": -73.98224,
+      "geo_point": {
+        "lat": 40.75285,
+        "lon": -73.98224
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 10,
-      "metlife_transit_mode": "drive"
+      "metlife_minutes": 29,
+      "metlife_transit_mode": "transit"
     },
     "pricing": {
-      "price_per_night": 75.0,
-      "cleaning_fee": 15.0,
+      "price_per_night": 87.0,
+      "cleaning_fee": 13.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-15", "available": true },
-      { "date": "2026-06-16", "available": true },
-      { "date": "2026-06-17", "available": true },
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true },
-      { "date": "2026-06-23", "available": true },
-      { "date": "2026-06-24", "available": true },
-      { "date": "2026-06-25", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Air Conditioning", "Coffee Maker", "Towels", "Hangers", "Shared Bath"],
-    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
-    "languages_spoken": ["English", "Spanish", "Portuguese"],
-    "team_welcome": ["Brazil", "Argentina", "Portugal", "All"],
+    "amenities": [
+      "Towels",
+      "WiFi",
+      "Air Conditioning",
+      "Elevator",
+      "Kitchen",
+      "Gym",
+      "TV",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "Japanese",
+      "English"
+    ],
+    "team_welcome": [
+      "Portugal"
+    ],
     "max_guests": 2,
-    "photos": ["/images/harrison_room.jpg"],
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_002",
-    "host_id": "host_john",
+    "host_id": "host_john_2",
     "host_name": "John Doe",
-    "title": "Hoboken Waterfront Apartment (Private Couch/Shared Space)",
-    "description": "Offering a comfortable couch in my luxury Hoboken apartment with amazing views of the Manhattan skyline. Super easy transit to NYC via PATH and to MetLife Stadium via NJ Transit. I love soccer, active fan, happy to talk matches over beer. Fast WiFi, gym access.",
+    "title": "Modern Apartment in Harrison - Welcoming Soccer Fans",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks English and looking forward to welcoming Mexico & France supporters. Very close to transit hubs with fast access to MetLife Stadium.",
     "location": {
-      "address": "1400 Hudson St",
-      "city": "Hoboken",
+      "address": "396 World Cup Way",
+      "city": "Harrison",
       "state": "NJ",
-      "zip": "07030",
-      "lat": 40.7533,
-      "lon": -74.0249,
-      "geo_point": { "lat": 40.7533, "lon": -74.0249 }
+      "zip": "07029",
+      "lat": 40.73278,
+      "lon": -74.15782,
+      "geo_point": {
+        "lat": 40.73278,
+        "lon": -74.15782
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 20,
-      "metlife_transit_mode": "transit"
+      "metlife_minutes": 7,
+      "metlife_transit_mode": "drive"
     },
     "pricing": {
-      "price_per_night": 55.0,
-      "cleaning_fee": 10.0,
+      "price_per_night": 147.0,
+      "cleaning_fee": 8.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-15", "available": true },
-      { "date": "2026-06-16", "available": true },
-      { "date": "2026-06-17", "available": true },
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": false },
-      { "date": "2026-06-20", "available": false },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Air Conditioning", "Gym", "Kitchen", "Elevator"],
-    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
-    "languages_spoken": ["English"],
-    "team_welcome": ["USA", "England", "Germany", "All"],
-    "max_guests": 1,
-    "photos": ["/images/hoboken_waterfront.jpg"],
+    "amenities": [
+      "Towels",
+      "Backyard",
+      "Air Conditioning",
+      "Elevator",
+      "TV",
+      "Gym",
+      "Coffee Maker",
+      "Washing Machine"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Mexico",
+      "France"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_003",
-    "host_id": "host_youssef",
+    "host_id": "host_youssef_3",
     "host_name": "Youssef El-Mourabit",
-    "title": "Spacious Room in Union City - Arab Fan Hub",
-    "description": "Big room in a clean apartment in Union City. We speak Arabic, French, and English. Very close to bus lines straight to Port Authority (NYC) and Secaucus Junction for MetLife transfers. Moroccan fans are highly welcome, but we welcome everyone! Halal-friendly kitchen.",
+    "title": "Modern Apartment in Newark - Welcoming Soccer Fans",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
     "location": {
-      "address": "4200 Bergenline Ave",
-      "city": "Union City",
+      "address": "730 World Cup Way",
+      "city": "Newark",
       "state": "NJ",
-      "zip": "07087",
-      "lat": 40.7852,
-      "lon": -74.0298,
-      "geo_point": { "lat": 40.7852, "lon": -74.0298 }
+      "zip": "07105",
+      "lat": 40.72123,
+      "lon": -74.17647,
+      "geo_point": {
+        "lat": 40.72123,
+        "lon": -74.17647
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 15,
-      "metlife_transit_mode": "drive"
+      "metlife_minutes": 21,
+      "metlife_transit_mode": "transit"
     },
     "pricing": {
-      "price_per_night": 65.0,
-      "cleaning_fee": 0.0,
+      "price_per_night": 76.0,
+      "cleaning_fee": 3.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true },
-      { "date": "2026-06-23", "available": true },
-      { "date": "2026-06-24", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Kitchen", "Halal Food Nearby", "Private Room", "Fan/Heater"],
-    "house_rules": "No alcohol inside the apartment. Quiet, respectful hosting. Feel free to cook!",
-    "languages_spoken": ["Arabic", "French", "English"],
-    "team_welcome": ["Morocco", "Saudi Arabia", "Egypt", "Tunisia", "All"],
-    "max_guests": 3,
-    "photos": ["/images/union_city_apartment.jpg"],
+    "amenities": [
+      "Backyard",
+      "Shared Bath",
+      "Hangers",
+      "Kitchen",
+      "TV",
+      "Iron"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Portugal"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_004",
-    "host_id": "host_mateo",
+    "host_id": "host_mateo_4",
     "host_name": "Mateo Rossi",
-    "title": "Newark Ironbound Cultural Loft (Entire Unit)",
-    "description": "Entire 1-bedroom industrial loft in Newark's Ironbound district, famous for its amazing Spanish and Portuguese restaurants. Just a 3-minute walk to Newark Penn Station, where you can take a direct train to MetLife Stadium or NYC. Modern kitchen, washing machine, secure entrance.",
+    "title": "Lovely Private Space in Jersey City (World Cup Base)",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Mandarin, English. Highly welcoming to Colombia & Mexico & France fans.",
     "location": {
-      "address": "15 Ferry St",
-      "city": "Newark",
+      "address": "522 World Cup Way",
+      "city": "Jersey City",
       "state": "NJ",
-      "zip": "07105",
-      "lat": 40.7336,
-      "lon": -74.1623,
-      "geo_point": { "lat": 40.7336, "lon": -74.1623 }
+      "zip": "07302",
+      "lat": 40.71734,
+      "lon": -74.07153,
+      "geo_point": {
+        "lat": 40.71734,
+        "lon": -74.07153
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 18,
-      "metlife_transit_mode": "transit"
+      "metlife_minutes": 14,
+      "metlife_transit_mode": "drive"
     },
     "pricing": {
-      "price_per_night": 120.0,
-      "cleaning_fee": 30.0,
+      "price_per_night": 214.0,
+      "cleaning_fee": 34.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-15", "available": true },
-      { "date": "2026-06-16", "available": true },
-      { "date": "2026-06-17", "available": true },
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Air Conditioning", "Washing Machine", "Kitchen", "TV", "Iron"],
-    "house_rules": "No smoking, no loud music. Treat the space with care. Enjoy the neighborhood!",
-    "languages_spoken": ["English", "Spanish", "Italian"],
-    "team_welcome": ["Italy", "Spain", "Mexico", "All"],
+    "amenities": [
+      "Towels",
+      "Shared Bath",
+      "WiFi",
+      "Elevator",
+      "TV",
+      "Gym",
+      "Kitchen",
+      "Coffee Maker",
+      "Washing Machine"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "Mandarin",
+      "English"
+    ],
+    "team_welcome": [
+      "Colombia",
+      "Mexico",
+      "France"
+    ],
     "max_guests": 4,
-    "photos": ["/images/newark_loft.jpg"],
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_005",
-    "host_id": "host_steve",
+    "host_id": "host_steve_5",
     "host_name": "Steve Miller",
-    "title": "Steps to MetLife Stadium - East Rutherford Townhouse Room",
-    "description": "Literally as close as you can get to the venue! A private guest bedroom in my townhouse in East Rutherford. You can walk to MetLife Stadium in 20 minutes, saving you hours of transit line chaos. Shared bathroom, driveway parking included. I will be attending the matches too!",
+    "title": "Newark Soccer Fan Hub - Comfortable Spare Room",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks German, English.",
     "location": {
-      "address": "75 Paterson Ave",
-      "city": "East Rutherford",
+      "address": "391 World Cup Way",
+      "city": "Newark",
       "state": "NJ",
-      "zip": "07073",
-      "lat": 40.8329,
-      "lon": -74.0954,
-      "geo_point": { "lat": 40.8329, "lon": -74.0954 }
+      "zip": "07105",
+      "lat": 40.7255,
+      "lon": -74.17823,
+      "geo_point": {
+        "lat": 40.7255,
+        "lon": -74.17823
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 5,
-      "metlife_transit_mode": "drive"
+      "metlife_minutes": 16,
+      "metlife_transit_mode": "transit"
     },
     "pricing": {
-      "price_per_night": 150.0,
-      "cleaning_fee": 20.0,
+      "price_per_night": 163.0,
+      "cleaning_fee": 27.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-15", "available": true },
-      { "date": "2026-06-16", "available": true },
-      { "date": "2026-06-17", "available": false },
-      { "date": "2026-06-18", "available": false },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Air Conditioning", "Parking", "Washing Machine", "Private Bath"],
-    "house_rules": "No parties, no outside guests. I want to maintain a peaceful, clean home before and after game days.",
-    "languages_spoken": ["English"],
-    "team_welcome": ["All"],
+    "amenities": [
+      "Gym",
+      "Private Bath",
+      "Parking",
+      "TV"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "All"
+    ],
     "max_guests": 2,
-    "photos": ["/images/east_rutherford_townhouse.jpg"],
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_006",
-    "host_id": "host_luc",
+    "host_id": "host_luc_6",
     "host_name": "Luc Dubois",
-    "title": "Midtown Manhattan Studio - Easy Bus to MetLife",
-    "description": "Stay in the heart of NYC! Private studio in Midtown West. Just two blocks from the Port Authority Bus Terminal, where you can board the direct 351 Express Bus straight to MetLife Stadium on match days. Everything NYC has to offer is right outside.",
+    "title": "Vibrant Jersey City Loft - Easy Transit to Stadium",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Hindi, English. Highly welcoming to Japan fans.",
     "location": {
-      "address": "350 W 42nd St",
-      "city": "New York",
-      "state": "NY",
-      "zip": "10036",
-      "lat": 40.7589,
-      "lon": -73.9922,
-      "geo_point": { "lat": 40.7589, "lon": -73.9922 }
-    },
-    "stadium_distances": {
-      "metlife_minutes": 25,
-      "metlife_transit_mode": "transit"
-    },
-    "pricing": {
-      "price_per_night": 160.0,
-      "cleaning_fee": 40.0,
-      "currency": "USD"
-    },
-    "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
-    ],
-    "amenities": ["WiFi", "Air Conditioning", "Kitchen", "Elevator", "TV", "Iron"],
-    "house_rules": "Please keep noise down at night. Strictly no smoking or parties. NYC Local Law regulations apply (this is my primary home).",
-    "languages_spoken": ["English", "French"],
-    "team_welcome": ["France", "Canada", "All"],
-    "max_guests": 2,
-    "photos": ["/images/midtown_studio.jpg"],
-    "host_verified": true,
-    "status": "active"
-  },
-  {
-    "listing_id": "list_007",
-    "host_id": "host_sandra",
-    "host_name": "Sandra Miller",
-    "title": "Jersey City Cozy Bedroom - Path Train to NYC/MetLife",
-    "description": "Lovely private room in Jersey City Heights. Easy access to Hoboken and Secaucus. I speak English and Spanish. Safe and residential neighborhood. Nice backyard patio to relax in. Clean bed, towels, and morning coffee provided.",
-    "location": {
-      "address": "88 Franklin St",
+      "address": "793 World Cup Way",
       "city": "Jersey City",
       "state": "NJ",
-      "zip": "07307",
-      "lat": 40.7441,
-      "lon": -74.0435,
-      "geo_point": { "lat": 40.7441, "lon": -74.0435 }
-    },
-    "stadium_distances": {
-      "metlife_minutes": 15,
-      "metlife_transit_mode": "drive"
-    },
-    "pricing": {
-      "price_per_night": 68.0,
-      "cleaning_fee": 15.0,
-      "currency": "USD"
-    },
-    "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
-    ],
-    "amenities": ["WiFi", "Air Conditioning", "Backyard", "Coffee Maker"],
-    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
-    "languages_spoken": ["English", "Spanish"],
-    "team_welcome": ["Colombia", "Peru", "Ecuador", "All"],
-    "max_guests": 2,
-    "photos": ["/images/jc_heights.jpg"],
-    "host_verified": true,
-    "status": "active"
-  },
-  {
-    "listing_id": "list_008",
-    "host_id": "host_tarek",
-    "host_name": "Tarek Mansour",
-    "title": "Newark Ironbound Private Studio - 2 Stops to MetLife",
-    "description": "Private studio apartment in a multi-family house in Newark. Walking distance to Harrison PATH and Newark Penn Station. We speak Arabic and English. Very close to Brazilian bakeries and cafes. Clean, secure, and fully equipped kitchen.",
-    "location": {
-      "address": "120 Adams St",
-      "city": "Newark",
-      "state": "NJ",
-      "zip": "07105",
-      "lat": 40.7312,
-      "lon": -74.1582,
-      "geo_point": { "lat": 40.7312, "lon": -74.1582 }
+      "zip": "07302",
+      "lat": 40.71692,
+      "lon": -74.08618,
+      "geo_point": {
+        "lat": 40.71692,
+        "lon": -74.08618
+      }
     },
     "stadium_distances": {
       "metlife_minutes": 17,
       "metlife_transit_mode": "drive"
     },
     "pricing": {
-      "price_per_night": 85.0,
-      "cleaning_fee": 20.0,
+      "price_per_night": 133.0,
+      "cleaning_fee": 18.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "Kitchen", "Air Conditioning", "Coffee Maker"],
-    "house_rules": "Please take off shoes. No loud noise. Halal-friendly space.",
-    "languages_spoken": ["English", "Arabic"],
-    "team_welcome": ["Morocco", "Egypt", "All"],
+    "amenities": [
+      "Towels",
+      "Parking",
+      "Shared Bath",
+      "TV",
+      "Coffee Maker",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "Japan"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_007",
+    "host_id": "host_sandra_7",
+    "host_name": "Sandra Mansour",
+    "title": "Vibrant Harrison Loft - Easy Transit to Stadium",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks English. Highly welcoming to Spain & Portugal fans.",
+    "location": {
+      "address": "977 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.75073,
+      "lon": -74.15627,
+      "geo_point": {
+        "lat": 40.75073,
+        "lon": -74.15627
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 5,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 117.0,
+      "cleaning_fee": 8.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Backyard",
+      "WiFi",
+      "Elevator",
+      "Hangers",
+      "Washing Machine"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Portugal"
+    ],
     "max_guests": 2,
-    "photos": ["/images/newark_studio.jpg"],
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_008",
+    "host_id": "host_tarek_8",
+    "host_name": "Tarek Santos",
+    "title": "Vibrant Jersey City Loft - Easy Transit to Stadium",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks Spanish, English.",
+    "location": {
+      "address": "251 World Cup Way",
+      "city": "Jersey City",
+      "state": "NJ",
+      "zip": "07302",
+      "lat": 40.71756,
+      "lon": -74.07792,
+      "geo_point": {
+        "lat": 40.71756,
+        "lon": -74.07792
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 10,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 142.0,
+      "cleaning_fee": 35.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Air Conditioning",
+      "Hangers",
+      "TV",
+      "Kitchen",
+      "Coffee Maker",
+      "Iron"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "Spanish",
+      "English"
+    ],
+    "team_welcome": [
+      "France"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_009",
-    "host_id": "host_lucas",
-    "host_name": "Lucas Santos",
-    "title": "Brazilian Fan Haven in Newark (Cozy Private Room)",
-    "description": "Hey guys! I have a spare room in Harrison/Newark area. I'm a massive Brazil supporter and will be hosting watch parties for all matches. I speak fluent Portuguese and English. Come stay with a friendly host and enjoy the World Cup vibes!",
+    "host_id": "host_lucas_9",
+    "host_name": "Lucas Herrera",
+    "title": "East Rutherford Soccer Fan Hub - Comfortable Spare Room",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks Arabic, German, English.",
     "location": {
-      "address": "40 Cleveland Ave",
-      "city": "Harrison",
+      "address": "946 World Cup Way",
+      "city": "East Rutherford",
       "state": "NJ",
-      "zip": "07029",
-      "lat": 40.7482,
-      "lon": -74.1611,
-      "geo_point": { "lat": 40.7482, "lon": -74.1611 }
+      "zip": "07073",
+      "lat": 40.81973,
+      "lon": -74.09012,
+      "geo_point": {
+        "lat": 40.81973,
+        "lon": -74.09012
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 12,
+      "metlife_minutes": 4,
       "metlife_transit_mode": "drive"
     },
     "pricing": {
-      "price_per_night": 70.0,
-      "cleaning_fee": 10.0,
+      "price_per_night": 74.0,
+      "cleaning_fee": 27.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
     ],
-    "amenities": ["WiFi", "TV", "Coffee Maker", "Shared Bath", "Shared Kitchen"],
-    "house_rules": "Brazil fans preferred but all welcome! Feel free to cheer and support, but quiet down after midnight.",
-    "languages_spoken": ["English", "Portuguese"],
-    "team_welcome": ["Brazil", "Portugal", "All"],
-    "max_guests": 2,
-    "photos": ["/images/brazil_haven.jpg"],
+    "amenities": [
+      "Parking",
+      "WiFi",
+      "TV",
+      "Kitchen",
+      "Coffee Maker"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Arabic",
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "Colombia",
+      "Argentina"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   },
   {
     "listing_id": "list_010",
-    "host_id": "host_carlos_h",
-    "host_name": "Carlos Herrera",
-    "title": "Harrison Bedroom - Spanish Speaker Host",
-    "description": "Habitación privada cómoda en Harrison, cerca del PATH. Hablo español e inglés. Ideal para aficionados del fútbol. Cocina compartida y baño compartido. A solo 15 minutos en carro de MetLife.",
+    "host_id": "host_carlos_10",
+    "host_name": "Carlos Gomez",
+    "title": "Modern Apartment in East Rutherford - Welcoming Soccer Fans",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Hindi, Italian, English. Highly welcoming to Mexico & France & Italy fans.",
     "location": {
-      "address": "300 Jersey St",
-      "city": "Harrison",
+      "address": "800 World Cup Way",
+      "city": "East Rutherford",
       "state": "NJ",
-      "zip": "07029",
-      "lat": 40.7461,
-      "lon": -74.1523,
-      "geo_point": { "lat": 40.7461, "lon": -74.1523 }
+      "zip": "07073",
+      "lat": 40.83442,
+      "lon": -74.10172,
+      "geo_point": {
+        "lat": 40.83442,
+        "lon": -74.10172
+      }
     },
     "stadium_distances": {
-      "metlife_minutes": 11,
+      "metlife_minutes": 3,
       "metlife_transit_mode": "drive"
     },
     "pricing": {
-      "price_per_night": 60.0,
-      "cleaning_fee": 10.0,
+      "price_per_night": 96.0,
+      "cleaning_fee": 37.0,
       "currency": "USD"
     },
     "availability": [
-      { "date": "2026-06-18", "available": true },
-      { "date": "2026-06-19", "available": true },
-      { "date": "2026-06-20", "available": true },
-      { "date": "2026-06-21", "available": true },
-      { "date": "2026-06-22", "available": true }
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
     ],
-    "amenities": ["WiFi", "Shared Kitchen", "Air Conditioning"],
-    "house_rules": "No fumar. Mantener limpio el espacio común. Horas de silencio a partir de las 10 PM.",
-    "languages_spoken": ["English", "Spanish"],
-    "team_welcome": ["Mexico", "Argentina", "Colombia", "All"],
+    "amenities": [
+      "Towels",
+      "Backyard",
+      "WiFi",
+      "Air Conditioning",
+      "Elevator",
+      "Kitchen",
+      "Coffee Maker",
+      "Iron"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "Hindi",
+      "Italian",
+      "English"
+    ],
+    "team_welcome": [
+      "Mexico",
+      "France",
+      "Italy"
+    ],
     "max_guests": 2,
-    "photos": ["/images/spanish_host.jpg"],
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_011",
+    "host_id": "host_fatima_11",
+    "host_name": "Fatima Smith",
+    "title": "Lovely Private Space in Newark (World Cup Base)",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Mandarin, English. Highly welcoming to Morocco fans.",
+    "location": {
+      "address": "969 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.73918,
+      "lon": -74.17296,
+      "geo_point": {
+        "lat": 40.73918,
+        "lon": -74.17296
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 21,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 192.0,
+      "cleaning_fee": 33.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": false
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Backyard",
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "Elevator",
+      "TV",
+      "Gym",
+      "Coffee Maker"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "Mandarin",
+      "English"
+    ],
+    "team_welcome": [
+      "Morocco"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_012",
+    "host_id": "host_alejandro_12",
+    "host_name": "Alejandro Johnson",
+    "title": "Cozy Brooklyn Room - Near MetLife Transit Hub",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks English. All fans welcome!",
+    "location": {
+      "address": "105 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.70196,
+      "lon": -73.98456,
+      "geo_point": {
+        "lat": 40.70196,
+        "lon": -73.98456
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 31,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 145.0,
+      "cleaning_fee": 20.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "TV",
+      "Washing Machine",
+      "Hangers"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Argentina",
+      "Italy",
+      "France"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_013",
+    "host_id": "host_emily_13",
+    "host_name": "Emily Williams",
+    "title": "Cozy Union City Room - Near MetLife Transit Hub",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks German, English and looking forward to welcoming Japan & Morocco supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "111 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.76814,
+      "lon": -74.02384,
+      "geo_point": {
+        "lat": 40.76814,
+        "lon": -74.02384
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 18,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 125.0,
+      "cleaning_fee": 3.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Parking",
+      "Air Conditioning",
+      "Elevator",
+      "Hangers",
+      "Coffee Maker",
+      "Iron"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "Japan",
+      "Morocco"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_014",
+    "host_id": "host_kenji_14",
+    "host_name": "Kenji Brown",
+    "title": "Lovely Private Space in Harrison (World Cup Base)",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks English. All fans welcome!",
+    "location": {
+      "address": "473 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.7309,
+      "lon": -74.15146,
+      "geo_point": {
+        "lat": 40.7309,
+        "lon": -74.15146
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 14,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 76.0,
+      "cleaning_fee": 9.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "TV",
+      "Gym",
+      "Washing Machine"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Colombia"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_015",
+    "host_id": "host_hans_15",
+    "host_name": "Hans Jones",
+    "title": "Cozy Union City Room - Near MetLife Transit Hub",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks French, English. All fans welcome!",
+    "location": {
+      "address": "680 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.79323,
+      "lon": -74.02681,
+      "geo_point": {
+        "lat": 40.79323,
+        "lon": -74.02681
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 15,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 142.0,
+      "cleaning_fee": 14.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Parking",
+      "Kitchen",
+      "Gym",
+      "Hangers"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "French",
+      "English"
+    ],
+    "team_welcome": [
+      "Japan",
+      "Brazil"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_016",
+    "host_id": "host_sophie_16",
+    "host_name": "Sophie Garcia",
+    "title": "Vibrant Newark Loft - Easy Transit to Stadium",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks English. All fans welcome!",
+    "location": {
+      "address": "71 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.72506,
+      "lon": -74.17593,
+      "geo_point": {
+        "lat": 40.72506,
+        "lon": -74.17593
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 19,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 216.0,
+      "cleaning_fee": 30.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": false
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Shared Bath",
+      "WiFi",
+      "Air Conditioning",
+      "TV",
+      "Gym",
+      "Iron"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Portugal",
+      "France"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_017",
+    "host_id": "host_andre_17",
+    "host_name": "Andre Rodriguez",
+    "title": "Modern Apartment in Harrison - Welcoming Soccer Fans",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks English and looking forward to welcoming Spain & Germany & USA supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "851 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.73738,
+      "lon": -74.1619,
+      "geo_point": {
+        "lat": 40.73738,
+        "lon": -74.1619
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 5,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 146.0,
+      "cleaning_fee": 14.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "Air Conditioning",
+      "Elevator",
+      "Kitchen",
+      "Iron"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Germany",
+      "USA"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_018",
+    "host_id": "host_priya_18",
+    "host_name": "Priya Martinez",
+    "title": "Vibrant Newark Loft - Easy Transit to Stadium",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks English. All fans welcome!",
+    "location": {
+      "address": "764 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.72291,
+      "lon": -74.18655,
+      "geo_point": {
+        "lat": 40.72291,
+        "lon": -74.18655
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 21,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 70.0,
+      "cleaning_fee": 29.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Shared Bath",
+      "WiFi",
+      "Hangers",
+      "Gym",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Mexico",
+      "Italy"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_019",
+    "host_id": "host_elena_19",
+    "host_name": "Elena Hernandez",
+    "title": "Lovely Private Space in East Rutherford (World Cup Base)",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks English.",
+    "location": {
+      "address": "199 World Cup Way",
+      "city": "East Rutherford",
+      "state": "NJ",
+      "zip": "07073",
+      "lat": 40.83668,
+      "lon": -74.1081,
+      "geo_point": {
+        "lat": 40.83668,
+        "lon": -74.1081
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 3,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 157.0,
+      "cleaning_fee": 20.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Backyard",
+      "Shared Bath",
+      "Hangers",
+      "Gym",
+      "Kitchen"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Japan",
+      "USA"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_020",
+    "host_id": "host_gabriel_20",
+    "host_name": "Gabriel Lopez",
+    "title": "Vibrant New York Loft - Easy Transit to Stadium",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks English. Highly welcoming to Spain & Italy fans.",
+    "location": {
+      "address": "766 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.7528,
+      "lon": -73.97799,
+      "geo_point": {
+        "lat": 40.7528,
+        "lon": -73.97799
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 26,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 141.0,
+      "cleaning_fee": 22.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": false
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "WiFi",
+      "Elevator",
+      "Hangers",
+      "Gym",
+      "Coffee Maker",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Italy"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_021",
+    "host_id": "host_clara_21",
+    "host_name": "Clara Gonzalez",
+    "title": "Vibrant Queens Loft - Easy Transit to Stadium",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks German, English. Highly welcoming to Spain & Mexico fans.",
+    "location": {
+      "address": "840 World Cup Way",
+      "city": "Queens",
+      "state": "NY",
+      "zip": "11101",
+      "lat": 40.75839,
+      "lon": -73.93716,
+      "geo_point": {
+        "lat": 40.75839,
+        "lon": -73.93716
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 43,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 202.0,
+      "cleaning_fee": 16.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Backyard",
+      "Shared Bath",
+      "WiFi",
+      "Elevator",
+      "Kitchen",
+      "Gym"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Mexico"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_022",
+    "host_id": "host_chloe_22",
+    "host_name": "Chloe Wilson",
+    "title": "Cozy Union City Room - Near MetLife Transit Hub",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Hindi, Portuguese, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "58 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.76509,
+      "lon": -74.01006,
+      "geo_point": {
+        "lat": 40.76509,
+        "lon": -74.01006
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 10,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 103.0,
+      "cleaning_fee": 6.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Shared Bath",
+      "TV",
+      "Hangers",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "Hindi",
+      "Portuguese",
+      "English"
+    ],
+    "team_welcome": [
+      "Colombia",
+      "Portugal"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_023",
+    "host_id": "host_zoe_23",
+    "host_name": "Zoe Anderson",
+    "title": "Brooklyn Soccer Fan Hub - Comfortable Spare Room",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Spanish, Italian, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "327 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.70363,
+      "lon": -73.97876,
+      "geo_point": {
+        "lat": 40.70363,
+        "lon": -73.97876
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 35,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 128.0,
+      "cleaning_fee": 16.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "Air Conditioning",
+      "Kitchen",
+      "TV",
+      "Hangers",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "Spanish",
+      "Italian",
+      "English"
+    ],
+    "team_welcome": [
+      "All"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_024",
+    "host_id": "host_jack_24",
+    "host_name": "Jack Thomas",
+    "title": "Cozy New York Room - Near MetLife Transit Hub",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks German, Hindi, English. Highly welcoming to Morocco fans.",
+    "location": {
+      "address": "336 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.76692,
+      "lon": -73.99898,
+      "geo_point": {
+        "lat": 40.76692,
+        "lon": -73.99898
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 29,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 187.0,
+      "cleaning_fee": 13.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "Kitchen",
+      "Hangers",
+      "Iron"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "German",
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "Morocco"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_025",
+    "host_id": "host_mia_25",
+    "host_name": "Mia Taylor",
+    "title": "Vibrant Jersey City Loft - Easy Transit to Stadium",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks German, English. All fans welcome!",
+    "location": {
+      "address": "786 World Cup Way",
+      "city": "Jersey City",
+      "state": "NJ",
+      "zip": "07302",
+      "lat": 40.71869,
+      "lon": -74.06413,
+      "geo_point": {
+        "lat": 40.71869,
+        "lon": -74.06413
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 20,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 69.0,
+      "cleaning_fee": 9.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": false
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Air Conditioning",
+      "Hangers",
+      "TV",
+      "Kitchen"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "Portugal",
+      "Morocco"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_026",
+    "host_id": "host_emma_26",
+    "host_name": "Emma Moore",
+    "title": "Vibrant Brooklyn Loft - Easy Transit to Stadium",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "427 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.69661,
+      "lon": -73.97733,
+      "geo_point": {
+        "lat": 40.69661,
+        "lon": -73.97733
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 40,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 83.0,
+      "cleaning_fee": 24.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": false
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Backyard",
+      "Air Conditioning",
+      "Elevator"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "France"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_027",
+    "host_id": "host_ava_27",
+    "host_name": "Ava Jackson",
+    "title": "Modern Apartment in Brooklyn - Welcoming Soccer Fans",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks Portuguese, English and looking forward to welcoming France & Morocco supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "607 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.6982,
+      "lon": -74.0044,
+      "geo_point": {
+        "lat": 40.6982,
+        "lon": -74.0044
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 35,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 81.0,
+      "cleaning_fee": 7.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": false
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Backyard",
+      "Shared Bath",
+      "Elevator",
+      "TV",
+      "Hangers",
+      "Gym"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "Portuguese",
+      "English"
+    ],
+    "team_welcome": [
+      "France",
+      "Morocco"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_028",
+    "host_id": "host_oliver_28",
+    "host_name": "Oliver Martin",
+    "title": "Newark Soccer Fan Hub - Comfortable Spare Room",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Japanese, Hindi, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "839 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.7459,
+      "lon": -74.16414,
+      "geo_point": {
+        "lat": 40.7459,
+        "lon": -74.16414
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 16,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 61.0,
+      "cleaning_fee": 5.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Shared Bath",
+      "Elevator",
+      "Hangers",
+      "Gym",
+      "Coffee Maker"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Japanese",
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "Mexico",
+      "Brazil"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_029",
+    "host_id": "host_mason_29",
+    "host_name": "Mason Lee",
+    "title": "Lovely Private Space in New York (World Cup Base)",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks French, Portuguese, English. Highly welcoming to Italy & Japan fans.",
+    "location": {
+      "address": "98 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.7688,
+      "lon": -73.97506,
+      "geo_point": {
+        "lat": 40.7688,
+        "lon": -73.97506
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 25,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 98.0,
+      "cleaning_fee": 4.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": false
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "Shared Bath",
+      "Kitchen",
+      "TV",
+      "Hangers",
+      "Coffee Maker",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "French",
+      "Portuguese",
+      "English"
+    ],
+    "team_welcome": [
+      "Italy",
+      "Japan"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_030",
+    "host_id": "host_sophia_30",
+    "host_name": "Sophia Perez",
+    "title": "Lovely Private Space in Queens (World Cup Base)",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Mandarin, Hindi, English. Highly welcoming to Germany & USA fans.",
+    "location": {
+      "address": "411 World Cup Way",
+      "city": "Queens",
+      "state": "NY",
+      "zip": "11101",
+      "lat": 40.74621,
+      "lon": -73.94907,
+      "geo_point": {
+        "lat": 40.74621,
+        "lon": -73.94907
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 39,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 180.0,
+      "cleaning_fee": 2.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "TV",
+      "Kitchen",
+      "Iron"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "Mandarin",
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "Germany",
+      "USA"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_031",
+    "host_id": "host_isabella_31",
+    "host_name": "Isabella Thompson",
+    "title": "Cozy New York Room - Near MetLife Transit Hub",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Spanish, German, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "661 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.75771,
+      "lon": -73.97302,
+      "geo_point": {
+        "lat": 40.75771,
+        "lon": -73.97302
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 30,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 185.0,
+      "cleaning_fee": 20.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "Elevator",
+      "Kitchen",
+      "Gym",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "Spanish",
+      "German",
+      "English"
+    ],
+    "team_welcome": [
+      "Portugal"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_032",
+    "host_id": "host_charlotte_32",
+    "host_name": "Charlotte White",
+    "title": "Lovely Private Space in Hoboken (World Cup Base)",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks Portuguese, English and looking forward to welcoming Spain & Colombia & Italy supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "278 World Cup Way",
+      "city": "Hoboken",
+      "state": "NJ",
+      "zip": "07030",
+      "lat": 40.73528,
+      "lon": -74.01411,
+      "geo_point": {
+        "lat": 40.73528,
+        "lon": -74.01411
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 22,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 76.0,
+      "cleaning_fee": 4.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": false
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "WiFi",
+      "Kitchen",
+      "Gym",
+      "TV",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "Portuguese",
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Colombia",
+      "Italy"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_033",
+    "host_id": "host_amelia_33",
+    "host_name": "Amelia Harris",
+    "title": "Cozy Harrison Room - Near MetLife Transit Hub",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks English. Highly welcoming to Italy fans.",
+    "location": {
+      "address": "848 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.74544,
+      "lon": -74.16594,
+      "geo_point": {
+        "lat": 40.74544,
+        "lon": -74.16594
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 8,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 149.0,
+      "cleaning_fee": 34.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Hangers",
+      "Kitchen",
+      "Air Conditioning",
+      "TV"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Italy"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_034",
+    "host_id": "host_thomas_34",
+    "host_name": "Thomas Sanchez",
+    "title": "Vibrant Brooklyn Loft - Easy Transit to Stadium",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks Spanish, English. Highly welcoming to Argentina fans.",
+    "location": {
+      "address": "839 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.68707,
+      "lon": -73.99054,
+      "geo_point": {
+        "lat": 40.68707,
+        "lon": -73.99054
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 37,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 204.0,
+      "cleaning_fee": 31.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Air Conditioning",
+      "Coffee Maker",
+      "Parking",
+      "Washing Machine"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Spanish",
+      "English"
+    ],
+    "team_welcome": [
+      "Argentina"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_035",
+    "host_id": "host_pierre_35",
+    "host_name": "Pierre Clark",
+    "title": "Vibrant Newark Loft - Easy Transit to Stadium",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "709 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.73621,
+      "lon": -74.17708,
+      "geo_point": {
+        "lat": 40.73621,
+        "lon": -74.17708
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 21,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 209.0,
+      "cleaning_fee": 1.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": false
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Air Conditioning",
+      "Kitchen",
+      "TV",
+      "Hangers",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Italy"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_036",
+    "host_id": "host_ali_36",
+    "host_name": "Ali Ramirez",
+    "title": "Lovely Private Space in Jersey City (World Cup Base)",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks English and looking forward to welcoming Mexico & Italy & Morocco supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "361 World Cup Way",
+      "city": "Jersey City",
+      "state": "NJ",
+      "zip": "07302",
+      "lat": 40.72201,
+      "lon": -74.06374,
+      "geo_point": {
+        "lat": 40.72201,
+        "lon": -74.06374
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 16,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 204.0,
+      "cleaning_fee": 0.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": false
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Hangers",
+      "Coffee Maker",
+      "Parking",
+      "Kitchen"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Mexico",
+      "Italy",
+      "Morocco"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_037",
+    "host_id": "host_sven_37",
+    "host_name": "Sven Lewis",
+    "title": "Modern Apartment in New York - Welcoming Soccer Fans",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "217 World Cup Way",
+      "city": "New York",
+      "state": "NY",
+      "zip": "10036",
+      "lat": 40.74965,
+      "lon": -73.97186,
+      "geo_point": {
+        "lat": 40.74965,
+        "lon": -73.97186
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 30,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 105.0,
+      "cleaning_fee": 31.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Parking",
+      "Shared Bath",
+      "Hangers",
+      "Kitchen",
+      "Gym",
+      "Washing Machine"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Brazil"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_038",
+    "host_id": "host_diego_38",
+    "host_name": "Diego Robinson",
+    "title": "Modern Apartment in Harrison - Welcoming Soccer Fans",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks English. Highly welcoming to Argentina fans.",
+    "location": {
+      "address": "774 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.75728,
+      "lon": -74.14335,
+      "geo_point": {
+        "lat": 40.75728,
+        "lon": -74.14335
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 14,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 201.0,
+      "cleaning_fee": 3.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Shared Bath",
+      "WiFi",
+      "Air Conditioning",
+      "Elevator",
+      "Kitchen"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Argentina"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_039",
+    "host_id": "host_ana_39",
+    "host_name": "Ana Walker",
+    "title": "Modern Apartment in Queens - Welcoming Soccer Fans",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks English.",
+    "location": {
+      "address": "182 World Cup Way",
+      "city": "Queens",
+      "state": "NY",
+      "zip": "11101",
+      "lat": 40.7352,
+      "lon": -73.95413,
+      "geo_point": {
+        "lat": 40.7352,
+        "lon": -73.95413
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 42,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 114.0,
+      "cleaning_fee": 8.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": false
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "WiFi",
+      "Private Bath",
+      "Coffee Maker",
+      "Hangers"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Argentina",
+      "USA"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_040",
+    "host_id": "host_luis_40",
+    "host_name": "Luis Young",
+    "title": "Hoboken Soccer Fan Hub - Comfortable Spare Room",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "260 World Cup Way",
+      "city": "Hoboken",
+      "state": "NJ",
+      "zip": "07030",
+      "lat": 40.74404,
+      "lon": -74.02871,
+      "geo_point": {
+        "lat": 40.74404,
+        "lon": -74.02871
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 23,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 128.0,
+      "cleaning_fee": 36.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Parking",
+      "Shared Bath",
+      "Air Conditioning",
+      "Elevator"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Colombia"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_041",
+    "host_id": "host_juan_41",
+    "host_name": "Juan Allen",
+    "title": "Cozy Union City Room - Near MetLife Transit Hub",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks Arabic, Italian, English.",
+    "location": {
+      "address": "27 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.76725,
+      "lon": -74.03072,
+      "geo_point": {
+        "lat": 40.76725,
+        "lon": -74.03072
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 16,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 167.0,
+      "cleaning_fee": 18.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Towels",
+      "Backyard",
+      "Elevator",
+      "TV",
+      "Gym",
+      "Washing Machine"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "Arabic",
+      "Italian",
+      "English"
+    ],
+    "team_welcome": [
+      "Italy",
+      "France",
+      "Morocco"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_042",
+    "host_id": "host_aiko_42",
+    "host_name": "Aiko King",
+    "title": "Vibrant Harrison Loft - Easy Transit to Stadium",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks Italian, English. All fans welcome!",
+    "location": {
+      "address": "13 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.75234,
+      "lon": -74.14723,
+      "geo_point": {
+        "lat": 40.75234,
+        "lon": -74.14723
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 6,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 179.0,
+      "cleaning_fee": 24.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": false
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "WiFi",
+      "Air Conditioning",
+      "Kitchen",
+      "Gym",
+      "TV",
+      "Hangers",
+      "Washing Machine"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "Italian",
+      "English"
+    ],
+    "team_welcome": [
+      "Japan",
+      "USA",
+      "France"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_043",
+    "host_id": "host_yuki_43",
+    "host_name": "Yuki Wright",
+    "title": "Modern Apartment in Union City - Welcoming Soccer Fans",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Spanish, Hindi, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "87 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.79149,
+      "lon": -74.02785,
+      "geo_point": {
+        "lat": 40.79149,
+        "lon": -74.02785
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 17,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 206.0,
+      "cleaning_fee": 11.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "Shared Bath",
+      "Air Conditioning",
+      "Elevator",
+      "TV",
+      "Gym",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Spanish",
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "England"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_044",
+    "host_id": "host_marco_44",
+    "host_name": "Marco Scott",
+    "title": "Lovely Private Space in Union City (World Cup Base)",
+    "description": "Cozy and clean room in a nice neighborhood. Speaks English and looking forward to welcoming Portugal & England supporters. Very close to transit hubs with fast access to MetLife Stadium.",
+    "location": {
+      "address": "761 World Cup Way",
+      "city": "Union City",
+      "state": "NJ",
+      "zip": "07087",
+      "lat": 40.76832,
+      "lon": -74.01337,
+      "geo_point": {
+        "lat": 40.76832,
+        "lon": -74.01337
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 14,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 166.0,
+      "cleaning_fee": 23.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": false
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": false
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Towels",
+      "Backyard",
+      "Parking",
+      "WiFi",
+      "Air Conditioning",
+      "Hangers",
+      "TV"
+    ],
+    "house_rules": "Respectful of quiet hours. No loud music. Backyard access is okay during the day.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Portugal",
+      "England"
+    ],
+    "max_guests": 3,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_045",
+    "host_id": "host_anna_45",
+    "host_name": "Anna Torres",
+    "title": "Modern Apartment in Harrison - Welcoming Soccer Fans",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks French, Portuguese, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "51 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.75512,
+      "lon": -74.14618,
+      "geo_point": {
+        "lat": 40.75512,
+        "lon": -74.14618
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 13,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 121.0,
+      "cleaning_fee": 32.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Parking",
+      "Shared Bath",
+      "TV",
+      "Gym",
+      "Washing Machine",
+      "Iron"
+    ],
+    "house_rules": "No smoking inside. Quiet hours after 11 PM. Respect the neighbors. Game day celebrations are fine but keep it reasonable!",
+    "languages_spoken": [
+      "French",
+      "Portuguese",
+      "English"
+    ],
+    "team_welcome": [
+      "Italy",
+      "England"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_046",
+    "host_id": "host_lisa_46",
+    "host_name": "Lisa Nguyen",
+    "title": "Modern Apartment in Newark - Welcoming Soccer Fans",
+    "description": "Beautiful private room. Quiet, residential street. Clean bed, towels, and morning coffee provided. Speaks English. Highly welcoming to England & Morocco fans.",
+    "location": {
+      "address": "974 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.7413,
+      "lon": -74.16435,
+      "geo_point": {
+        "lat": 40.7413,
+        "lon": -74.16435
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 19,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 173.0,
+      "cleaning_fee": 22.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": false
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Backyard",
+      "Parking",
+      "Shared Bath",
+      "WiFi",
+      "Elevator",
+      "Kitchen",
+      "Hangers",
+      "TV"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "England",
+      "Morocco"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_047",
+    "host_id": "host_viktor_47",
+    "host_name": "Viktor Hill",
+    "title": "Jersey City Soccer Fan Hub - Comfortable Spare Room",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "585 World Cup Way",
+      "city": "Jersey City",
+      "state": "NJ",
+      "zip": "07302",
+      "lat": 40.73931,
+      "lon": -74.06398,
+      "geo_point": {
+        "lat": 40.73931,
+        "lon": -74.06398
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 13,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 109.0,
+      "cleaning_fee": 24.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": false
+      },
+      {
+        "date": "2026-06-23",
+        "available": false
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": false
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Washing Machine",
+      "Elevator",
+      "Hangers"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "English"
+    ],
+    "team_welcome": [
+      "Japan",
+      "Brazil"
+    ],
+    "max_guests": 1,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_048",
+    "host_id": "host_ravi_48",
+    "host_name": "Ravi Flores",
+    "title": "Modern Apartment in Harrison - Welcoming Soccer Fans",
+    "description": "Entire 1-bedroom loft unit in a vibrant dining district. Modern kitchen, washing machine, secure entrance. Perfect base for World Cup matches. Speaks German, Hindi, English.",
+    "location": {
+      "address": "878 World Cup Way",
+      "city": "Harrison",
+      "state": "NJ",
+      "zip": "07029",
+      "lat": 40.75513,
+      "lon": -74.14757,
+      "geo_point": {
+        "lat": 40.75513,
+        "lon": -74.14757
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 10,
+      "metlife_transit_mode": "drive"
+    },
+    "pricing": {
+      "price_per_night": 163.0,
+      "cleaning_fee": 2.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": false
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "Backyard",
+      "Hangers",
+      "Gym",
+      "Kitchen",
+      "TV"
+    ],
+    "house_rules": "No pets, no parties, shoes off inside. Please clean up after yourself in the kitchen.",
+    "languages_spoken": [
+      "German",
+      "Hindi",
+      "English"
+    ],
+    "team_welcome": [
+      "All"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": false,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_049",
+    "host_id": "host_meera_49",
+    "host_name": "Meera Green",
+    "title": "Vibrant Brooklyn Loft - Easy Transit to Stadium",
+    "description": "Literally steps away from transit options to the stadium. Driveway parking available. Quiet hours after 10 PM. Speaks Arabic, French, English. All fans welcome!",
+    "location": {
+      "address": "665 World Cup Way",
+      "city": "Brooklyn",
+      "state": "NY",
+      "zip": "11201",
+      "lat": 40.70049,
+      "lon": -73.99965,
+      "geo_point": {
+        "lat": 40.70049,
+        "lon": -73.99965
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 39,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 100.0,
+      "cleaning_fee": 13.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": false
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": false
+      },
+      {
+        "date": "2026-06-26",
+        "available": false
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": true
+      },
+      {
+        "date": "2026-06-29",
+        "available": true
+      },
+      {
+        "date": "2026-06-30",
+        "available": true
+      }
+    ],
+    "amenities": [
+      "WiFi",
+      "Towels",
+      "Gym",
+      "Iron"
+    ],
+    "house_rules": "No alcohol inside. Quiet, respectful hosting. Feel free to cook in the kitchen.",
+    "languages_spoken": [
+      "Arabic",
+      "French",
+      "English"
+    ],
+    "team_welcome": [
+      "Spain",
+      "Italy",
+      "France"
+    ],
+    "max_guests": 2,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
+    "host_verified": true,
+    "status": "active"
+  },
+  {
+    "listing_id": "list_050",
+    "host_id": "host_camila_50",
+    "host_name": "Camila Adams",
+    "title": "Lovely Private Space in Newark (World Cup Base)",
+    "description": "A spacious private couch in my modern apartment. Perfect for soccer fans! Speaks Mandarin, English. I love soccer, active fan, happy to talk matches. Easy route to NYC and East Rutherford.",
+    "location": {
+      "address": "991 World Cup Way",
+      "city": "Newark",
+      "state": "NJ",
+      "zip": "07105",
+      "lat": 40.74314,
+      "lon": -74.17208,
+      "geo_point": {
+        "lat": 40.74314,
+        "lon": -74.17208
+      }
+    },
+    "stadium_distances": {
+      "metlife_minutes": 18,
+      "metlife_transit_mode": "transit"
+    },
+    "pricing": {
+      "price_per_night": 162.0,
+      "cleaning_fee": 17.0,
+      "currency": "USD"
+    },
+    "availability": [
+      {
+        "date": "2026-06-15",
+        "available": true
+      },
+      {
+        "date": "2026-06-16",
+        "available": true
+      },
+      {
+        "date": "2026-06-17",
+        "available": true
+      },
+      {
+        "date": "2026-06-18",
+        "available": true
+      },
+      {
+        "date": "2026-06-19",
+        "available": true
+      },
+      {
+        "date": "2026-06-20",
+        "available": true
+      },
+      {
+        "date": "2026-06-21",
+        "available": true
+      },
+      {
+        "date": "2026-06-22",
+        "available": true
+      },
+      {
+        "date": "2026-06-23",
+        "available": true
+      },
+      {
+        "date": "2026-06-24",
+        "available": true
+      },
+      {
+        "date": "2026-06-25",
+        "available": true
+      },
+      {
+        "date": "2026-06-26",
+        "available": true
+      },
+      {
+        "date": "2026-06-27",
+        "available": true
+      },
+      {
+        "date": "2026-06-28",
+        "available": false
+      },
+      {
+        "date": "2026-06-29",
+        "available": false
+      },
+      {
+        "date": "2026-06-30",
+        "available": false
+      }
+    ],
+    "amenities": [
+      "Private Bath",
+      "Parking",
+      "WiFi",
+      "Kitchen",
+      "Gym",
+      "Hangers"
+    ],
+    "house_rules": "Please take off shoes. No loud noise after midnight. Treat the space with care and enjoy the neighborhood!",
+    "languages_spoken": [
+      "Mandarin",
+      "English"
+    ],
+    "team_welcome": [
+      "Spain"
+    ],
+    "max_guests": 4,
+    "photos": [
+      "/images/generic_room.jpg"
+    ],
     "host_verified": true,
     "status": "active"
   }

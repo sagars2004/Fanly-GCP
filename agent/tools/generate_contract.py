@@ -1,8 +1,10 @@
 import os
 import json
 from pathlib import Path
+from agent.tools.ai_client import get_genai_client
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+USE_VERTEXAI = os.getenv("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("true", "1", "yes")
 
 CONTRACT_TEMPLATES = {
     "en": """
@@ -182,12 +184,10 @@ def generate_contract(host_name, fan_name, address, city, state, check_in, check
         
     sign_date = datetime.now().strftime("%Y-%m-%d")
     
-    # Check if Gemini key is available for generating dynamic contract
-    if GEMINI_API_KEY:
+    # Check if Gemini key or Vertex AI is available for generating dynamic contract
+    if GEMINI_API_KEY or USE_VERTEXAI:
         try:
-            import google.generativeai as genai
-            genai.configure(api_key=GEMINI_API_KEY)
-            model = genai.GenerativeModel('gemini-1.5-flash')
+            client = get_genai_client()
             
             prompt = f"""
             Write a plain-language housing micro-contract for the 2026 World Cup in {language} language based on these details:
@@ -203,7 +203,10 @@ def generate_contract(host_name, fan_name, address, city, state, check_in, check
             Make it friendly, clear, easy to read, and avoid complex legal jargon. Output ONLY the contract text.
             """
             
-            response = model.generate_content(prompt)
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt
+            )
             if response.text:
                 return response.text.strip()
         except Exception as e:

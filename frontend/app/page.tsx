@@ -2,19 +2,91 @@
 
 import React, { useState, useEffect } from "react";
 import { useLanguage } from "../lib/LanguageContext";
-import { fetchListings, Listing, Match } from "../lib/agentClient";
+import { fetchListings, Listing } from "../lib/agentClient";
 import SearchBar from "../components/SearchBar";
 import ListingCard from "../components/ListingCard";
 import AgentChat from "../components/AgentChat";
 import MatchScheduleOverlay from "../components/MatchScheduleOverlay";
-import { Sparkles, HelpCircle, ShieldAlert, Award } from "lucide-react";
+import { Sparkles, ShieldAlert, Heart, Star } from "lucide-react";
+
+interface Attraction {
+  id: string;
+  title: string;
+  price: string;
+  rating: string;
+  reviews: string;
+  image: string;
+  badge?: string;
+}
+
+const JERSEY_ATTRACTIONS: Attraction[] = [
+  {
+    id: "att_1",
+    title: "Step onto Edge sky deck Ticket Only",
+    price: "From $48 / guest",
+    rating: "4.44",
+    reviews: "312",
+    image: "https://images.unsplash.com/photo-1549643276-fdf2fab574f5?auto=format&fit=crop&w=400&h=300&q=80",
+    badge: "Trending"
+  },
+  {
+    id: "att_2",
+    title: "Top of the Rock Timed Admission",
+    price: "From $46 / guest",
+    rating: "5.0",
+    reviews: "420",
+    image: "https://images.unsplash.com/photo-1522083165195-342750297f4e?auto=format&fit=crop&w=400&h=300&q=80"
+  },
+  {
+    id: "att_3",
+    title: "Empire State Building 86th Main Deck Ticket",
+    price: "From $48 / guest",
+    rating: "4.92",
+    reviews: "860",
+    image: "https://images.unsplash.com/photo-1502104034360-73176bb1e92e?auto=format&fit=crop&w=400&h=300&q=80",
+    badge: "Trending"
+  },
+  {
+    id: "att_4",
+    title: "Experience the New York Yankees at Yankee Stadium",
+    price: "From $140 / guest",
+    rating: "4.85",
+    reviews: "1.2k",
+    image: "https://images.unsplash.com/photo-1508849789987-4e5333c12b78?auto=format&fit=crop&w=400&h=300&q=80"
+  },
+  {
+    id: "att_5",
+    title: "Skylift & Timed Admission - Top of the Rock",
+    price: "From $63 / guest",
+    rating: "4.78",
+    reviews: "155",
+    image: "https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?auto=format&fit=crop&w=400&h=300&q=80"
+  },
+  {
+    id: "att_6",
+    title: "Cruise NYC harbor & get up close to Lady Liberty",
+    price: "From $20 / guest",
+    rating: "4.96",
+    reviews: "2.4k",
+    image: "https://images.unsplash.com/photo-1522083165195-342750297f4e?auto=format&fit=crop&w=400&h=300&q=80"
+  },
+  {
+    id: "att_7",
+    title: "All-Inclusive Pass - Top of the Rock",
+    price: "From $79 / guest",
+    rating: "4.90",
+    reviews: "480",
+    image: "https://images.unsplash.com/photo-1502104034360-73176bb1e92e?auto=format&fit=crop&w=400&h=300&q=80"
+  }
+];
 
 export default function Home() {
   const { t } = useLanguage();
   const [listings, setListings] = useState<Listing[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useState<any>(null);
-  
+  const [likedAttractions, setLikedAttractions] = useState<Record<string, boolean>>({});
+
   // Load initial listings on mount
   useEffect(() => {
     async function loadInitial() {
@@ -60,42 +132,61 @@ export default function Home() {
     setListings(newListings);
   };
 
+  const toggleLikeAttraction = (id: string) => {
+    setLikedAttractions(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
+  };
+
   return (
-    <div className="flex-grow hero-gradient px-4 md:px-8 py-6 md:py-12">
-      <div className="mx-auto max-w-7xl space-y-8 md:space-y-12">
+    <div className="flex-grow bg-background px-6 md:px-12 py-8 space-y-10">
+      <div className="mx-auto max-w-7xl space-y-10">
         
-        {/* Hero Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold text-xs uppercase tracking-wider animate-float">
-            <Sparkles className="w-4 h-4 text-accent" />
+        {/* Sparkles Hackathon Banner */}
+        <div className="text-center max-w-3xl mx-auto space-y-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-wider animate-float">
+            <Sparkles className="w-3.5 h-3.5" />
             <span>Elastic Partner Track Hackathon Entry</span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight leading-none text-balance">
-            {t("heroTitle")}
-          </h1>
-          <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto leading-relaxed">
-            {t("heroSubtitle")}
-          </p>
         </div>
 
-        {/* Local Law 18 Regulatory Alert */}
-        <div className="max-w-4xl mx-auto p-4 rounded-xl border border-red-500/20 bg-red-500/5 flex gap-3 items-start shadow-sm">
-          <ShieldAlert className="w-5.5 h-5.5 text-red-500 shrink-0 mt-0.5" />
+        {/* Regulatory Alert Banner */}
+        <div className="max-w-3xl mx-auto p-3.5 rounded-xl border border-red-500/20 bg-red-500/5 flex gap-3 items-start shadow-sm">
+          <ShieldAlert className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
           <p className="text-xs text-foreground/80 font-semibold leading-relaxed">
             {t("warningLL18")}
           </p>
         </div>
 
-        {/* Search Bar */}
+        {/* Floating Search Bar */}
         <SearchBar onSearch={handleSearch} isLoading={isLoading} />
 
-        {/* Main Interface Layout: Listings Feed + AI Chat side-by-side */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+        {/* Jersey City Experience badge under Search bar - Matches the image */}
+        <div className="flex justify-center">
+          <div className="inline-flex items-center gap-3 bg-card border border-border shadow-sm rounded-full py-1.5 pl-2 pr-4 hover:shadow-md transition-shadow cursor-pointer select-none">
+            <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border bg-muted">
+              <img 
+                src="https://images.unsplash.com/photo-1549643276-fdf2fab574f5?auto=format&fit=crop&w=80&h=80&q=80" 
+                alt="Jersey City attractions" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+            <div className="text-xs font-semibold text-foreground/90 flex gap-1 items-center">
+              <span className="font-bold">Book an experience while you&apos;re in Jersey City</span>
+              <span className="text-muted-foreground/80 font-normal">Jun 5 – Jul 5 • 1 guest</span>
+              <span className="text-primary font-black ml-1">→</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Interface Layout: Feed Column + AI Agent Chat column */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
           
-          {/* Left Column: Listings Feed */}
-          <div className="lg:col-span-2 space-y-6">
+          {/* Left Column: Listings Feed & Attractions Carousels */}
+          <div className="lg:col-span-2 space-y-10">
             
-            {/* Contextual overlay matches if search dates exist */}
+            {/* Match Schedule contextual overlay */}
             {searchParams?.dates && (
               <MatchScheduleOverlay 
                 checkIn={searchParams.dates.split(" to ")[0]} 
@@ -103,47 +194,103 @@ export default function Home() {
               />
             )}
 
-            <div className="flex items-center justify-between border-b pb-4">
-              <h2 className="text-lg md:text-xl font-extrabold text-foreground flex items-center gap-2">
-                <Award className="w-5 h-5 text-secondary" />
-                <span>{searchParams ? t("recommendationTitle") : "Featured World Cup Listings"}</span>
-              </h2>
-              <span className="text-xs font-bold text-muted-foreground uppercase bg-muted px-2.5 py-1 rounded-full">
-                {listings.length} {t("resultsCount")}
-              </span>
-            </div>
-
-            {isLoading ? (
-              // Loading Grid Skeleton
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[1, 2, 3, 4].map((n) => (
-                  <div key={n} className="rounded-2xl border border-border bg-card overflow-hidden animate-pulse h-[340px]">
-                    <div className="aspect-[4/3] bg-muted w-full" />
-                    <div className="p-4 space-y-3">
-                      <div className="h-4 bg-muted rounded w-2/3" />
-                      <div className="h-3 bg-muted rounded w-1/2" />
-                      <div className="h-8 bg-muted rounded w-full pt-4" />
+            {/* SECTION 1: Attractions Carousel */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between border-b pb-2.5">
+                <h2 className="text-lg md:text-xl font-black text-foreground">
+                  Tickets to top attractions in Jersey City
+                </h2>
+                <span className="text-xs font-bold text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
+                  View all →
+                </span>
+              </div>
+              
+              <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin select-none snap-x">
+                {JERSEY_ATTRACTIONS.map((att) => (
+                  <div key={att.id} className="min-w-[210px] max-w-[210px] snap-start flex flex-col gap-2">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted group cursor-pointer">
+                      <img 
+                        src={att.image} 
+                        alt={att.title} 
+                        className="w-full h-full object-cover group-hover:scale-102 transition-transform duration-300"
+                      />
+                      {att.badge && (
+                        <div className="absolute top-2.5 left-2.5 bg-white text-black text-[9px] font-black uppercase px-2 py-0.5 rounded shadow-sm z-10">
+                          {att.badge}
+                        </div>
+                      )}
+                      <button 
+                        type="button"
+                        onClick={() => toggleLikeAttraction(att.id)}
+                        className="absolute top-2.5 right-2.5 p-1 rounded-full bg-black/10 text-white hover:bg-black/25 z-10 cursor-pointer"
+                      >
+                        <Heart 
+                          className={`w-4 h-4 ${likedAttractions[att.id] ? "fill-primary text-primary" : "text-white"}`} 
+                          style={{ strokeWidth: 2 }} 
+                        />
+                      </button>
+                    </div>
+                    
+                    <div className="flex flex-col gap-0.5">
+                      <h4 className="font-bold text-xs text-foreground line-clamp-1 leading-tight hover:text-primary transition-colors">
+                        {att.title}
+                      </h4>
+                      <div className="flex items-center justify-between text-[10px] text-muted-foreground pt-0.5">
+                        <span className="font-semibold text-foreground/80">{att.price}</span>
+                        <div className="flex items-center gap-0.5 text-foreground font-bold">
+                          <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                          <span>{att.rating}</span>
+                          <span className="text-muted-foreground font-normal text-[9px]">({att.reviews})</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
-            ) : listings.length === 0 ? (
-              // No Results Found State
-              <div className="text-center py-16 px-4 border border-dashed rounded-2xl bg-card/30">
-                <span className="text-4xl">🏟️</span>
-                <h3 className="font-extrabold text-lg text-foreground mt-4">No matching rooms found</h3>
-                <p className="text-xs text-muted-foreground mt-1 max-w-sm mx-auto leading-relaxed">
-                  Try widening your dates, adjusting your max budget slider, or typing a different query in the chat helper on the right!
-                </p>
+            </div>
+
+            {/* SECTION 2: World Cup Listings Feed */}
+            <div className="space-y-4 pt-4 border-t border-border/40">
+              <div className="flex items-center justify-between border-b pb-2.5">
+                <h2 className="text-lg md:text-xl font-black text-foreground">
+                  Celebrate the FIFA World Cup 26™
+                </h2>
+                <span className="text-xs font-bold text-muted-foreground uppercase bg-muted px-2.5 py-1 rounded-full">
+                  {listings.length} {t("resultsCount")}
+                </span>
               </div>
-            ) : (
-              // Listings Grid
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {listings.map((listing) => (
-                  <ListingCard key={listing.listing_id} listing={listing} />
-                ))}
-              </div>
-            )}
+
+              {isLoading ? (
+                // Skeleton Grid
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[1, 2, 3, 4].map((n) => (
+                    <div key={n} className="rounded-xl overflow-hidden animate-pulse space-y-3">
+                      <div className="aspect-[4/3] bg-muted w-full rounded-xl" />
+                      <div className="h-4 bg-muted rounded w-2/3" />
+                      <div className="h-3 bg-muted rounded w-1/2" />
+                      <div className="h-8 bg-muted rounded w-full pt-4" />
+                    </div>
+                  ))}
+                </div>
+              ) : listings.length === 0 ? (
+                // Empty state
+                <div className="text-center py-12 border border-dashed rounded-xl bg-card/30">
+                  <span className="text-3xl">🏟️</span>
+                  <h3 className="font-black text-base text-foreground mt-4">No matching spaces found</h3>
+                  <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto leading-relaxed">
+                    Try modifying dates, adjusting your filters, or chat with the AI helper on the right to matching listings!
+                  </p>
+                </div>
+              ) : (
+                // Listings Grid
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {listings.map((listing) => (
+                    <ListingCard key={listing.listing_id} listing={listing} />
+                  ))}
+                </div>
+              )}
+            </div>
+
           </div>
 
           {/* Right Column: AI Agent Chat */}

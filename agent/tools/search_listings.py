@@ -2,6 +2,7 @@ import os
 import json
 from pathlib import Path
 from datetime import datetime
+from agent.tools.ai_client import get_genai_client
 
 ELASTIC_URL = os.getenv("ELASTIC_URL")
 ELASTIC_API_KEY = os.getenv("ELASTIC_API_KEY")
@@ -122,11 +123,53 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
                 }
             })
             
+        if dates:
+            req_dates = []
+            if isinstance(dates, str):
+                if " to " in dates:
+                    start, end = dates.split(" to ")
+                    try:
+                        from datetime import datetime as dt_class, timedelta
+                        s_dt = dt_class.strptime(start.strip(), "%Y-%m-%d")
+                        e_dt = dt_class.strptime(end.strip(), "%Y-%m-%d")
+                        curr = s_dt
+                        while curr <= e_dt:
+                            req_dates.append(curr.strftime("%Y-%m-%d"))
+                            curr += timedelta(days=1)
+                    except Exception as parse_err:
+                        print(f"Error parsing date range: {parse_err}")
+                        req_dates = [start.strip(), end.strip()]
+                else:
+                    req_dates = [dates.strip()]
+            elif isinstance(dates, list):
+                req_dates = dates
+                
+            for r_date in req_dates:
+                filter_clauses.append({
+                    "nested": {
+                        "path": "availability",
+                        "query": {
+                            "bool": {
+                                "filter": [
+                                    { "term": { "availability.date": r_date } },
+                                    { "term": { "availability.available": True } }
+                                ]
+                            }
+                        }
+                    }
+                })
+            
         if languages:
             if isinstance(languages, str):
                 languages = [languages]
+            # Include original, lowercase, and capitalized versions for exact keyword matching
+            lang_terms = []
+            for l in languages:
+                lang_terms.append(l)
+                lang_terms.append(l.lower())
+                lang_terms.append(l.capitalize())
             filter_clauses.append({
-                "terms": { "languages_spoken": [l.lower() for l in languages] }
+                "terms": { "languages_spoken": list(set(lang_terms)) }
             })
             
         # Standard Elasticsearch query
@@ -140,8 +183,30 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
             "size": 5
         }
         
+        if team_preference:
+            body["query"]["bool"]["should"] = [
+                {"term": { "team_welcome": team_preference }},
+                {"term": { "team_welcome": team_preference.lower() }},
+                {"term": { "team_welcome": team_preference.capitalize() }},
+                {"term": { "team_welcome": "All" }},
+                {"term": { "team_welcome": "all" }}
+            ]
+        
         # Add basic full text match
+        query_vector = None
         if query:
+            try:
+                client = get_genai_client()
+                # Use text-embedding-004 to fetch user query embeddings
+                emb_res = client.models.embed_content(
+                    model="text-embedding-004",
+                    contents=query
+                )
+                query_vector = emb_res.embeddings[0].values
+                print(f"[ElasticSearch] Successfully generated {len(query_vector)}-dim query vector.")
+            except Exception as emb_err:
+                print(f"[ElasticSearch] Semantic embedding query generation failed: {emb_err}. Falling back to keyword-only.")
+
             body["query"]["bool"]["must"] = {
                 "multi_match": {
                     "query": query,
@@ -149,10 +214,16 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
                 }
             }
             
-        # (Optional vector search logic using knn if description_embedding is set)
-        # For simplicity, we fallback to standard ES queries if vectors aren't needed,
-        # or implement knn here. Let's do basic ES querying.
-        
+        # Implement hybrid search if query vector is available
+        if query_vector:
+            body["knn"] = {
+                "field": "description_embedding",
+                "query_vector": query_vector,
+                "k": 5,
+                "num_candidates": 50,
+                "filter": filter_clauses
+            }
+            
         res = es.search(index="fanly_listings", body=body)
         results = []
         for hit in res["hits"]["hits"]:

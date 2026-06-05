@@ -4,15 +4,14 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
-import { Sun, Moon, Languages, Calendar, User, Search, PlusCircle } from "lucide-react";
+import { Sun, Moon, Languages, Menu } from "lucide-react";
 
 export default function Navbar() {
-  const { language, setLanguage, t, isRtl } = useLanguage();
+  const { language, setLanguage, t } = useLanguage();
   const pathname = usePathname();
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    // Check local storage or system preference
     const isDark = 
       localStorage.getItem("theme") === "dark" || 
       (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches);
@@ -37,78 +36,53 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-md glass-panel py-3 px-4 md:px-8">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-md py-4 px-6 md:px-12">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         
-        {/* Logo and Brand */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-2xl md:text-3xl animate-pulse-slow">⚽</span>
-          <div className="flex flex-col">
-            <span className="font-extrabold text-xl md:text-2xl tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent group-hover:opacity-85 transition-opacity">
-              {t("logo")}
-            </span>
-            <span className="text-[10px] text-muted-foreground uppercase font-bold tracking-wider hidden sm:inline">
-              {t("tagline")}
-            </span>
-          </div>
+        {/* Brand Logo - Airbnb style */}
+        <Link href="/" className="flex items-center gap-1.5 group select-none">
+          <span className="text-2xl font-black tracking-tighter text-primary">fanly</span>
+          <span className="text-[10px] bg-primary/10 text-primary px-1.5 py-0.5 rounded font-black uppercase tracking-wider">gcp</span>
         </Link>
 
-        {/* Navigation Actions */}
-        <nav className="flex items-center gap-2 md:gap-4">
+        {/* Category Tabs - Matches the image */}
+        <div className="hidden md:flex items-center gap-8 text-sm font-semibold text-foreground/70">
           <Link 
             href="/"
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
+            className={`pb-1 border-b-2 hover:text-foreground transition-all flex flex-col items-center gap-0.5 ${
               pathname === "/" 
-                ? "bg-primary text-primary-foreground shadow-sm" 
-                : "hover:bg-muted text-foreground/80 hover:text-foreground"
+                ? "border-primary text-foreground font-bold" 
+                : "border-transparent text-foreground/70"
             }`}
           >
-            <Search className="w-4 h-4" />
-            <span className="hidden md:inline">{t("home")}</span>
+            <span>Homes</span>
           </Link>
+          <div className="relative group flex flex-col items-center cursor-pointer">
+            <span className="absolute -top-3.5 bg-primary text-[8px] text-primary-foreground px-1 py-0.2 rounded font-black tracking-wide uppercase scale-90">NEW</span>
+            <span className="text-foreground/60 hover:text-foreground transition-all pb-1 border-b-2 border-transparent">Experiences</span>
+          </div>
+          <div className="relative group flex flex-col items-center cursor-pointer">
+            <span className="absolute -top-3.5 bg-primary text-[8px] text-primary-foreground px-1 py-0.2 rounded font-black tracking-wide uppercase scale-90">NEW</span>
+            <span className="text-foreground/60 hover:text-foreground transition-all pb-1 border-b-2 border-transparent">Services</span>
+          </div>
+        </div>
 
+        {/* Right Action Items */}
+        <div className="flex items-center gap-4">
           <Link 
             href="/host/new"
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
-              pathname === "/host/new" 
-                ? "bg-primary text-primary-foreground shadow-sm" 
-                : "hover:bg-muted text-foreground/80 hover:text-foreground"
-            }`}
+            className="hidden sm:inline-block text-sm font-bold hover:bg-muted py-2.5 px-4 rounded-full transition-colors text-foreground/85 hover:text-foreground"
           >
-            <PlusCircle className="w-4 h-4" />
-            <span className="hidden md:inline">{t("host")}</span>
+            Become a host
           </Link>
-
-          <Link 
-            href="/dashboard"
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-semibold transition-all ${
-              pathname === "/dashboard" 
-                ? "bg-primary text-primary-foreground shadow-sm" 
-                : "hover:bg-muted text-foreground/80 hover:text-foreground"
-            }`}
-          >
-            <User className="w-4 h-4" />
-            <span className="hidden md:inline">{t("dashboard")}</span>
-          </Link>
-
-          <div className="h-6 w-[1px] bg-border mx-1" />
-
-          {/* Theme Toggle */}
-          <button 
-            onClick={toggleDarkMode}
-            className="p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-all"
-            aria-label="Toggle Theme"
-          >
-            {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
-          </button>
 
           {/* Language Selector */}
-          <div className="relative flex items-center gap-1">
-            <Languages className="w-4 h-4 text-muted-foreground" />
+          <div className="flex items-center gap-1 text-foreground/70">
+            <Languages className="w-4 h-4" />
             <select
               value={language}
               onChange={(e) => setLanguage(e.target.value as any)}
-              className="bg-transparent text-xs md:text-sm font-semibold focus:outline-none cursor-pointer text-foreground pr-1"
+              className="bg-transparent text-xs font-semibold focus:outline-none cursor-pointer text-foreground pr-1"
             >
               <option value="en" className="dark:bg-card">EN</option>
               <option value="es" className="dark:bg-card">ES</option>
@@ -117,7 +91,29 @@ export default function Navbar() {
               <option value="ar" className="dark:bg-card">AR</option>
             </select>
           </div>
-        </nav>
+
+          {/* Theme Toggle */}
+          <button 
+            onClick={toggleDarkMode}
+            className="p-2.5 rounded-full hover:bg-muted text-foreground/70 hover:text-foreground transition-all"
+            aria-label="Toggle Theme"
+          >
+            {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
+          </button>
+
+          {/* User Profile Menu widget - Matches the user picture & layout */}
+          <div className="flex items-center gap-3 border hover:shadow-md transition-shadow py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none">
+            <Menu className="w-4 h-4 text-foreground/75" />
+            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
+              {/* Premium user avatar mock representing user photo */}
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" 
+                alt="Profile Avatar" 
+                className="w-full h-full object-cover" 
+              />
+            </div>
+          </div>
+        </div>
 
       </div>
     </header>

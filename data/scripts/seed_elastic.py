@@ -13,28 +13,27 @@ load_dotenv()
 ELASTIC_URL = os.getenv("ELASTIC_URL")
 ELASTIC_API_KEY = os.getenv("ELASTIC_API_KEY")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+USE_VERTEXAI = os.getenv("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("true", "1", "yes")
+from agent.tools.ai_client import get_genai_client
 
 def generate_mock_embedding(text):
-    # Generates a pseudo-random normalized 1536-dimensional vector for local/mock vector search
+    # Generates a pseudo-random normalized 768-dimensional vector for local/mock vector search
     # Seed by the text content to make it deterministic
     random.seed(hash(text))
-    vec = [random.gauss(0, 1) for _ in range(1536)]
+    vec = [random.gauss(0, 1) for _ in range(768)]
     norm = sum(x**2 for x in vec)**0.5
     return [x/norm for x in vec]
 
 def generate_gemini_embedding(text):
-    if not GEMINI_API_KEY:
+    if not GEMINI_API_KEY and not USE_VERTEXAI:
         return generate_mock_embedding(text)
     try:
-        import google.generativeai as genai
-        genai.configure(api_key=GEMINI_API_KEY)
-        # Use text-embedding-004 model
-        result = genai.embed_content(
-            model="models/text-embedding-004",
-            content=text,
-            task_type="retrieval_document"
+        client = get_genai_client()
+        result = client.models.embed_content(
+            model="text-embedding-004",
+            contents=text
         )
-        return result['embedding']
+        return result.embeddings[0].values
     except Exception as e:
         print(f"Error calling Gemini Embedding API: {e}. Falling back to mock embedding.")
         return generate_mock_embedding(text)
@@ -59,32 +58,50 @@ def main():
         print(f"Error loading seed/mapping files: {e}")
         return
 
-    # Add embeddings to listings
-    print("Generating embeddings for listing descriptions...")
-    for idx, listing in enumerate(listings):
-        text_to_embed = f"{listing['title']}. {listing['description']} Speaks {', '.join(listing['languages_spoken'])}. Rules: {listing['house_rules']}"
-        listing["description_embedding"] = generate_gemini_embedding(text_to_embed)
-        print(f"  Processed {idx + 1}/{len(listings)}: {listing['title']}")
+    # Check if we have cached embeddings in listings_with_embeddings.json
+    cached_path = project_root / "data" / "seed" / "listings_with_embeddings.json"
+    cached_listings = []
+    if cached_path.exists():
+        try:
+            with open(cached_path, "r") as f:
+                cached_listings = json.load(f)
+            # Verify if cached listings match our current listings length and contain embeddings
+            if len(cached_listings) == len(listings) and all("description_embedding" in l for l in cached_listings):
+                print("Found cached embeddings for listings. Loading from cache...")
+                listings = cached_listings
+        except Exception as cache_err:
+            print(f"Error reading cached listings: {cache_err}. Will regenerate.")
+
+    # Add embeddings to listings if not loaded from cache
+    if not listings or "description_embedding" not in listings[0]:
+        print("Generating embeddings for listing descriptions...")
+        for idx, listing in enumerate(listings):
+            text_to_embed = f"{listing['title']}. {listing['description']} Speaks {', '.join(listing['languages_spoken'])}. Rules: {listing['house_rules']}"
+            listing["description_embedding"] = generate_gemini_embedding(text_to_embed)
+            print(f"  Processed {idx + 1}/{len(listings)}: {listing['title']}")
+        
+        # Save to cache for faster consecutive runs
+        try:
+            with open(cached_path, "w") as f:
+                json.dump(listings, f, indent=2)
+            print(f"Saved generated embeddings to cache at {cached_path}")
+        except Exception as cache_err:
+            print(f"Failed to save embeddings cache: {cache_err}")
 
     # Check if we should connect to real Elasticsearch
     if not ELASTIC_URL or not ELASTIC_API_KEY:
         print("\n[Local Mock Mode Detect]")
         print("ELASTIC_URL and/or ELASTIC_API_KEY environment variables not found.")
-        print("Saving listings with generated embeddings to 'data/seed/listings_with_embeddings.json' for local mock search.")
-        
-        output_path = project_root / "data" / "seed" / "listings_with_embeddings.json"
-        with open(output_path, "w") as f:
-            json.dump(listings, f, indent=2)
-            
         print("Local mock seed files are ready! Start the agent API and Next.js frontend to run locally.")
         return
 
     # Attempt indexing into Elasticsearch
     try:
         from elasticsearch import Elasticsearch
+        from elasticsearch.helpers import bulk
         
         print(f"\nConnecting to Elasticsearch at {ELASTIC_URL}...")
-        es = Elasticsearch(ELASTIC_URL, api_key=ELASTIC_API_KEY)
+        es = Elasticsearch(ELASTIC_URL, api_key=ELASTIC_API_KEY, request_timeout=60.0)
         
         info = es.info()
         print(f"Connected successfully! Cluster: {info['cluster_name']}, Version: {info['version']['number']}")
@@ -98,9 +115,17 @@ def main():
         print(f"Creating index '{listings_index}' with mapping...")
         es.indices.create(index=listings_index, body=listings_mapping)
         
-        print(f"Indexing {len(listings)} listings...")
-        for listing in listings:
-            es.index(index=listings_index, id=listing["listing_id"], body=listing)
+        print(f"Indexing {len(listings)} listings via bulk helper...")
+        listing_actions = [
+            {
+                "_index": listings_index,
+                "_id": listing["listing_id"],
+                "_source": listing
+            }
+            for listing in listings
+        ]
+        success_count, _ = bulk(es, listing_actions)
+        print(f"Successfully indexed {success_count} listings!")
             
         # 2. Seed Match Schedule Index
         matches_index = "fanly_matches"
@@ -111,9 +136,17 @@ def main():
         print(f"Creating index '{matches_index}' with mapping...")
         es.indices.create(index=matches_index, body=matches_mapping)
         
-        print(f"Indexing {len(matches)} matches...")
-        for match in matches:
-            es.index(index=matches_index, id=match["match_id"], body=match)
+        print(f"Indexing {len(matches)} matches via bulk helper...")
+        match_actions = [
+            {
+                "_index": matches_index,
+                "_id": match["match_id"],
+                "_source": match
+            }
+            for match in matches
+        ]
+        success_count, _ = bulk(es, match_actions)
+        print(f"Successfully indexed {success_count} matches!")
             
         print("\nSeeding completed successfully on Elastic Cloud!")
         
