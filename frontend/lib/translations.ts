@@ -69,6 +69,9 @@ export const translations: Record<string, Record<string, string>> = {
     stadiumMatchWarn: "MetLife Stadium hosting game on this date! Anticipate transit crowds and surge pricing.",
     warningLL18: "Note: In compliance with local policies, hosting is arranged as a cultural exchange hospitality contract. Hosts must reside on-premise.",
     hostVerified: "Verified Host",
+    login: "Log In",
+    logout: "Log Out",
+    loginRequired: "Please log in to manage bookings or submit hosting requests.",
   },
   es: {
     logo: "Fanly",
@@ -140,6 +143,9 @@ export const translations: Record<string, Record<string, string>> = {
     stadiumMatchWarn: "¡El MetLife Stadium alberga partido esta fecha! Se esperan retrasos de transporte y alta demanda.",
     warningLL18: "Nota: De acuerdo con las políticas locales, el hospedaje se organiza como acuerdo de intercambio cultural. El anfitrión debe residir en la propiedad.",
     hostVerified: "Anfitrión Verificado",
+    login: "Iniciar sesión",
+    logout: "Cerrar sesión",
+    loginRequired: "Inicie sesión para gestionar reservas o enviar solicitudes de hospedaje.",
   },
   pt: {
     logo: "Fanly",
@@ -211,6 +217,9 @@ export const translations: Record<string, Record<string, string>> = {
     stadiumMatchWarn: "MetLife Stadium sediará partida nesta data! Antecipe trânsito lento e alta demanda de transporte público.",
     warningLL18: "Nota: Conforme regulação local, a hospedagem é estruturada como acordo de intercâmbio cultural. O anfitrião deve residir no imóvel.",
     hostVerified: "Anfitrião Verificado",
+    login: "Entrar",
+    logout: "Sair",
+    loginRequired: "Faça login para gerenciar reservas ou enviar solicitações de hospedagem.",
   },
   fr: {
     logo: "Fanly",
@@ -282,6 +291,9 @@ export const translations: Record<string, Record<string, string>> = {
     stadiumMatchWarn: "Match de Coupe du Monde programmé au MetLife Stadium à cette date! Transports saturés à prévoir.",
     warningLL18: "Note: Conformément aux réglementations locales, l'hébergement est un échange culturel. L'hôte doit résider dans le logement.",
     hostVerified: "Hôte Vérifié",
+    login: "Connexion",
+    logout: "Déconnexion",
+    loginRequired: "Veuillez vous connecter pour gérer les réservations ou soumettre des demandes d'hébergement.",
   },
   ar: {
     logo: "فانلي",
@@ -353,5 +365,8 @@ export const translations: Record<string, Record<string, string>> = {
     stadiumMatchWarn: "يستضيف ملعب MetLife مباراة في هذا التاريخ! يرجى توقع ازدحام مروري وتأخر في وسائل النقل.",
     warningLL18: "ملاحظة: تماشيًا مع القوانين المحلية، تعتبر هذه الاستضافة بمثابة تبادل ثقافي بين الأفراد. يجب على المضيف الإقامة في العقار.",
     hostVerified: "مضيف موثق",
+    login: "تسجيل الدخول",
+    logout: "تسجيل الخروج",
+    loginRequired: "يرجى تسجيل الدخول لإدارة الحجوزات أو إرسال طلبات الاستضافة.",
   }
 };

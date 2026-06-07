@@ -17,7 +17,7 @@ from agent.tools.elastic_mcp import ElasticMCPClient
 
 app = FastAPI(title="Fanly API", description="World Cup AI P2P Housing Agent API")
 
-# Enable CORS for Next.js frontend
+# Enable CORS for Next.js dev server and client applications (world cup theme)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"], # In development, allow all. In production, restrict.
@@ -40,6 +40,24 @@ try:
             listings_db = __import__("json").load(f)
 except Exception as e:
     print(f"Error seeding local database: {e}")
+
+# Seed initial bookings into bookings_db from the seed file
+try:
+    bookings_file = os.path.join(project_root, "data", "seed", "bookings.json")
+    if os.path.exists(bookings_file):
+        with open(bookings_file, "r") as f:
+            bookings_db = __import__("json").load(f)
+except Exception as e:
+    print(f"Error seeding bookings database: {e}")
+
+# Seed initial contracts into contracts_db from the seed file
+try:
+    contracts_file = os.path.join(project_root, "data", "seed", "contracts.json")
+    if os.path.exists(contracts_file):
+        with open(contracts_file, "r") as f:
+            contracts_db = __import__("json").load(f)
+except Exception as e:
+    print(f"Error seeding contracts database: {e}")
 
 # Models
 class ListingCreate(BaseModel):
@@ -197,6 +215,16 @@ def create_booking(booking: BookingRequest):
         "updated_at": datetime.now().isoformat()
     }
     bookings_db[booking_id] = new_booking
+    
+    # Save back to JSON so it persists
+    try:
+        bookings_file = os.path.join(project_root, "data", "seed", "bookings.json")
+        os.makedirs(os.path.dirname(bookings_file), exist_ok=True)
+        with open(bookings_file, "w") as f:
+            __import__("json").dump(bookings_db, f, indent=2)
+    except Exception as e:
+        print(f"Error saving bookings: {e}")
+        
     return new_booking
 
 @app.get("/api/bookings")
@@ -247,13 +275,67 @@ def update_booking_status(booking_id: str, payload: StatusUpdate):
             contracts_db[booking_id] = contract_text
             booking["contract_url"] = f"/api/contracts/{booking_id}"
             
+            # Save contracts to JSON so they persist
+            try:
+                contracts_file = os.path.join(project_root, "data", "seed", "contracts.json")
+                os.makedirs(os.path.dirname(contracts_file), exist_ok=True)
+                with open(contracts_file, "w") as f:
+                    __import__("json").dump(contracts_db, f, indent=2)
+            except Exception as e:
+                print(f"Error saving contracts: {e}")
+            
+    # Save back to JSON so it persists
+    try:
+        bookings_file = os.path.join(project_root, "data", "seed", "bookings.json")
+        os.makedirs(os.path.dirname(bookings_file), exist_ok=True)
+        with open(bookings_file, "w") as f:
+            __import__("json").dump(bookings_db, f, indent=2)
+    except Exception as e:
+        print(f"Error saving bookings status update: {e}")
+            
     return booking
 
 @app.get("/api/contracts/{booking_id}")
 def get_contract(booking_id: str):
-    if booking_id not in contracts_db:
-        raise HTTPException(status_code=404, detail="Contract not generated yet")
-    return {"booking_id": booking_id, "contract_text": contracts_db[booking_id]}
+    if booking_id in contracts_db:
+        return {"booking_id": booking_id, "contract_text": contracts_db[booking_id]}
+        
+    # If not in memory/persisted db, try to generate it dynamically from the booking information
+    if booking_id in bookings_db:
+        booking = bookings_db[booking_id]
+        if booking.get("status") in ("accepted", "confirmed"):
+            listing = None
+            for item in listings_db:
+                if item["listing_id"] == booking["listing_id"]:
+                    listing = item
+                    break
+            if listing:
+                contract_text = generate_contract(
+                    host_name=listing["host_name"],
+                    fan_name=booking.get("fan_name", "Fan Guest"),
+                    address=listing["location"]["address"],
+                    city=listing["location"]["city"],
+                    state=listing["location"]["state"],
+                    check_in=booking["dates"]["check_in"],
+                    check_out=booking["dates"]["check_out"],
+                    price_per_night=listing["pricing"]["price_per_night"],
+                    total_price=booking["total_price"],
+                    house_rules=listing["house_rules"],
+                    guests=booking["guests"],
+                    language="en"
+                )
+                contracts_db[booking_id] = contract_text
+                # Save contracts to JSON so they persist
+                try:
+                    contracts_file = os.path.join(project_root, "data", "seed", "contracts.json")
+                    os.makedirs(os.path.dirname(contracts_file), exist_ok=True)
+                    with open(contracts_file, "w") as f:
+                        __import__("json").dump(contracts_db, f, indent=2)
+                except Exception as e:
+                    print(f"Error saving dynamically generated contract: {e}")
+                return {"booking_id": booking_id, "contract_text": contract_text}
+
+    raise HTTPException(status_code=404, detail="Contract not generated yet or booking not found")
 
 # Matches endpoints
 @app.get("/api/matches")

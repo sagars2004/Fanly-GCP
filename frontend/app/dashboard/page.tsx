@@ -2,12 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
 import { fetchBookings, updateBookingStatus, fetchContract, Booking, Listing } from "@/lib/agentClient";
 import { User, ClipboardList, ShieldCheck, FileText, CheckCircle, XCircle, Calendar, RefreshCw } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function Dashboard() {
   const { t, language } = useLanguage();
+  const { user, setIsLoginModalOpen } = useAuth();
   const [activeTab, setActiveTab] = useState<"fan" | "host">("fan");
   
   // Bookings list state
@@ -22,11 +24,11 @@ export default function Dashboard() {
   const [isLoadingContract, setIsLoadingContract] = useState(false);
 
   async function loadDashboardData() {
+    if (!user) return;
     setIsLoading(true);
     try {
-      // Mock Users: Fan Carlos & Host Maria
-      const fanData = await fetchBookings("fan_carlos", "fan");
-      const hostData = await fetchBookings("host_maria", "host");
+      const fanData = await fetchBookings(user.id, "fan");
+      const hostData = await fetchBookings(user.id, "host");
       setFanBookings(fanData);
       setHostBookings(hostData);
     } catch (err) {
@@ -37,8 +39,11 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    loadDashboardData();
-  }, []);
+    if (user) {
+      setActiveTab(user.role);
+      loadDashboardData();
+    }
+  }, [user]);
 
   const handleAcceptRequest = async (bookingId: string) => {
     try {
@@ -110,8 +115,30 @@ export default function Dashboard() {
     }
   };
 
+  if (!user) {
+    return (
+      <div className="flex-grow flex flex-col items-center justify-center p-8 text-center max-w-sm mx-auto space-y-4 my-20 animate-float-quick select-none">
+        <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20 shrink-0">
+          <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h2 className="text-xl font-black text-foreground uppercase tracking-tight">Dashboard Locked</h2>
+        <p className="text-xs text-muted-foreground font-bold leading-relaxed">
+          {t("loginRequired") || "Please sign in to manage bookings, approve requests, and generate host-guest exchange agreements."}
+        </p>
+        <button
+          onClick={() => setIsLoginModalOpen(true)}
+          className="px-6 py-3 bg-primary hover:bg-primary/95 text-primary-foreground font-extrabold rounded-xl text-xs uppercase tracking-wider transition-all shadow-sm border border-primary/20 w-full"
+        >
+          {t("login") || "Log In"}
+        </button>
+      </div>
+    );
+  }
+
   return (
-    <div className="flex-grow bg-background py-6 md:py-10 px-4 md:px-8">
+    <div className="flex-grow bg-background py-6 md:py-10 px-4 md:px-8 select-none">
       <div className="mx-auto max-w-5xl space-y-6">
         
         {/* Title */}

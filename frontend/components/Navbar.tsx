@@ -4,10 +4,12 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
 import { Sun, Moon, Languages, Menu } from "lucide-react";
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
+  const { user, logout, setIsLoginModalOpen } = useAuth();
   const pathname = usePathname();
   const [darkMode, setDarkMode] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -37,7 +39,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-md py-4 px-6 md:px-12">
+    <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur-md py-4 px-6 md:px-12 select-none">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
         
         {/* Brand Logo - Airbnb style */}
@@ -102,29 +104,62 @@ export default function Navbar() {
             {darkMode ? <Sun className="w-4 h-4 text-accent" /> : <Moon className="w-4 h-4" />}
           </button>
 
-          {/* User Profile Menu widget - Matches the user picture & layout */}
+          {/* User Profile Menu widget */}
           <div 
             onClick={() => setShowDropdown(!showDropdown)}
             className="relative flex items-center gap-3 border hover:shadow-md transition-shadow py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none"
           >
             <Menu className="w-4 h-4 text-foreground/75" />
             <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
-              {/* Premium user avatar mock representing user photo */}
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80" 
-                alt="Profile Avatar" 
-                className="w-full h-full object-cover" 
-              />
+              {user ? (
+                <img 
+                  src={user.avatarUrl} 
+                  alt={user.name} 
+                  className="w-full h-full object-cover" 
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
+                  <svg className="w-4.5 h-4.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+              )}
             </div>
 
             {showDropdown && (
               <div className="absolute right-0 top-full mt-2.5 w-48 bg-card border border-border rounded-xl shadow-lg py-2.5 z-50 flex flex-col font-extrabold text-[11px] text-foreground uppercase tracking-wider animate-float-quick">
-                <Link href="/dashboard" className="px-4 py-2 hover:bg-muted text-left transition-colors">
-                  My Dashboard
-                </Link>
-                <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
-                  Create Host Space
-                </Link>
+                {user ? (
+                  <>
+                    <div className="px-4 py-2 border-b border-border/40 text-[10px] text-muted-foreground normal-case font-semibold tracking-normal flex flex-col">
+                      <span className="font-bold text-foreground truncate">{user.name}</span>
+                      <span className="capitalize text-[9px] mt-0.5 font-bold text-primary">{user.role === "host" ? "Host Account" : "Fan / Guest"}</span>
+                    </div>
+                    <Link href="/dashboard" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                      My Dashboard
+                    </Link>
+                    <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                      Create Host Space
+                    </Link>
+                    <button 
+                      onClick={() => { logout(); setShowDropdown(false); }}
+                      className="px-4 py-2 hover:bg-muted text-left border-t border-border/40 mt-1 pt-2 transition-colors font-extrabold text-[11px] text-red-500 uppercase tracking-wider"
+                    >
+                      {t("logout")}
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    <button
+                      onClick={() => { setIsLoginModalOpen(true); setShowDropdown(false); }}
+                      className="px-4 py-2 hover:bg-muted text-left transition-colors text-primary text-[11px]"
+                    >
+                      {t("login")}
+                    </button>
+                    <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                      Become a Host
+                    </Link>
+                  </>
+                )}
                 <Link href="/" className="px-4 py-2 hover:bg-muted text-left border-t border-border/40 mt-1 pt-2 transition-colors">
                   Home Search
                 </Link>

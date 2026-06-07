@@ -7,18 +7,18 @@
 :root {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   
-  /* Harmonious Light Palette */
+  /* Premium World Cup / Soccer Theme Palette */
   --background: 240 20% 98%;
   --foreground: 224 71.4% 4.1%;
   --card: 0 0% 100%;
   --card-foreground: 224 71.4% 4.1%;
   --popover: 0 0% 100%;
   --popover-foreground: 224 71.4% 4.1%;
-  --primary: 350 100% 61%; /* Airbnb pink-red */
+  --primary: 262 83% 58%; /* Premium FIFA World Cup Violet/Indigo */
   --primary-foreground: 210 20% 98%;
-  --secondary: 160 84% 39%; /* Vibrant Emerald/Teal for Soccer Pitch feel */
+  --secondary: 142 76% 36%; /* Vibrant Soccer Pitch Green */
   --secondary-foreground: 210 20% 98%;
-  --accent: 45 93% 47%; /* Golden Soccer Ball Gold */
+  --accent: 47 95% 50%; /* Golden Trophy Gold */
   --accent-foreground: 224 71.4% 4.1%;
   --muted: 220 14.3% 95.9%;
   --muted-foreground: 220 8.9% 46.1%;
@@ -26,7 +26,7 @@
   --destructive-foreground: 210 20% 98%;
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 350 100% 61%;
+  --ring: 262 83% 58%;
   --radius: 1rem;
 }
 
@@ -38,11 +38,11 @@
   --card-foreground: 210 20% 98%;
   --popover: 224 71% 7%;
   --popover-foreground: 210 20% 98%;
-  --primary: 350 100% 66%;
+  --primary: 262 83% 66%;
   --primary-foreground: 224 71.4% 4.1%;
-  --secondary: 160 84% 45%;
+  --secondary: 142 76% 45%;
   --secondary-foreground: 224 71.4% 4.1%;
-  --accent: 45 93% 54%;
+  --accent: 47 95% 58%;
   --accent-foreground: 224 71.4% 4.1%;
   --muted: 224 71% 12%;
   --muted-foreground: 217.9 10.6% 64.9%;
@@ -50,7 +50,7 @@
   --destructive-foreground: 210 20% 98%;
   --border: 224 71% 12%;
   --input: 224 71% 12%;
-  --ring: 350 100% 66%;
+  --ring: 262 83% 66%;
 }
 
 * {

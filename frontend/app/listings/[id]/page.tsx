@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
 import { fetchListingById, createBookingRequest, Listing } from "@/lib/agentClient";
 import MatchScheduleOverlay from "@/components/MatchScheduleOverlay";
 import { ArrowLeft, MapPin, ShieldCheck, Clock, Calendar, Users, CheckCircle, Check } from "lucide-react";
@@ -16,6 +17,7 @@ export default function ListingDetail() {
   
   const [listing, setListing] = useState<Listing | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const { user, setIsLoginModalOpen } = useAuth();
   
   // Booking Drawer State
   const [checkIn, setCheckIn] = useState("2026-06-18");
@@ -74,13 +76,17 @@ export default function ListingDetail() {
   const totalCost = stayCost + listing.pricing.cleaning_fee;
 
   const handleBookingRequest = async () => {
+    if (!user) {
+      setIsLoginModalOpen(true);
+      return;
+    }
     setIsSubmitting(true);
     try {
       await createBookingRequest({
         listing_id: listing.listing_id,
         host_id: listing.host_id,
-        fan_id: "fan_carlos", // Mock authenticated user
-        fan_name: "Carlos Silva", // Mock authenticated guest
+        fan_id: user.id,
+        fan_name: user.name,
         check_in: checkIn,
         check_out: checkOut,
         guests: guests,
@@ -326,7 +332,7 @@ export default function ListingDetail() {
                     ) : (
                       <>
                         <Calendar className="w-4 h-4" />
-                        <span>{t("requestStay")}</span>
+                        <span>{user ? t("requestStay") : "Log in to Request Stay"}</span>
                       </>
                     )}
                   </button>

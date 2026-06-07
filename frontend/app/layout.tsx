@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../lib/LanguageContext";
+import { AuthProvider } from "../lib/AuthContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import LoginModal from "../components/LoginModal";
 
 export const viewport = {
   width: "device-width",
@@ -23,11 +25,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased min-h-screen flex flex-col">
         <LanguageProvider>
-          <Navbar />
-          <main className="flex-grow flex flex-col">
-            {children}
-          </main>
-          <Footer />
+          <AuthProvider>
+            <Navbar />
+            <LoginModal />
+            <main className="flex-grow flex flex-col">
+              {children}
+            </main>
+            <Footer />
+          </AuthProvider>
         </LanguageProvider>
       </body>
     </html>

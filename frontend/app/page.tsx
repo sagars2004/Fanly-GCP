@@ -147,7 +147,7 @@ export default function Home() {
         <div className="text-center max-w-3xl mx-auto space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary font-bold text-[10px] uppercase tracking-wider animate-float">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Elastic Partner Track Hackathon Entry</span>
+            <span>Built by Sagar Sahu for the 2026 Google Cloud Rapid Agent Hackathon Elastic Partner Track</span>
           </div>
         </div>
 
@@ -161,24 +161,6 @@ export default function Home() {
 
         {/* Floating Search Bar */}
         <SearchBar onSearch={handleSearch} isLoading={isLoading} />
-
-        {/* Jersey City Experience badge under Search bar - Matches the image */}
-        <div className="flex justify-center">
-          <div className="inline-flex items-center gap-3 bg-card border border-border shadow-sm rounded-full py-1.5 pl-2 pr-4 hover:shadow-md transition-shadow cursor-pointer select-none">
-            <div className="w-8 h-8 rounded-lg overflow-hidden shrink-0 border bg-muted">
-              <img 
-                src="https://images.unsplash.com/photo-1549643276-fdf2fab574f5?auto=format&fit=crop&w=80&h=80&q=80" 
-                alt="Jersey City attractions" 
-                className="w-full h-full object-cover" 
-              />
-            </div>
-            <div className="text-xs font-semibold text-foreground/90 flex gap-1 items-center">
-              <span className="font-bold">Book an experience while you&apos;re in Jersey City</span>
-              <span className="text-muted-foreground/80 font-normal">Jun 5 – Jul 5 • 1 guest</span>
-              <span className="text-primary font-black ml-1">→</span>
-            </div>
-          </div>
-        </div>
 
         {/* Main Interface Layout: Feed Column + AI Agent Chat column */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
@@ -194,20 +176,62 @@ export default function Home() {
               />
             )}
 
-            {/* SECTION 1: Attractions Carousel */}
+            {/* SECTION 1: World Cup Listings Feed (Primary) */}
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b pb-2.5">
-                <h2 className="text-lg md:text-xl font-black text-foreground">
-                  Tickets to top attractions in Jersey City
+                <h2 className="text-lg md:text-xl font-black text-foreground flex items-center gap-2">
+                  <span>⚽</span> Celebrate the FIFA World Cup 26™
                 </h2>
-                <span className="text-xs font-bold text-muted-foreground hover:text-foreground cursor-pointer transition-colors">
+                <span className="text-xs font-bold text-muted-foreground uppercase bg-muted px-2.5 py-1 rounded-full">
+                  {listings.length} {t("resultsCount")}
+                </span>
+              </div>
+
+              {isLoading ? (
+                // Skeleton Grid
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[1, 2, 3, 4].map((n) => (
+                    <div key={n} className="rounded-xl overflow-hidden animate-pulse space-y-3">
+                      <div className="aspect-[4/3] bg-muted w-full rounded-xl" />
+                      <div className="h-4 bg-muted rounded w-2/3" />
+                      <div className="h-3 bg-muted rounded w-1/2" />
+                      <div className="h-8 bg-muted rounded w-full pt-4" />
+                    </div>
+                  ))}
+                </div>
+              ) : listings.length === 0 ? (
+                // Empty state
+                <div className="text-center py-12 border border-dashed rounded-xl bg-card/30">
+                  <span className="text-3xl">🏟️</span>
+                  <h3 className="font-black text-base text-foreground mt-4">No matching spaces found</h3>
+                  <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto leading-relaxed">
+                    Try modifying dates, adjusting your filters, or chat with the AI helper on the right to matching listings!
+                  </p>
+                </div>
+              ) : (
+                // Listings Grid
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {listings.map((listing) => (
+                    <ListingCard key={listing.listing_id} listing={listing} />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* SECTION 2: Attractions Carousel (Secondary) */}
+            <div className="space-y-4 pt-6 border-t border-border/40">
+              <div className="flex items-center justify-between">
+                <h2 className="text-base md:text-lg font-black text-foreground">
+                  Explore local attractions in Jersey City & NYC
+                </h2>
+                <span className="text-xs font-bold text-primary hover:underline cursor-pointer transition-colors">
                   View all →
                 </span>
               </div>
               
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-thin select-none snap-x">
                 {JERSEY_ATTRACTIONS.map((att) => (
-                  <div key={att.id} className="min-w-[210px] max-w-[210px] snap-start flex flex-col gap-2">
+                  <div key={att.id} className="min-w-[190px] max-w-[190px] snap-start flex flex-col gap-2">
                     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted group cursor-pointer">
                       <img 
                         src={att.image} 
@@ -247,48 +271,6 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* SECTION 2: World Cup Listings Feed */}
-            <div className="space-y-4 pt-4 border-t border-border/40">
-              <div className="flex items-center justify-between border-b pb-2.5">
-                <h2 className="text-lg md:text-xl font-black text-foreground">
-                  Celebrate the FIFA World Cup 26™
-                </h2>
-                <span className="text-xs font-bold text-muted-foreground uppercase bg-muted px-2.5 py-1 rounded-full">
-                  {listings.length} {t("resultsCount")}
-                </span>
-              </div>
-
-              {isLoading ? (
-                // Skeleton Grid
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {[1, 2, 3, 4].map((n) => (
-                    <div key={n} className="rounded-xl overflow-hidden animate-pulse space-y-3">
-                      <div className="aspect-[4/3] bg-muted w-full rounded-xl" />
-                      <div className="h-4 bg-muted rounded w-2/3" />
-                      <div className="h-3 bg-muted rounded w-1/2" />
-                      <div className="h-8 bg-muted rounded w-full pt-4" />
-                    </div>
-                  ))}
-                </div>
-              ) : listings.length === 0 ? (
-                // Empty state
-                <div className="text-center py-12 border border-dashed rounded-xl bg-card/30">
-                  <span className="text-3xl">🏟️</span>
-                  <h3 className="font-black text-base text-foreground mt-4">No matching spaces found</h3>
-                  <p className="text-xs text-muted-foreground mt-1 max-w-xs mx-auto leading-relaxed">
-                    Try modifying dates, adjusting your filters, or chat with the AI helper on the right to matching listings!
-                  </p>
-                </div>
-              ) : (
-                // Listings Grid
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  {listings.map((listing) => (
-                    <ListingCard key={listing.listing_id} listing={listing} />
-                  ))}
-                </div>
-              )}
             </div>
 
           </div>

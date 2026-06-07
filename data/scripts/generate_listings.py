@@ -3,7 +3,7 @@ import random
 from datetime import datetime, timedelta
 
 def main():
-    print("--- Generating 50 Rich World Cup Host Listings ---")
+    print("--- Generating 20 Rich World Cup Host Listings ---")
     
     # Coordinates and locations configuration
     cities_config = {
@@ -82,13 +82,36 @@ def main():
         "Respectful of quiet hours. No loud music. Backyard access is okay during the day."
     ]
 
+    # Pool of 22 completely unique room/apartment/house images
+    unsplash_images = [
+        "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1502672019681-eca9c3fc03a4?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1501183007986-d0d080b147f9?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=500&h=375&q=80",
+        "https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=500&h=375&q=80"
+    ]
+    random.shuffle(unsplash_images)
+
     listings = []
     
-    # 1. Keep the first 10 original listings to preserve current visual data
-    # (We will load them or reconstruct them if they matches the seed data)
-    # Actually, we can generate all 50 programmatically, making the first 10 resemble the originals.
-    
-    for i in range(1, 51):
+    for i in range(1, 21):
         city = random.choice(list(cities_config.keys()))
         cfg = cities_config[city]
         
@@ -98,8 +121,12 @@ def main():
         lat = cfg["lat"] + lat_offset
         lon = cfg["lon"] + lon_offset
         
-        host_name = f"{first_names[i-1]} {last_names[i-1]}"
-        host_id = f"host_{first_names[i-1].lower()}_{i}"
+        if i in (1, 2, 3):
+            host_name = "Sagar Sahu"
+            host_id = "host_sagarsahu"
+        else:
+            host_name = f"{first_names[i-1]} {last_names[i-1]}"
+            host_id = f"host_{first_names[i-1].lower()}_{i}"
         
         # Pick 1-3 random languages
         langs = list(set(["English"] + random.sample(languages_pool, random.randint(0, 2))))
@@ -140,26 +167,6 @@ def main():
         ]
         title = random.choice(titles)
         
-        unsplash_images = [
-            "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1502672019681-eca9c3fc03a4?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1560184897-ae75f418493e?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1501183007986-d0d080b147f9?auto=format&fit=crop&w=500&h=375&q=80",
-            "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=500&h=375&q=80"
-        ]
-        
         listing = {
             "listing_id": f"list_{i:03d}",
             "host_id": host_id,
@@ -190,7 +197,7 @@ def main():
             "languages_spoken": langs,
             "team_welcome": teams,
             "max_guests": random.randint(1, 4),
-            "photos": [random.choice(unsplash_images)],
+            "photos": [unsplash_images[i - 1]],
             "host_verified": random.random() < 0.9,
             "status": "active"
         }
