@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../lib/LanguageContext";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 export const viewport = {
   width: "device-width",
@@ -26,6 +27,7 @@ export default function RootLayout({
           <main className="flex-grow flex flex-col">
             {children}
           </main>
+          <Footer />
         </LanguageProvider>
       </body>
     </html>

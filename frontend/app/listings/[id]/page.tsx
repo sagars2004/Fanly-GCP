@@ -128,7 +128,7 @@ export default function ListingDetail() {
 
         {/* Visual Banner */}
         <div className="relative w-full rounded-2xl overflow-hidden bg-muted h-[240px] md:h-[400px]">
-          {listing.photos && listing.photos[0] && !listing.photos[0].startsWith("/images") ? (
+          {listing.photos && listing.photos[0] ? (
             <img 
               src={listing.photos[0]} 
               alt={listing.title} 

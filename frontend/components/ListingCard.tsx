@@ -40,7 +40,7 @@ export default function ListingCard({ listing }: ListingCardProps) {
       
       {/* Round-corner Image container */}
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-muted">
-        {listing.photos && listing.photos[0] && !listing.photos[0].startsWith("/images") ? (
+        {listing.photos && listing.photos[0] ? (
           <img
             src={listing.photos[0]}
             alt={listing.title}

@@ -10,6 +10,7 @@ export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const pathname = usePathname();
   const [darkMode, setDarkMode] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const isDark = 
@@ -102,7 +103,10 @@ export default function Navbar() {
           </button>
 
           {/* User Profile Menu widget - Matches the user picture & layout */}
-          <div className="flex items-center gap-3 border hover:shadow-md transition-shadow py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none">
+          <div 
+            onClick={() => setShowDropdown(!showDropdown)}
+            className="relative flex items-center gap-3 border hover:shadow-md transition-shadow py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none"
+          >
             <Menu className="w-4 h-4 text-foreground/75" />
             <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
               {/* Premium user avatar mock representing user photo */}
@@ -112,6 +116,20 @@ export default function Navbar() {
                 className="w-full h-full object-cover" 
               />
             </div>
+
+            {showDropdown && (
+              <div className="absolute right-0 top-full mt-2.5 w-48 bg-card border border-border rounded-xl shadow-lg py-2.5 z-50 flex flex-col font-extrabold text-[11px] text-foreground uppercase tracking-wider animate-float-quick">
+                <Link href="/dashboard" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                  My Dashboard
+                </Link>
+                <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                  Create Host Space
+                </Link>
+                <Link href="/" className="px-4 py-2 hover:bg-muted text-left border-t border-border/40 mt-1 pt-2 transition-colors">
+                  Home Search
+                </Link>
+              </div>
+            )}
           </div>
         </div>
 

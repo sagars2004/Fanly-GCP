@@ -99,7 +99,7 @@ def get_listings_local(query=None, dates=None, max_price=None, languages=None, t
         
     # Sort by score descending
     filtered.sort(key=lambda x: x.get("_score", 0), reverse=True)
-    return filtered[:5]
+    return filtered[:50]
 
 def search_listings(query=None, dates=None, max_price=None, languages=None, team_preference=None):
     """
@@ -180,7 +180,7 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
                     "filter": filter_clauses
                 }
             },
-            "size": 5
+            "size": 50
         }
         
         if team_preference:
@@ -219,8 +219,8 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
             body["knn"] = {
                 "field": "description_embedding",
                 "query_vector": query_vector,
-                "k": 5,
-                "num_candidates": 50,
+                "k": 50,
+                "num_candidates": 150,
                 "filter": filter_clauses
             }
             
