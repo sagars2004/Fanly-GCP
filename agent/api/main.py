@@ -31,6 +31,92 @@ bookings_db: Dict[str, Dict[str, Any]] = {}
 listings_db: List[Dict[str, Any]] = []
 contracts_db: Dict[str, str] = {}
 
+ELASTIC_URL = os.getenv("ELASTIC_URL")
+ELASTIC_API_KEY = os.getenv("ELASTIC_API_KEY")
+
+def get_es_client():
+    if ELASTIC_URL and ELASTIC_API_KEY:
+        try:
+            from elasticsearch import Elasticsearch
+            return Elasticsearch(ELASTIC_URL, api_key=ELASTIC_API_KEY)
+        except Exception as e:
+            print(f"Elasticsearch connection failed: {e}")
+    return None
+
+def init_es_indices():
+    es = get_es_client()
+    if es:
+        try:
+            if not es.indices.exists(index="fanly_bookings"):
+                es.indices.create(index="fanly_bookings")
+            if not es.indices.exists(index="fanly_contracts"):
+                es.indices.create(index="fanly_contracts")
+            if not es.indices.exists(index="fanly_listings"):
+                es.indices.create(index="fanly_listings")
+        except Exception as e:
+            print(f"Error initializing ES indices: {e}")
+
+# Initialize indices
+init_es_indices()
+
+def save_booking_es(booking_id: str, booking: dict):
+    es = get_es_client()
+    if es:
+        try:
+            es.index(index="fanly_bookings", id=booking_id, document=booking)
+        except Exception as e:
+            print(f"Error indexing booking in ES: {e}")
+
+def get_bookings_es(user_id: str, role: str):
+    es = get_es_client()
+    if es:
+        try:
+            term_field = "host_id" if role == "host" else "fan_id"
+            query = {
+                "query": {
+                    "term": {
+                        f"{term_field}.keyword": user_id
+                    }
+                },
+                "size": 100
+            }
+            res = es.search(index="fanly_bookings", body=query)
+            return [hit["_source"] for hit in res["hits"]["hits"]]
+        except Exception as e:
+            print(f"Error searching bookings in ES: {e}")
+    return []
+
+def delete_booking_es(booking_id: str):
+    es = get_es_client()
+    if es:
+        try:
+            if es.exists(index="fanly_bookings", id=booking_id):
+                es.delete(index="fanly_bookings", id=booking_id)
+        except Exception as e:
+            print(f"Error deleting booking in ES: {e}")
+
+def save_contract_es(booking_id: str, contract_text: str):
+    es = get_es_client()
+    if es:
+        try:
+            es.index(index="fanly_contracts", id=booking_id, document={
+                "booking_id": booking_id,
+                "contract_text": contract_text
+            })
+        except Exception as e:
+            print(f"Error indexing contract in ES: {e}")
+
+def get_contract_es(booking_id: str):
+    es = get_es_client()
+    if es:
+        try:
+            if es.exists(index="fanly_contracts", id=booking_id):
+                res = es.get(index="fanly_contracts", id=booking_id)
+                return res["_source"]
+        except Exception as e:
+            print(f"Error fetching contract in ES: {e}")
+    return None
+
 # Seed initial listings into listings_db from the seed file
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 try:
@@ -244,6 +330,14 @@ def create_listing(listing: ListingCreate):
     
     listings_db.append(new_listing)
     
+    # Save to ES if active
+    es = get_es_client()
+    if es:
+        try:
+            es.index(index="fanly_listings", id=new_id, document=new_listing)
+        except Exception as e:
+            print(f"Error indexing new listing in ES: {e}")
+            
     # Save back to JSON so it persists during local session
     try:
         listings_file = os.path.join(project_root, "data", "seed", "listings.json")
@@ -279,6 +373,9 @@ def create_booking(booking: BookingRequest):
     }
     bookings_db[booking_id] = new_booking
     
+    # Save to ES if active
+    save_booking_es(booking_id, new_booking)
+
     # Save back to JSON so it persists
     try:
         bookings_file = os.path.join(project_root, "data", "seed", "bookings.json")
@@ -292,6 +389,15 @@ def create_booking(booking: BookingRequest):
 
 @app.get("/api/bookings")
 def get_bookings(user_id: str, role: str):
+    # Try fetching from Elasticsearch
+    es_bookings = get_bookings_es(user_id, role)
+    if es_bookings:
+        # Sync to in-memory db
+        for b in es_bookings:
+            bookings_db[b["booking_id"]] = b
+        return es_bookings
+
+    # Fallback to local in-memory db
     user_bookings = []
     for bid, booking in bookings_db.items():
         if role == "host" and booking["host_id"] == user_id:
@@ -302,6 +408,12 @@ def get_bookings(user_id: str, role: str):
 
 @app.post("/api/bookings/{booking_id}/status")
 def update_booking_status(booking_id: str, payload: StatusUpdate):
+    # Fetch from ES if not in memory
+    if booking_id not in bookings_db:
+        es = get_es_client()
+        if es and es.exists(index="fanly_bookings", id=booking_id):
+            bookings_db[booking_id] = es.get(index="fanly_bookings", id=booking_id)["_source"]
+
     if booking_id not in bookings_db:
         raise HTTPException(status_code=404, detail="Booking not found")
         
@@ -338,6 +450,9 @@ def update_booking_status(booking_id: str, payload: StatusUpdate):
             contracts_db[booking_id] = contract_text
             booking["contract_url"] = f"/api/contracts/{booking_id}"
             
+            # Save contract to ES
+            save_contract_es(booking_id, contract_text)
+            
             # Save contracts to JSON so they persist
             try:
                 contracts_file = os.path.join(project_root, "data", "seed", "contracts.json")
@@ -347,6 +462,9 @@ def update_booking_status(booking_id: str, payload: StatusUpdate):
             except Exception as e:
                 print(f"Error saving contracts: {e}")
             
+    # Save to ES
+    save_booking_es(booking_id, booking)
+
     # Save back to JSON so it persists
     try:
         bookings_file = os.path.join(project_root, "data", "seed", "bookings.json")
@@ -360,10 +478,19 @@ def update_booking_status(booking_id: str, payload: StatusUpdate):
 
 @app.delete("/api/bookings/{booking_id}")
 def delete_booking(booking_id: str):
+    # Fetch from ES if not in memory
+    if booking_id not in bookings_db:
+        es = get_es_client()
+        if es and es.exists(index="fanly_bookings", id=booking_id):
+            bookings_db[booking_id] = es.get(index="fanly_bookings", id=booking_id)["_source"]
+
     if booking_id not in bookings_db:
         raise HTTPException(status_code=404, detail="Booking not found")
         
     del bookings_db[booking_id]
+    
+    # Delete from ES
+    delete_booking_es(booking_id)
     
     # Save back to JSON so it persists
     try:
@@ -377,10 +504,21 @@ def delete_booking(booking_id: str):
 
 @app.get("/api/contracts/{booking_id}")
 def get_contract(booking_id: str):
+    # Try fetching from ES
+    es_contract = get_contract_es(booking_id)
+    if es_contract:
+        contracts_db[booking_id] = es_contract["contract_text"]
+        return es_contract
+
     if booking_id in contracts_db:
         return {"booking_id": booking_id, "contract_text": contracts_db[booking_id]}
         
     # If not in memory/persisted db, try to generate it dynamically from the booking information
+    if booking_id not in bookings_db:
+        es = get_es_client()
+        if es and es.exists(index="fanly_bookings", id=booking_id):
+            bookings_db[booking_id] = es.get(index="fanly_bookings", id=booking_id)["_source"]
+
     if booking_id in bookings_db:
         booking = bookings_db[booking_id]
         if booking.get("status") in ("accepted", "confirmed"):
@@ -405,6 +543,10 @@ def get_contract(booking_id: str):
                     language="en"
                 )
                 contracts_db[booking_id] = contract_text
+                
+                # Save contract to ES
+                save_contract_es(booking_id, contract_text)
+
                 # Save contracts to JSON so they persist
                 try:
                     contracts_file = os.path.join(project_root, "data", "seed", "contracts.json")
