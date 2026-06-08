@@ -837,10 +837,10 @@ def get_matches(date_range: Optional[str] = None, stadium: Optional[str] = None)
 def query_agent_builder(query_text: str, session_id: str = "default_session"):
     project_id = os.getenv("GOOGLE_CLOUD_PROJECT_ID") or os.getenv("GOOGLE_CLOUD_PROJECT") or "fanly-497515"
     location = os.getenv("GOOGLE_CLOUD_LOCATION", "global")
-    agent_builder_id = os.getenv("GOOGLE_CLOUD_AGENT_BUILDER_ID")
+    agent_builder_id = os.getenv("GOOGLE_CLOUD_AGENT_BUILDER_ID") or os.getenv("GC_AGENT_BUILDER_ID")
     
     if not agent_builder_id:
-        print("[AgentBuilder] GOOGLE_CLOUD_AGENT_BUILDER_ID env var not configured. Skipping runtime query.")
+        print("[AgentBuilder] GOOGLE_CLOUD_AGENT_BUILDER_ID or GC_AGENT_BUILDER_ID env var not configured. Skipping runtime query.")
         return None
         
     try:
