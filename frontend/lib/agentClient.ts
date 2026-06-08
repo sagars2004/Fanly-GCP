@@ -204,3 +204,43 @@ export async function fetchMatches(dateRange?: string, stadium?: string): Promis
   if (!res.ok) throw new Error("Failed to fetch matches");
   return res.json();
 }
+
+export interface User {
+  id: string;
+  name: string;
+  role: "fan" | "host";
+  avatarUrl: string;
+  email: string;
+}
+
+export async function registerUser(firstName: string, lastName: string, email: string, code: string): Promise<User> {
+  const res = await fetch(`${API_BASE_URL}/api/users/register`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ first_name: firstName, last_name: lastName, email, code }),
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || "Registration failed");
+  }
+  return res.json();
+}
+
+export async function loginUser(email: string, password: string): Promise<User> {
+  const res = await fetch(`${API_BASE_URL}/api/users/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) {
+    const errData = await res.json().catch(() => ({}));
+    throw new Error(errData.detail || "Login failed");
+  }
+  return res.json();
+}
+
+export async function fetchUserById(userId: string): Promise<User> {
+  const res = await fetch(`${API_BASE_URL}/api/users/${userId}`);
+  if (!res.ok) throw new Error("Failed to fetch user");
+  return res.json();
+}

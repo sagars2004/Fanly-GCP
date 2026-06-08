@@ -2,6 +2,9 @@ import os
 import uuid
 import json
 from datetime import datetime
+from dotenv import load_dotenv
+load_dotenv()
+
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -30,9 +33,31 @@ app.add_middleware(
 bookings_db: Dict[str, Dict[str, Any]] = {}
 listings_db: List[Dict[str, Any]] = []
 contracts_db: Dict[str, str] = {}
+users_db: Dict[str, Dict[str, Any]] = {}
 
 ELASTIC_URL = os.getenv("ELASTIC_URL")
 ELASTIC_API_KEY = os.getenv("ELASTIC_API_KEY")
+
+DEFAULT_USERS = [
+    {
+        "id": "host_sagarsahu",
+        "name": os.getenv("NEXT_PUBLIC_DEMO_HOST_NAME") or "Sagar Sahu",
+        "role": "host",
+        "email": (os.getenv("NEXT_PUBLIC_DEMO_HOST_EMAIL") or "sahu.sagar@fanly.com").lower(),
+        "password": os.getenv("NEXT_PUBLIC_DEMO_HOST_PASSWORD") or "Devpost2026?",
+        "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&h=100&q=80",
+        "created_at": datetime.now().isoformat()
+    },
+    {
+        "id": "fan_ronaldo",
+        "name": os.getenv("NEXT_PUBLIC_DEMO_GUEST_NAME") or "Chris Ronaldo",
+        "role": "fan",
+        "email": (os.getenv("NEXT_PUBLIC_DEMO_GUEST_EMAIL") or "chrisronaldo@fanly.com").lower(),
+        "password": os.getenv("NEXT_PUBLIC_DEMO_GUEST_PASSWORD") or "cr26fanly",
+        "avatarUrl": "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=100&h=100&q=80",
+        "created_at": datetime.now().isoformat()
+    }
+]
 
 def get_es_client():
     if ELASTIC_URL and ELASTIC_API_KEY:
@@ -53,11 +78,60 @@ def init_es_indices():
                 es.indices.create(index="fanly_contracts")
             if not es.indices.exists(index="fanly_listings"):
                 es.indices.create(index="fanly_listings")
+            if not es.indices.exists(index="fanly_users"):
+                es.indices.create(index="fanly_users")
+                
+            # Seed default users if they don't exist in ES
+            for u in DEFAULT_USERS:
+                try:
+                    if not es.exists(index="fanly_users", id=u["id"]):
+                        es.index(index="fanly_users", id=u["id"], document=u)
+                        print(f"Seeded user {u['email']} in ES")
+                except Exception as seed_err:
+                    print(f"Error seeding user {u['email']} in ES: {seed_err}")
         except Exception as e:
             print(f"Error initializing ES indices: {e}")
 
 # Initialize indices
 init_es_indices()
+
+def get_user_by_email_es(email: str):
+    es = get_es_client()
+    if es:
+        try:
+            query = {
+                "query": {
+                    "term": {
+                        "email.keyword": email.lower().strip()
+                    }
+                }
+            }
+            res = es.search(index="fanly_users", body=query)
+            hits = res["hits"]["hits"]
+            if hits:
+                return hits[0]["_source"]
+        except Exception as e:
+            print(f"Error getting user by email from ES: {e}")
+    return None
+
+def get_user_by_id_es(user_id: str):
+    es = get_es_client()
+    if es:
+        try:
+            if es.exists(index="fanly_users", id=user_id):
+                res = es.get(index="fanly_users", id=user_id)
+                return res["_source"]
+        except Exception as e:
+            print(f"Error getting user by ID from ES: {e}")
+    return None
+
+def save_user_es(user: dict):
+    es = get_es_client()
+    if es:
+        try:
+            es.index(index="fanly_users", id=user["id"], document=user)
+        except Exception as e:
+            print(f"Error indexing user in ES: {e}")
 
 def save_booking_es(booking_id: str, booking: dict):
     es = get_es_client()
@@ -145,6 +219,21 @@ try:
 except Exception as e:
     print(f"Error seeding contracts database: {e}")
 
+# Seed initial users into users_db from the seed file or default users
+try:
+    users_file = os.path.join(project_root, "data", "seed", "users.json")
+    if os.path.exists(users_file):
+        with open(users_file, "r") as f:
+            users_db = __import__("json").load(f)
+    else:
+        for u in DEFAULT_USERS:
+            users_db[u["email"]] = u
+        os.makedirs(os.path.dirname(users_file), exist_ok=True)
+        with open(users_file, "w") as f:
+            __import__("json").dump(users_db, f, indent=2)
+except Exception as e:
+    print(f"Error seeding users database: {e}")
+
 # Models
 class ListingCreate(BaseModel):
     host_id: str
@@ -189,13 +278,140 @@ class ChatRequest(BaseModel):
     messages: List[ChatMessage]
     language: Optional[str] = "en"
 
+# User registration and login models
+class UserRegister(BaseModel):
+    first_name: str
+    last_name: str
+    email: str
+    code: str
+
+class UserLogin(BaseModel):
+    email: str
+    password: str
+
+class UserResponse(BaseModel):
+    id: str
+    name: str
+    email: str
+    role: str
+    avatarUrl: str
+
+@app.post("/api/users/register", response_model=UserResponse)
+def register_user(payload: UserRegister):
+    email_clean = payload.email.strip().lower()
+    
+    # Check if duplicate in ES
+    existing = get_user_by_email_es(email_clean)
+    if not existing:
+        # Check if duplicate in local db
+        if email_clean in users_db:
+            existing = users_db[email_clean]
+            
+    if existing:
+        raise HTTPException(status_code=400, detail="Email already registered.")
+        
+    # Validation passcode length
+    if len(payload.code.strip()) != 6:
+        raise HTTPException(status_code=400, detail="Passcode must be exactly 6 characters.")
+        
+    new_id = f"fan_{str(uuid.uuid4())[:8]}"
+    full_name = f"{payload.first_name.strip()} {payload.last_name.strip()}"
+    avatar_url = f"https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&h=100&q=80"
+    
+    new_user = {
+        "id": new_id,
+        "name": full_name,
+        "role": "fan",
+        "email": email_clean,
+        "password": payload.code.strip(),
+        "avatarUrl": avatar_url,
+        "created_at": datetime.now().isoformat()
+    }
+    
+    # Save to ES
+    save_user_es(new_user)
+    
+    # Save to local db
+    users_db[email_clean] = new_user
+    try:
+        users_file = os.path.join(project_root, "data", "seed", "users.json")
+        with open(users_file, "w") as f:
+            __import__("json").dump(users_db, f, indent=2)
+    except Exception as e:
+        print(f"Error saving registered user locally: {e}")
+        
+    return UserResponse(
+        id=new_user["id"],
+        name=new_user["name"],
+        email=new_user["email"],
+        role=new_user["role"],
+        avatarUrl=new_user["avatarUrl"]
+    )
+
+@app.post("/api/users/login", response_model=UserResponse)
+def login_user(payload: UserLogin):
+    email_clean = payload.email.strip().lower()
+    password_clean = payload.password.strip()
+    
+    # Look up in ES
+    user = get_user_by_email_es(email_clean)
+    if not user:
+        # Look up in local db
+        if email_clean in users_db:
+            user = users_db[email_clean]
+            
+    if not user or user.get("password") != password_clean:
+        raise HTTPException(status_code=400, detail="Invalid email or password.")
+        
+    return UserResponse(
+        id=user["id"],
+        name=user["name"],
+        email=user["email"],
+        role=user["role"],
+        avatarUrl=user["avatarUrl"]
+    )
+
+@app.get("/api/users/{user_id}", response_model=UserResponse)
+def get_user(user_id: str):
+    # Look up in ES
+    user = get_user_by_id_es(user_id)
+    if not user:
+        # Look up in local db
+        for u in users_db.values():
+            if u["id"] == user_id:
+                user = u
+                break
+                
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found.")
+        
+    return UserResponse(
+        id=user["id"],
+        name=user["name"],
+        email=user["email"],
+        role=user["role"],
+        avatarUrl=user["avatarUrl"]
+    )
+
 @app.get("/api/health")
 def health():
     mcp_active = ElasticMCPClient().is_configured()
+    
+    # Verify Google Cloud Agent Builder library invocation at runtime
+    agent_builder_status = "Available"
+    try:
+        from google.cloud import discoveryengine_v1beta as discoveryengine
+        # Create client locally to confirm runtime invocation
+        _ = discoveryengine.ConversationalSearchServiceClient()
+        agent_builder_status = "Available (Successfully Invoked Client)"
+    except Exception as e:
+        agent_builder_status = f"Unavailable: {e}"
+        
     return {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
-        "mode": "Elastic MCP Agent Mode" if mcp_active else "Local Mock Agent Mode"
+        "mode": "Elastic MCP Agent Mode" if mcp_active else "Local Mock Agent Mode",
+        "agent_builder": agent_builder_status
     }
 
 # Listings endpoints
@@ -564,6 +780,35 @@ def get_contract(booking_id: str):
 def get_matches(date_range: Optional[str] = None, stadium: Optional[str] = None):
     return check_match_schedule(date_range, stadium)
 
+def query_agent_builder(query_text: str, session_id: str = "default_session"):
+    project_id = os.getenv("GOOGLE_CLOUD_PROJECT_ID") or os.getenv("GOOGLE_CLOUD_PROJECT") or "fanly-497515"
+    location = os.getenv("GOOGLE_CLOUD_LOCATION", "global")
+    agent_builder_id = os.getenv("GOOGLE_CLOUD_AGENT_BUILDER_ID")
+    
+    if not agent_builder_id:
+        print("[AgentBuilder] GOOGLE_CLOUD_AGENT_BUILDER_ID env var not configured. Skipping runtime query.")
+        return None
+        
+    try:
+        from google.cloud import discoveryengine_v1beta as discoveryengine
+        client = discoveryengine.ConversationalSearchServiceClient()
+        session_path = client.session_path(
+            project=project_id,
+            location=location,
+            data_store=agent_builder_id,
+            session=session_id
+        )
+        request = discoveryengine.AnswerQueryRequest(
+            session=session_path,
+            query=discoveryengine.Query(text=query_text),
+        )
+        response = client.answer_query(request)
+        print(f"[AgentBuilder] Successfully queried Agent Builder: {agent_builder_id}")
+        return response.answer.answer_text
+    except Exception as e:
+        print(f"[AgentBuilder] Runtime Query Failed: {e}")
+        return None
+
 # AI Chat Matcher endpoint
 @app.post("/api/chat")
 async def run_chat_agent(payload: ChatRequest):
@@ -573,6 +818,21 @@ async def run_chat_agent(payload: ChatRequest):
         
     user_query = user_messages[-1].content
     user_query_lower = user_query.lower()
+    
+    # Try calling Google Cloud Agent Builder at runtime
+    agent_builder_answer = query_agent_builder(user_query)
+    if agent_builder_answer:
+        print("[ChatAgent] Using answer from Google Cloud Agent Builder.")
+        # Integrate with Elasticsearch MCP matching to populate list suggestions
+        dates = "2026-06-18 to 2026-06-22"
+        listings = search_listings(query=user_query, dates=dates)
+        matches = check_match_schedule(date_range=dates, stadium="MetLife Stadium")
+        return {
+            "role": "assistant",
+            "content": agent_builder_answer,
+            "recommended_listings": listings,
+            "matched_matches": matches
+        }
     
     # Extract criteria details using smart heuristics
     # Language detection

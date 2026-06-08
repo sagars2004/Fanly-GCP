@@ -1,0 +1,47 @@
+build:
+  images:
+  - gcr.io/fanly-497515/github.com/sagars2004/fanly-gcp:$COMMIT_SHA
+  options:
+    logging: CLOUD_LOGGING_ONLY
+  steps:
+  - args:
+    - build
+    - -t
+    - gcr.io/fanly-497515/github.com/sagars2004/fanly-gcp:$COMMIT_SHA
+    - -f
+    - Dockerfile
+    - .
+    dir: agent
+    name: gcr.io/cloud-builders/docker
+  - args:
+    - push
+    - gcr.io/fanly-497515/github.com/sagars2004/fanly-gcp:$COMMIT_SHA
+    name: gcr.io/cloud-builders/docker
+  - entrypoint: gcloud
+    args:
+    - run
+    - deploy
+    - fanly-backend
+    - --image
+    - gcr.io/fanly-497515/github.com/sagars2004/fanly-gcp:$COMMIT_SHA
+    - --region
+    - us-central1
+    - --project
+    - fanly-497515
+    name: gcr.io/google.com/cloudsdktool/cloud-sdk
+createTime: '2026-06-08T15:50:10.260815710Z'
+description: Build and deploy to Cloud Run service fanly-backend on push to "^main$"
+github:
+  name: Fanly-GCP
+  owner: sagars2004
+  push:
+    branch: ^main$
+id: a2afb326-350b-4b4b-8ed0-6602018b389d
+includeBuildLogs: INCLUDE_BUILD_LOGS_WITH_STATUS
+name: rmgpgab-fanly-backend-us-central1-sagars2004-Fanly-GCP--majuh
+resourceName: projects/fanly-497515/locations/global/triggers/a2afb326-350b-4b4b-8ed0-6602018b389d
+serviceAccount: projects/fanly-497515/serviceAccounts/112034156908-compute@developer.gserviceaccount.com
+tags:
+- gcp-cloud-build-deploy-cloud-run
+- gcp-cloud-build-deploy-cloud-run-managed
+- fanly-backend

@@ -23,7 +23,7 @@ export default function LoginModal() {
 
   if (!isLoginModalOpen) return null;
 
-  const handleSignupSubmit = (e: React.FormEvent) => {
+  const handleSignupSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
 
@@ -37,19 +37,23 @@ export default function LoginModal() {
       return;
     }
 
-    const res = register(firstName, lastName, signupEmail, signupCode);
-    if (!res.success) {
-      setErrorMsg(res.error || "Failed to register.");
-    } else {
-      // Clear states
-      setFirstName("");
-      setLastName("");
-      setSignupEmail("");
-      setSignupCode("");
+    try {
+      const res = await register(firstName, lastName, signupEmail, signupCode);
+      if (!res.success) {
+        setErrorMsg(res.error || "Failed to register.");
+      } else {
+        // Clear states
+        setFirstName("");
+        setLastName("");
+        setSignupEmail("");
+        setSignupCode("");
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || "Failed to register.");
     }
   };
 
-  const handleLoginSubmit = (e: React.FormEvent) => {
+  const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setErrorMsg("");
 
@@ -58,13 +62,17 @@ export default function LoginModal() {
       return;
     }
 
-    const res = loginWithCredentials(loginEmail, loginPassword);
-    if (!res.success) {
-      setErrorMsg(res.error || "Failed to log in.");
-    } else {
-      // Clear states
-      setLoginEmail("");
-      setLoginPassword("");
+    try {
+      const res = await loginWithCredentials(loginEmail, loginPassword);
+      if (!res.success) {
+        setErrorMsg(res.error || "Failed to log in.");
+      } else {
+        // Clear states
+        setLoginEmail("");
+        setLoginPassword("");
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || "Failed to log in.");
     }
   };
 
