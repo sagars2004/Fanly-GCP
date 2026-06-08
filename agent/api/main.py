@@ -17,8 +17,62 @@ from agent.tools.generate_contract import generate_contract
 from google.genai import types
 from agent.tools.ai_client import get_genai_client
 from agent.tools.elastic_mcp import ElasticMCPClient
+from mcp.server.fastmcp import FastMCP
+
+# Initialize Model Context Protocol (MCP) server
+mcp_server = FastMCP("Elasticsearch-MCP")
+
+# Expose search_listings tool via HTTP/SSE MCP for Vertex AI Agent Builder
+@mcp_server.tool()
+def search_listings_mcp(
+    query: Optional[str] = None,
+    dates: Optional[str] = None,
+    max_price: Optional[float] = None,
+    languages: Optional[List[str]] = None,
+    team_preference: Optional[str] = None
+) -> str:
+    """Search for accommodations matching criteria during the World Cup.
+    
+    Args:
+        query: General text search query (e.g. 'private bedroom').
+        dates: Stay date range (e.g. '2026-06-18 to 2026-06-22').
+        max_price: Maximum price per night in USD.
+        languages: Languages spoken by host.
+        team_preference: The national team the guest is rooting for.
+    """
+    from agent.tools.search_listings import search_listings as run_search
+    # Call the search listings library
+    results = run_search(
+        query=query,
+        dates=dates,
+        max_price=max_price,
+        languages=languages,
+        team_preference=team_preference
+    )
+    # Strip unnecessary fields for token efficiency
+    stripped = [{k: v for k, v in l.items() if k != 'description_embedding'} for l in results]
+    return json.dumps(stripped)
+
+# Expose check_match_schedule tool via HTTP/SSE MCP for Vertex AI Agent Builder
+@mcp_server.tool()
+def check_match_schedule_mcp(
+    date_range: Optional[str] = None,
+    stadium: Optional[str] = "MetLife Stadium"
+) -> str:
+    """Check the official FIFA World Cup match schedule for high-traffic days.
+    
+    Args:
+        date_range: Date range to scan matches e.g. '2026-06-18 to 2026-06-22'.
+        stadium: Stadium filter, default 'MetLife Stadium'.
+    """
+    from agent.tools.check_match_schedule import check_match_schedule as run_check
+    res = run_check(date_range=date_range, stadium=stadium)
+    return json.dumps(res)
 
 app = FastAPI(title="Fanly API", description="World Cup AI P2P Housing Agent API")
+
+# Mount the MCP server's SSE application
+app.mount("/api/mcp", mcp_server.sse_app())
 
 # Enable CORS for Next.js dev server and client applications (world cup theme)
 app.add_middleware(
