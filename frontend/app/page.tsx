@@ -190,12 +190,10 @@ export default function Home() {
         {/* Catchy Tagline */}
         <div className="text-center max-w-2xl mx-auto -mt-4">
           <p className="text-xl md:text-2xl font-black text-foreground tracking-tight leading-snug">
-            Where fans become{" "}
-            <span className="text-primary">neighbors</span>
-            {" "}for the world&apos;s biggest game. ⚽
+            P2P housing platform built for the 2026 FIFA World Cup, helping fans find verified, affordable rooms with local NJ/NYC hosts.
           </p>
           <p className="text-sm text-muted-foreground font-medium mt-1.5">
-            AI-matched, legally-protected home exchanges for FIFA World Cup 2026™ — in one search.
+            AI-matched, legally-protected home exchanges at a time when hotels are price-gouging, Airbnb is effectively illegal, and a million people still need a place to sleep.
           </p>
         </div>
 

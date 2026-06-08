@@ -71,6 +71,17 @@ export default function Dashboard() {
     }
   };
 
+  const handleCancelRequest = async (bookingId: string) => {
+    if (!confirm("Are you sure you want to cancel this booking request?")) return;
+    try {
+      await updateBookingStatus(bookingId, "cancelled");
+      loadDashboardData();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to cancel booking request.");
+    }
+  };
+
   const handleViewContract = async (bookingId: string) => {
     setSelectedBookingContract(bookingId);
     setIsLoadingContract(true);
@@ -229,6 +240,17 @@ export default function Dashboard() {
                           >
                             <FileText className="w-4 h-4" />
                             <span>{t("viewContract")}</span>
+                          </button>
+                        )}
+
+                        {/* Cancel Request Button if pending approval */}
+                        {booking.status === "requested" && (
+                          <button
+                            onClick={() => handleCancelRequest(booking.booking_id)}
+                            className="w-full py-2 bg-red-600/10 hover:bg-red-600/20 text-red-500 font-extrabold rounded-lg text-xs border border-red-500/20 transition-all flex items-center justify-center gap-1.5 shadow-sm"
+                          >
+                            <XCircle className="w-4 h-4" />
+                            <span>Cancel Request</span>
                           </button>
                         )}
                       </div>
