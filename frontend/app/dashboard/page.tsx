@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useAuth } from "@/lib/AuthContext";
-import { fetchBookings, updateBookingStatus, fetchContract, Booking, Listing } from "@/lib/agentClient";
-import { User, ClipboardList, ShieldCheck, FileText, CheckCircle, XCircle, Calendar, RefreshCw } from "lucide-react";
+import { fetchBookings, updateBookingStatus, deleteBooking, fetchContract, Booking, Listing } from "@/lib/agentClient";
+import { User, ClipboardList, ShieldCheck, FileText, CheckCircle, XCircle, Calendar, RefreshCw, Trash2 } from "lucide-react";
 import confetti from "canvas-confetti";
 
 export default function Dashboard() {
@@ -142,10 +142,24 @@ export default function Dashboard() {
       <div className="mx-auto max-w-5xl space-y-6">
         
         {/* Title */}
-        <div className="flex justify-between items-center border-b pb-4">
+        <div className={`flex justify-between items-center border-b pb-4 ${
+          user?.role === "host" ? "border-accent/40" : "border-border"
+        }`}>
           <div className="space-y-1">
-            <h1 className="text-3xl font-extrabold tracking-tight text-foreground">{t("dashboardTitle")}</h1>
-            <p className="text-xs text-muted-foreground font-semibold">Manage bookings, accept hosting requests, and download cultural exchange contracts.</p>
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground flex items-center gap-2">
+              <span>{t("dashboardTitle")}</span>
+              {user?.role === "host" && (
+                <span className="text-[10px] font-black uppercase bg-accent/10 border border-accent/35 text-accent px-2 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                  🏆 Host Admin Access
+                </span>
+              )}
+            </h1>
+            <p className="text-xs text-muted-foreground font-semibold">
+              {user?.role === "host" 
+                ? "Host Administration Portal — Approve requests and manage secure guest-host exchange agreements."
+                : "Manage stays, view accepted cultural exchange agreements, and keep track of matching listings."
+              }
+            </p>
           </div>
           <button 
             onClick={loadDashboardData}
@@ -156,32 +170,7 @@ export default function Dashboard() {
           </button>
         </div>
 
-        {/* Tab switchers */}
-        <div className="flex border-b border-border bg-card p-1 rounded-xl w-fit">
-          <button
-            onClick={() => setActiveTab("fan")}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-              activeTab === "fan"
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            <User className="w-4 h-4" />
-            <span>{t("dashboardFanTab")}</span>
-          </button>
-          
-          <button
-            onClick={() => setActiveTab("host")}
-            className={`px-4 py-2 text-xs md:text-sm font-bold rounded-lg transition-all flex items-center gap-1.5 ${
-              activeTab === "host"
-                ? "bg-primary text-primary-foreground shadow-sm"
-                : "text-muted-foreground hover:text-foreground"
-            }`}
-          >
-            <ClipboardList className="w-4 h-4" />
-            <span>{t("dashboardHostTab")}</span>
-          </button>
-        </div>
+
 
         {/* Loading Spinner */}
         {isLoading ? (
@@ -261,7 +250,14 @@ export default function Dashboard() {
                 ) : (
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {hostBookings.map((booking) => (
-                      <div key={booking.booking_id} className="p-5 rounded-xl border border-border bg-card shadow-sm space-y-4">
+                      <div 
+                        key={booking.booking_id} 
+                        className={`p-5 rounded-xl border bg-card shadow-sm space-y-4 transition-all ${
+                          booking.status === "requested" 
+                            ? "border-accent/40 bg-gradient-to-r from-card to-accent/5 shadow-[0_0_12px_rgba(197,160,89,0.08)]" 
+                            : "border-border"
+                        }`}
+                      >
                         
                         <div className="flex justify-between items-start gap-4">
                           <div>
@@ -269,7 +265,12 @@ export default function Dashboard() {
                             <h4 className="font-extrabold text-sm md:text-base text-foreground mt-0.5">
                               {booking.fan_name}
                             </h4>
-                            <span className="text-xs text-muted-foreground font-semibold">{booking.dates.check_in} to {booking.dates.check_out}</span>
+                            {booking.team_rooting_for && (
+                              <div className="inline-flex items-center gap-1.5 px-2 py-0.5 mt-1 rounded bg-accent/10 border border-accent/30 text-accent text-[10px] font-black uppercase">
+                                ⚽ Rooting for: {booking.team_rooting_for}
+                              </div>
+                            )}
+                            <div className="text-xs text-muted-foreground font-semibold mt-1">{booking.dates.check_in} to {booking.dates.check_out}</div>
                           </div>
                           
                           <span className={`text-[10px] uppercase font-black px-2.5 py-1 rounded-full border ${getStatusStyle(booking.status)}`}>
@@ -312,15 +313,35 @@ export default function Dashboard() {
                           </div>
                         )}
 
-                        {/* View Contract Button if accepted */}
+                        {/* Actions for accepted bookings on Host Portal */}
                         {booking.status === "accepted" && (
-                          <button
-                            onClick={() => handleViewContract(booking.booking_id)}
-                            className="w-full py-2 bg-secondary hover:bg-secondary/95 text-secondary-foreground font-extrabold rounded-lg text-xs transition-all flex items-center justify-center gap-1 border border-secondary/20 shadow-sm"
-                          >
-                            <FileText className="w-4 h-4" />
-                            <span>{t("viewContract")}</span>
-                          </button>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => handleViewContract(booking.booking_id)}
+                              className="flex-grow py-2 bg-secondary hover:bg-secondary/95 text-secondary-foreground font-extrabold rounded-lg text-xs transition-all flex items-center justify-center gap-1 border border-secondary/20 shadow-sm"
+                            >
+                              <FileText className="w-4 h-4" />
+                              <span>{t("viewContract")}</span>
+                            </button>
+                            <button
+                              onClick={async () => {
+                                if (confirm("Are you sure you want to delete this accepted booking request from the database?")) {
+                                  try {
+                                    await deleteBooking(booking.booking_id);
+                                    loadDashboardData();
+                                  } catch (err) {
+                                    console.error(err);
+                                    alert("Failed to delete booking.");
+                                  }
+                                }
+                              }}
+                              className="px-3 py-2 bg-red-600/10 hover:bg-red-600/20 text-red-500 font-extrabold rounded-lg text-xs border border-red-500/20 transition-all flex items-center justify-center gap-1"
+                              title="Delete booking request"
+                            >
+                              <Trash2 className="w-4 h-4" />
+                              <span>Delete</span>
+                            </button>
+                          </div>
                         )}
 
                       </div>

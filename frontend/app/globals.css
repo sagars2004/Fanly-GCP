@@ -7,50 +7,50 @@
 :root {
   --font-sans: 'Plus Jakarta Sans', sans-serif;
   
-  /* Premium World Cup / Soccer Theme Palette */
-  --background: 240 20% 98%;
-  --foreground: 224 71.4% 4.1%;
+  /* Premium Midnight Navy & Luxury Gold Theme Palette */
+  --background: 210 20% 98%;
+  --foreground: 222 47% 11%;
   --card: 0 0% 100%;
-  --card-foreground: 224 71.4% 4.1%;
+  --card-foreground: 222 47% 11%;
   --popover: 0 0% 100%;
-  --popover-foreground: 224 71.4% 4.1%;
-  --primary: 262 83% 58%; /* Premium FIFA World Cup Violet/Indigo */
+  --popover-foreground: 222 47% 11%;
+  --primary: 220 90% 16%; /* Rich Midnight Navy */
   --primary-foreground: 210 20% 98%;
-  --secondary: 142 76% 36%; /* Vibrant Soccer Pitch Green */
+  --secondary: 142 76% 36%; /* Vibrant Pitch Green for success states */
   --secondary-foreground: 210 20% 98%;
-  --accent: 47 95% 50%; /* Golden Trophy Gold */
-  --accent-foreground: 224 71.4% 4.1%;
+  --accent: 43 60% 50%; /* Metallic Champagne Gold */
+  --accent-foreground: 222 47% 11%;
   --muted: 220 14.3% 95.9%;
   --muted-foreground: 220 8.9% 46.1%;
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 20% 98%;
-  --border: 220 13% 91%;
-  --input: 220 13% 91%;
-  --ring: 262 83% 58%;
+  --border: 220 13% 90%;
+  --input: 220 13% 90%;
+  --ring: 220 90% 16%;
   --radius: 1rem;
 }
 
 .dark {
   /* Premium Dark Mode */
-  --background: 224 71% 4%;
+  --background: 222 47% 4%;
   --foreground: 210 20% 98%;
-  --card: 224 71% 7%;
+  --card: 222 47% 8%;
   --card-foreground: 210 20% 98%;
-  --popover: 224 71% 7%;
+  --popover: 222 47% 8%;
   --popover-foreground: 210 20% 98%;
-  --primary: 262 83% 66%;
-  --primary-foreground: 224 71.4% 4.1%;
+  --primary: 220 90% 75%;
+  --primary-foreground: 222 47% 11%;
   --secondary: 142 76% 45%;
-  --secondary-foreground: 224 71.4% 4.1%;
-  --accent: 47 95% 58%;
-  --accent-foreground: 224 71.4% 4.1%;
-  --muted: 224 71% 12%;
+  --secondary-foreground: 222 47% 11%;
+  --accent: 43 60% 60%;
+  --accent-foreground: 222 47% 11%;
+  --muted: 222 47% 12%;
   --muted-foreground: 217.9 10.6% 64.9%;
   --destructive: 0 62.8% 50.6%;
   --destructive-foreground: 210 20% 98%;
-  --border: 224 71% 12%;
-  --input: 224 71% 12%;
-  --ring: 262 83% 66%;
+  --border: 222 47% 14%;
+  --input: 222 47% 14%;
+  --ring: 220 90% 75%;
 }
 
 * {

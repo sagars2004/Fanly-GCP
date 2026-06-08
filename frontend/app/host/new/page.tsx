@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
 import { createListing } from "@/lib/agentClient";
 import { ArrowLeft, Home, Sparkles, MapPin, Globe, CheckCircle, ShieldAlert, Award } from "lucide-react";
 import Link from "next/link";
@@ -24,6 +25,13 @@ const WORLD_CUP_DATES = [
 export default function BecomeHost() {
   const router = useRouter();
   const { t } = useLanguage();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (user && user.role === "fan") {
+      router.push("/");
+    }
+  }, [user, router]);
 
   // Form State
   const [title, setTitle] = useState("");

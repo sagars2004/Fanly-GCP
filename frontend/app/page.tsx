@@ -35,7 +35,7 @@ const JERSEY_ATTRACTIONS: Attraction[] = [
     price: "From $46 / guest",
     rating: "5.0",
     reviews: "420",
-    image: "https://images.unsplash.com/photo-1522083165195-342750297f4e?auto=format&fit=crop&w=400&h=300&q=80"
+    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=400&h=300&q=80"
   },
   {
     id: "att_3",
@@ -68,7 +68,7 @@ const JERSEY_ATTRACTIONS: Attraction[] = [
     price: "From $20 / guest",
     rating: "4.96",
     reviews: "2.4k",
-    image: "https://images.unsplash.com/photo-1522083165195-342750297f4e?auto=format&fit=crop&w=400&h=300&q=80"
+    image: "https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=400&h=300&q=80"
   },
   {
     id: "att_7",
@@ -76,7 +76,7 @@ const JERSEY_ATTRACTIONS: Attraction[] = [
     price: "From $79 / guest",
     rating: "4.90",
     reviews: "480",
-    image: "https://images.unsplash.com/photo-1502104034360-73176bb1e92e?auto=format&fit=crop&w=400&h=300&q=80"
+    image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=400&h=300&q=80"
   }
 ];
 
@@ -86,22 +86,47 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [searchParams, setSearchParams] = useState<any>(null);
   const [likedAttractions, setLikedAttractions] = useState<Record<string, boolean>>({});
+  const [hasSearched, setHasSearched] = useState(false);
 
-  // Load initial listings on mount
+  // Load search state from sessionStorage on mount (client-side only)
   useEffect(() => {
-    async function loadInitial() {
-      setIsLoading(true);
-      try {
-        const data = await fetchListings();
-        setListings(data);
-      } catch (err) {
-        console.error("Failed to load listings", err);
-      } finally {
-        setIsLoading(false);
+    const savedListings = sessionStorage.getItem("saved_listings");
+    const savedParams = sessionStorage.getItem("saved_search_params");
+    const savedHasSearched = sessionStorage.getItem("saved_has_searched");
+
+    if (savedHasSearched === "true") {
+      setHasSearched(true);
+      if (savedListings) {
+        try {
+          setListings(JSON.parse(savedListings));
+        } catch (e) {
+          console.error("Failed to parse saved listings", e);
+        }
+      }
+      if (savedParams) {
+        try {
+          setSearchParams(JSON.parse(savedParams));
+        } catch (e) {
+          console.error("Failed to parse saved search params", e);
+        }
       }
     }
-    loadInitial();
   }, []);
+
+  // Sync search state to sessionStorage whenever it changes
+  useEffect(() => {
+    if (hasSearched) {
+      sessionStorage.setItem("saved_has_searched", "true");
+      sessionStorage.setItem("saved_listings", JSON.stringify(listings));
+      if (searchParams) {
+        sessionStorage.setItem("saved_search_params", JSON.stringify(searchParams));
+      }
+    } else {
+      sessionStorage.removeItem("saved_has_searched");
+      sessionStorage.removeItem("saved_listings");
+      sessionStorage.removeItem("saved_search_params");
+    }
+  }, [listings, searchParams, hasSearched]);
 
   const handleSearch = async (params: {
     query: string;
@@ -109,9 +134,19 @@ export default function Home() {
     maxPrice?: number;
     language?: string;
     teamPreference?: string;
+    guests?: number;
   }) => {
     setIsLoading(true);
     setSearchParams(params);
+    setHasSearched(true);
+
+    // Persist team preference to localStorage
+    if (params.teamPreference) {
+      localStorage.setItem("team_rooting_for", params.teamPreference);
+    } else {
+      localStorage.removeItem("team_rooting_for");
+    }
+
     try {
       const data = await fetchListings({
         query: params.query,
@@ -130,6 +165,7 @@ export default function Home() {
 
   const handleMatchesFound = (newListings: Listing[]) => {
     setListings(newListings);
+    setHasSearched(true);
   };
 
   const toggleLikeAttraction = (id: string) => {
@@ -151,16 +187,20 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Regulatory Alert Banner */}
-        <div className="max-w-3xl mx-auto p-3.5 rounded-xl border border-red-500/20 bg-red-500/5 flex gap-3 items-start shadow-sm">
-          <ShieldAlert className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-          <p className="text-xs text-foreground/80 font-semibold leading-relaxed">
-            {t("warningLL18")}
+        {/* Catchy Tagline */}
+        <div className="text-center max-w-2xl mx-auto -mt-4">
+          <p className="text-xl md:text-2xl font-black text-foreground tracking-tight leading-snug">
+            Where fans become{" "}
+            <span className="text-primary">neighbors</span>
+            {" "}for the world&apos;s biggest game. ⚽
+          </p>
+          <p className="text-sm text-muted-foreground font-medium mt-1.5">
+            AI-matched, legally-protected home exchanges for FIFA World Cup 2026™ — in one search.
           </p>
         </div>
 
         {/* Floating Search Bar */}
-        <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+        <SearchBar onSearch={handleSearch} isLoading={isLoading} initialParams={searchParams} />
 
         {/* Main Interface Layout: Feed Column + AI Agent Chat column */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
@@ -169,7 +209,7 @@ export default function Home() {
           <div className="lg:col-span-2 space-y-10">
             
             {/* Match Schedule contextual overlay */}
-            {searchParams?.dates && (
+            {hasSearched && searchParams?.dates && (
               <MatchScheduleOverlay 
                 checkIn={searchParams.dates.split(" to ")[0]} 
                 checkOut={searchParams.dates.split(" to ")[1] || searchParams.dates} 
@@ -187,7 +227,22 @@ export default function Home() {
                 </span>
               </div>
 
-              {isLoading ? (
+              {!hasSearched ? (
+                // Gated Initial State
+                <div className="text-center py-16 border border-dashed border-border/80 rounded-2xl bg-card/40 backdrop-blur-md shadow-inner animate-fade-in space-y-4">
+                  <div className="w-16 h-16 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center mx-auto shadow-sm">
+                    <span className="text-3xl animate-bounce">🏟️</span>
+                  </div>
+                  <div className="space-y-1.5">
+                    <h3 className="font-extrabold text-base text-foreground uppercase tracking-wider">
+                      Search World Cup Accommodations
+                    </h3>
+                    <p className="text-xs text-muted-foreground max-w-sm mx-auto leading-relaxed font-medium">
+                      Enter your travel location, dates, and number of guests in the search bar above to unlock matching hosts and FIFA matches.
+                    </p>
+                  </div>
+                </div>
+              ) : isLoading ? (
                 // Skeleton Grid
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {[1, 2, 3, 4].map((n) => (

@@ -82,6 +82,7 @@ export default function ListingDetail() {
     }
     setIsSubmitting(true);
     try {
+      const teamRootingFor = localStorage.getItem("team_rooting_for") || undefined;
       await createBookingRequest({
         listing_id: listing.listing_id,
         host_id: listing.host_id,
@@ -90,7 +91,8 @@ export default function ListingDetail() {
         check_in: checkIn,
         check_out: checkOut,
         guests: guests,
-        total_price: totalCost
+        total_price: totalCost,
+        team_rooting_for: teamRootingFor
       });
       
       setBookingSuccess(true);

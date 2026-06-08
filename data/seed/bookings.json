@@ -1,1 +1,40 @@
-{}
+{
+  "book_b5919c2b": {
+    "booking_id": "book_b5919c2b",
+    "listing_id": "list_012",
+    "host_id": "host_alejandro_12",
+    "fan_id": "fan_ronaldo",
+    "fan_name": "Chris Ronaldo",
+    "dates": {
+      "check_in": "2026-06-18",
+      "check_out": "2026-06-22"
+    },
+    "guests": 2,
+    "total_price": 375.0,
+    "status": "requested",
+    "contract_url": "",
+    "match_reference": "",
+    "team_rooting_for": "Brazil",
+    "created_at": "2026-06-07T18:38:22.659813",
+    "updated_at": "2026-06-07T18:38:22.659837"
+  },
+  "book_442d45d1": {
+    "booking_id": "book_442d45d1",
+    "listing_id": "list_001",
+    "host_id": "host_sagarsahu",
+    "fan_id": "fan_ronaldo",
+    "fan_name": "Chris Ronaldo",
+    "dates": {
+      "check_in": "2026-06-15",
+      "check_out": "2026-06-20"
+    },
+    "guests": 1,
+    "total_price": 566.0,
+    "status": "accepted",
+    "contract_url": "/api/contracts/book_442d45d1",
+    "match_reference": "",
+    "team_rooting_for": "USA",
+    "created_at": "2026-06-07T18:54:54.468745",
+    "updated_at": "2026-06-07T21:43:04.889688"
+  }
+}

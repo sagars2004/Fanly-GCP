@@ -16,6 +16,8 @@ export default function AgentChat({ onMatchesFound }: AgentChatProps) {
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
+  const hasMounted = useRef(false);
 
   // Quick Chips Suggestion
   const SUGGESTION_CHIPS = {
@@ -56,9 +58,14 @@ export default function AgentChat({ onMatchesFound }: AgentChatProps) {
   };
 
   useEffect(() => {
-    // Auto-scroll chat
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    // Only scroll after first user message (not on initial mount)
+    if (!hasMounted.current) {
+      hasMounted.current = true;
+      return;
+    }
+    // Scroll within the chat container, not the whole page
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
     }
   }, [messages, isLoading]);
 
@@ -109,7 +116,7 @@ export default function AgentChat({ onMatchesFound }: AgentChatProps) {
       </div>
 
       {/* Messages Window */}
-      <div className="flex-grow p-4 overflow-y-auto space-y-4 min-h-[300px] max-h-[500px]">
+      <div ref={messagesContainerRef} className="flex-grow p-4 overflow-y-auto space-y-4 min-h-[300px] max-h-[500px]">
         {/* Intro bubble */}
         <div className="flex gap-2.5 items-start">
           <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center shrink-0 font-bold border border-primary/20">
@@ -128,14 +135,14 @@ export default function AgentChat({ onMatchesFound }: AgentChatProps) {
           >
             <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 font-bold border ${
               msg.role === "user" 
-                ? "bg-secondary/10 text-secondary border-secondary/20" 
+                ? "bg-blue-500/10 text-blue-600 border-blue-500/20" 
                 : "bg-primary/10 text-primary border-primary/20"
             }`}>
               {msg.role === "user" ? <User className="w-4 h-4" /> : "🤖"}
             </div>
             <div className={`p-3 rounded-2xl text-sm leading-relaxed max-w-[85%] whitespace-pre-wrap font-medium ${
               msg.role === "user"
-                ? "bg-primary text-primary-foreground rounded-tr-none"
+                ? "bg-blue-600 text-white rounded-tr-none"
                 : "bg-muted text-foreground rounded-tl-none"
             }`}>
               {msg.content}

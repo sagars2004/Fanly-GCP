@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useAuth } from "@/lib/AuthContext";
 import { Sun, Moon, Languages, Menu } from "lucide-react";
@@ -11,6 +11,7 @@ export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
   const { user, logout, setIsLoginModalOpen } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
   const [darkMode, setDarkMode] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -72,12 +73,14 @@ export default function Navbar() {
 
         {/* Right Action Items */}
         <div className="flex items-center gap-4">
-          <Link 
-            href="/host/new"
-            className="hidden sm:inline-block text-sm font-bold hover:bg-muted py-2.5 px-4 rounded-full transition-colors text-foreground/85 hover:text-foreground"
-          >
-            Become a host
-          </Link>
+          {(!user || user.role === "host") && (
+            <Link 
+              href="/host/new"
+              className="hidden sm:inline-block text-sm font-bold hover:bg-muted py-2.5 px-4 rounded-full transition-colors text-foreground/85 hover:text-foreground"
+            >
+              Become a host
+            </Link>
+          )}
 
           {/* Language Selector */}
           <div className="flex items-center gap-1 text-foreground/70">
@@ -107,16 +110,22 @@ export default function Navbar() {
           {/* User Profile Menu widget */}
           <div 
             onClick={() => setShowDropdown(!showDropdown)}
-            className="relative flex items-center gap-3 border hover:shadow-md transition-shadow py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none"
+            className={`relative flex items-center gap-3 border hover:shadow-md transition-all py-1.5 pl-3.5 pr-1.5 rounded-full bg-card cursor-pointer select-none ${
+              user?.role === "host" 
+                ? "border-accent/60 shadow-[0_0_12px_rgba(197,160,89,0.15)] bg-gradient-to-r from-card to-accent/5 hover:border-accent" 
+                : "border-border"
+            }`}
           >
             <Menu className="w-4 h-4 text-foreground/75" />
-            <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center overflow-hidden border">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center overflow-hidden border transition-all ${
+              user?.role === "host" ? "border-accent ring-2 ring-accent/20" : "border-border"
+            }`}>
               {user ? (
-                <img 
-                  src={user.avatarUrl} 
-                  alt={user.name} 
-                  className="w-full h-full object-cover" 
-                />
+                user.role === "host" ? (
+                  <div className="w-full h-full bg-purple-600 rounded-full" />
+                ) : (
+                  <div className="w-full h-full bg-green-500 rounded-full" />
+                )
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
                   <svg className="w-4.5 h-4.5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
@@ -125,23 +134,32 @@ export default function Navbar() {
                 </div>
               )}
             </div>
-
             {showDropdown && (
               <div className="absolute right-0 top-full mt-2.5 w-48 bg-card border border-border rounded-xl shadow-lg py-2.5 z-50 flex flex-col font-extrabold text-[11px] text-foreground uppercase tracking-wider animate-float-quick">
                 {user ? (
                   <>
                     <div className="px-4 py-2 border-b border-border/40 text-[10px] text-muted-foreground normal-case font-semibold tracking-normal flex flex-col">
                       <span className="font-bold text-foreground truncate">{user.name}</span>
-                      <span className="capitalize text-[9px] mt-0.5 font-bold text-primary">{user.role === "host" ? "Host Account" : "Fan / Guest"}</span>
+                      {user.role === "host" ? (
+                        <span className="text-[9px] mt-0.5 font-black text-accent flex items-center gap-1">
+                          🏆 Host Admin Pass
+                        </span>
+                      ) : (
+                        <span className="capitalize text-[9px] mt-0.5 font-bold text-primary">
+                          Fan / Guest Pass
+                        </span>
+                      )}
                     </div>
                     <Link href="/dashboard" className="px-4 py-2 hover:bg-muted text-left transition-colors">
                       My Dashboard
                     </Link>
-                    <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
-                      Create Host Space
-                    </Link>
+                    {user.role === "host" && (
+                      <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                        Create Host Space
+                      </Link>
+                    )}
                     <button 
-                      onClick={() => { logout(); setShowDropdown(false); }}
+                      onClick={() => { logout(); setShowDropdown(false); router.push("/"); }}
                       className="px-4 py-2 hover:bg-muted text-left border-t border-border/40 mt-1 pt-2 transition-colors font-extrabold text-[11px] text-red-500 uppercase tracking-wider"
                     >
                       {t("logout")}

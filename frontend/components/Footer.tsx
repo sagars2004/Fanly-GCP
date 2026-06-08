@@ -3,9 +3,11 @@
 import React from "react";
 import Link from "next/link";
 import { useLanguage } from "../lib/LanguageContext";
+import { useAuth } from "@/lib/AuthContext";
 import { Globe } from "lucide-react";
 
 export default function Footer() {
+  const { user } = useAuth();
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
@@ -42,7 +44,9 @@ export default function Footer() {
           <div className="space-y-3">
             <h4 className="font-extrabold text-foreground tracking-wider uppercase text-[10px]">Hosting</h4>
             <ul className="space-y-2.5 font-semibold text-muted-foreground">
-              <li><Link href="/host/new" className="hover:underline hover:text-foreground">Become a Host</Link></li>
+              {(!user || user.role === "host") && (
+                <li><Link href="/host/new" className="hover:underline hover:text-foreground">Become a Host</Link></li>
+              )}
               <li><Link href="#" className="hover:underline hover:text-foreground">Regulatory Guidelines (LL18)</Link></li>
               <li><Link href="#" className="hover:underline hover:text-foreground">Host Resources</Link></li>
               <li><Link href="#" className="hover:underline hover:text-foreground">P2P Contract Templates</Link></li>
@@ -70,7 +74,9 @@ export default function Footer() {
         {/* Footer Bottom Info */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-2 text-xs font-semibold text-muted-foreground">
           <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
-            <span>© {currentYear} Fanly, Inc.</span>
+            <span>© {currentYear} Fanly. All Rights Reserved.</span>
+            <span>•</span>
+            <Link href="#" className="hover:underline">Made by Sagar Sahu</Link>
             <span>•</span>
             <Link href="#" className="hover:underline">Privacy</Link>
             <span>•</span>

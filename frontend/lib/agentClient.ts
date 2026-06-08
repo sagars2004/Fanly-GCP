@@ -66,6 +66,7 @@ export interface Booking {
   status: "requested" | "accepted" | "confirmed" | "active" | "completed" | "cancelled";
   contract_url: string;
   match_reference: string;
+  team_rooting_for?: string;
   created_at: string;
   updated_at: string;
 }
@@ -154,6 +155,7 @@ export async function createBookingRequest(bookingData: {
   guests: number;
   total_price: number;
   language?: string;
+  team_rooting_for?: string;
 }): Promise<Booking> {
   const res = await fetch(`${API_BASE_URL}/api/bookings`, {
     method: "POST",
@@ -177,6 +179,14 @@ export async function updateBookingStatus(bookingId: string, status: string): Pr
     body: JSON.stringify({ status }),
   });
   if (!res.ok) throw new Error("Failed to update booking status");
+  return res.json();
+}
+
+export async function deleteBooking(bookingId: string): Promise<{ status: string; booking_id: string }> {
+  const res = await fetch(`${API_BASE_URL}/api/bookings/${bookingId}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Failed to delete booking");
   return res.json();
 }
 
