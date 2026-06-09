@@ -25,13 +25,38 @@ const WORLD_CUP_DATES = [
 export default function BecomeHost() {
   const router = useRouter();
   const { t } = useLanguage();
-  const { user } = useAuth();
+  const { user, loginWithCredentials, logout } = useAuth();
 
-  useEffect(() => {
-    if (user && user.role === "fan") {
-      router.push("/");
+  // Host Login / Verification State
+  const [hostEmail, setHostEmail] = useState("");
+  const [hostPassword, setHostPassword] = useState("");
+  const [authError, setAuthError] = useState("");
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const handleHostLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setAuthError("");
+    setIsVerifying(true);
+    try {
+      const result = await loginWithCredentials(hostEmail, hostPassword);
+      if (!result.success) {
+        setAuthError(result.error || "Authentication failed.");
+      } else {
+        const stored = localStorage.getItem("fanly-user");
+        if (stored) {
+          const parsed = JSON.parse(stored);
+          if (parsed.role !== "host") {
+            logout();
+            setAuthError("Access Denied: The authenticated profile is a Fan/Guest account. You must log in with a verified Host account.");
+          }
+        }
+      }
+    } catch (err: any) {
+      setAuthError(err.message || "Failed to authenticate.");
+    } finally {
+      setIsVerifying(false);
     }
-  }, [user, router]);
+  };
 
   // Form State
   const [title, setTitle] = useState("");
@@ -86,8 +111,8 @@ export default function BecomeHost() {
     setIsSubmitting(true);
     try {
       await createListing({
-        host_id: "host_maria", // Mock host
-        host_name: "Maria Silva", // Mock host name
+        host_id: user?.id || "host_sagarsahu",
+        host_name: user?.name || "Sagar Sahu",
         title,
         description,
         address,
@@ -121,6 +146,75 @@ export default function BecomeHost() {
       setIsSubmitting(false);
     }
   };
+
+  if (!user || user.role !== "host") {
+    return (
+      <div className="flex-grow bg-background py-12 px-4 md:px-8 flex items-center justify-center min-h-[70vh]">
+        <div className="w-full max-w-md bg-card border border-border rounded-3xl p-8 shadow-xl space-y-6 relative overflow-hidden">
+          
+          {/* Accent decoration */}
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-accent to-secondary" />
+
+          <div className="text-center space-y-2">
+            <div className="w-14 h-14 rounded-full bg-red-500/10 border border-red-500/20 flex items-center justify-center mx-auto text-red-500 shadow-inner">
+              <ShieldAlert className="w-7 h-7" />
+            </div>
+            <h2 className="text-xl font-black text-foreground tracking-tight uppercase">
+              Host Verification Required
+            </h2>
+            <p className="text-xs text-muted-foreground font-medium max-w-xs mx-auto">
+              For regulatory and security compliance, you must verify Host Credentials before submitting accommodations.
+            </p>
+          </div>
+
+          <form onSubmit={handleHostLogin} className="space-y-4">
+            <div className="space-y-1">
+              <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Host Email Address</label>
+              <input
+                type="email"
+                value={hostEmail}
+                onChange={(e) => setHostEmail(e.target.value)}
+                placeholder="Please enter your Fanly username/email"
+                className="w-full px-3 py-2.5 border rounded-xl bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary font-semibold text-sm"
+                required
+              />
+            </div>
+
+            <div className="space-y-1">
+              <label className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider block">Password / Passcode</label>
+              <input
+                type="password"
+                value={hostPassword}
+                onChange={(e) => setHostPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full px-3 py-2.5 border rounded-xl bg-background text-foreground focus:outline-none focus:ring-1 focus:ring-primary font-semibold text-sm"
+                required
+              />
+            </div>
+
+            {authError && (
+              <p className="text-xs font-bold text-red-500 bg-red-500/5 border border-red-500/10 rounded-lg p-2.5 leading-relaxed text-center">
+                ⚠️ {authError}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              disabled={isVerifying}
+              className="w-full py-3 bg-primary hover:bg-primary/95 text-primary-foreground font-extrabold rounded-xl text-xs uppercase tracking-wider transition-all disabled:opacity-50 shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-white"
+            >
+              {isVerifying ? (
+                <div className="w-4 h-4 border-2 border-primary-foreground border-t-transparent rounded-full animate-spin" />
+              ) : (
+                <span>Verify Credentials</span>
+              )}
+            </button>
+          </form>
+
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex-grow bg-background py-6 md:py-10 px-4 md:px-8">

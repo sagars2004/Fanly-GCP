@@ -5,6 +5,12 @@ from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
 
+def get_model_name() -> str:
+    use_vertex = os.getenv("GOOGLE_GENAI_USE_VERTEXAI", "").lower() in ("true", "1", "yes")
+    default_model = "gemini-1.5-flash-002" if use_vertex else "gemini-1.5-flash"
+    return os.getenv("GEMINI_MODEL") or default_model
+
+
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -863,6 +869,49 @@ def query_agent_builder(query_text: str, session_id: str = "default_session"):
         print(f"[AgentBuilder] Runtime Query Failed: {e}")
         return None
 
+# Helper to check if a query is search-related or just conversational
+def is_search_query(query_text: str) -> bool:
+    query_lower = query_text.lower().strip()
+    
+    # If it's a very short query (like a greeting), it's not a search
+    if len(query_lower.split()) < 3:
+        search_terms = {"search", "find", "room", "loft", "stay", "hotel", "host"}
+        if not any(w in search_terms for w in query_lower.split()):
+            return False
+            
+    # Phrases suggesting general help or explanations
+    general_help_phrases = [
+        "what are you able to help me with",
+        "what can you do",
+        "what are you",
+        "who are you",
+        "how does this work",
+        "how do i",
+        "what is this",
+        "help me",
+        "help with",
+    ]
+    if any(phrase in query_lower for phrase in general_help_phrases):
+        return False
+        
+    # Check for search indicator keywords
+    search_indicators = [
+        "find", "search", "look", "show", "recommend", "list", "book", "rent",
+        "room", "loft", "apartment", "house", "space", "accommodation", "stay", "place",
+        "stadium", "metlife", "match", "game", "vs", "versus", "ticket",
+        "price", "budget", "under", "cheap", "affordable", "cost", "night", "usd",
+        "speak", "language", "portuguese", "spanish", "arabic", "french", "english",
+        "brazil", "argentina", "usa", "england", "spain", "morocco", "germany",
+        "june", "2026", "date", "availab", "check-in", "check-out", "to"
+    ]
+    
+    import re
+    if "$" in query_lower or re.search(r'\b\d{1,4}\b', query_lower):
+        if "how" not in query_lower:
+            return True
+            
+    return any(indicator in query_lower for indicator in search_indicators)
+
 # AI Chat Matcher endpoint
 @app.post("/api/chat")
 async def run_chat_agent(payload: ChatRequest):
@@ -877,16 +926,18 @@ async def run_chat_agent(payload: ChatRequest):
     agent_builder_answer = query_agent_builder(user_query)
     if agent_builder_answer:
         print("[ChatAgent] Using answer from Google Cloud Agent Builder.")
-        # Integrate with Elasticsearch MCP matching to populate list suggestions
-        dates = "2026-06-18 to 2026-06-22"
-        listings = search_listings(query=user_query, dates=dates)
-        matches = check_match_schedule(date_range=dates, stadium="MetLife Stadium")
-        return {
+        response_payload = {
             "role": "assistant",
-            "content": agent_builder_answer,
-            "recommended_listings": listings,
-            "matched_matches": matches
+            "content": agent_builder_answer
         }
+        if is_search_query(user_query):
+            # Integrate with Elasticsearch MCP matching to populate list suggestions
+            dates = "2026-06-18 to 2026-06-22"
+            listings = search_listings(query=user_query, dates=dates)
+            matches = check_match_schedule(date_range=dates, stadium="MetLife Stadium")
+            response_payload["recommended_listings"] = listings
+            response_payload["matched_matches"] = matches
+        return response_payload
     
     # Extract criteria details using smart heuristics
     # Language detection
@@ -1014,7 +1065,7 @@ async def run_chat_agent(payload: ChatRequest):
             
             # Initial chat prediction
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model=get_model_name(),
                 contents=contents,
                 config=config
             )
@@ -1103,22 +1154,24 @@ async def run_chat_agent(payload: ChatRequest):
                 
                 # Fetch next content step
                 response = client.models.generate_content(
-                    model="gemini-1.5-flash",
+                    model=get_model_name(),
                     contents=contents,
                     config=config
                 )
                 
             if response.text:
-                if not recommended_listings:
-                    recommended_listings = listings
-                if not matched_matches:
-                    matched_matches = matches
-                return {
+                response_payload = {
                     "role": "assistant",
-                    "content": response.text.strip(),
-                    "recommended_listings": recommended_listings,
-                    "matched_matches": matched_matches
+                    "content": response.text.strip()
                 }
+                if is_search_query(user_query):
+                    if not recommended_listings:
+                        recommended_listings = listings
+                    if not matched_matches:
+                        matched_matches = matches
+                    response_payload["recommended_listings"] = recommended_listings
+                    response_payload["matched_matches"] = matched_matches
+                return response_payload
         except Exception as e:
             print(f"[ChatAgent] Gemini SDK call failed: {e}. Falling back to rule-based template.")
             
@@ -1175,6 +1228,19 @@ Hébergements recommandés (hôtes francophones ou ouverts):
 **نصيحة الانتقال:** في أيام المباريات ذات الحضور الجماهيري المرتفع، ننصح بشدة باستخدام قطارات NJ Transit عبر محطة Secaucus لتجنب الازدحام. اضغط على "طلب إقامة" لبدء إنشاء العقد المبسط وتأكيد حجزك!"""
     }
     
+    if not is_search_query(user_query):
+        general_responses = {
+            "pt": "Olá! Sou o seu assistente de hospedagem P2P para a Copa do Mundo de 2026. Posso ajudar você a encontrar acomodações próximas ao estádio MetLife, alinhar seu time de preferência ou idioma com anfitriões locais e gerar micro-contratos legais para garantir sua estadia. Como posso ajudar você hoje?",
+            "es": "¡Hola! Soy tu asistente de alojamiento P2P para la Copa del Mundo de 2026. Puedo ayudarte a buscar habitaciones cerca del estadio MetLife, filtrar por equipos e idiomas con anfitriones locales y generar micro-contratos de hospedaje. ¿En qué te puedo ayudar hoy?",
+            "en": "Hello! I am your P2P housing assistant for the 2026 FIFA World Cup. I can help you search for verified accommodations near MetLife Stadium, match with local hosts based on language/team preference, and generate secure micro-contracts for your stay. How can I help you today?",
+            "fr": "Bonjour! Je suis votre assistant d'hébergement P2P pour la Coupe du Monde de la FIFA 2026. Je peux vous aider à rechercher des logements près du stade MetLife, à trouver des hôtes selon vos préférences linguistiques ou d'équipe, et à générer des micro-contrats sécurisés. Comment puis-je vous aider aujourd'hui?",
+            "ar": "مرحبًا! أنا مساعد السكن المشترك لكأس العالم 2026. يمكنني مساعدتك في البحث عن أماكن إقامة تم التحقق منها بالقرب من ملعب MetLife، ومطابقتها مع المضيفين المحليين بناءً على تفضيلات اللغة والفريق، وإنشاء عقود مبسطة آمنة لإقامتك. كيف يمكنني مساعدتك اليوم؟"
+        }
+        return {
+            "role": "assistant",
+            "content": general_responses.get(lang, general_responses["en"])
+        }
+
     agent_message = responses.get(lang, responses["en"])
     return {
         "role": "assistant",

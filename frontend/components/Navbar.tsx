@@ -73,14 +73,12 @@ export default function Navbar() {
 
         {/* Right Action Items */}
         <div className="flex items-center gap-4">
-          {(!user || user.role === "host") && (
-            <Link 
-              href="/host/new"
-              className="hidden sm:inline-block text-sm font-bold hover:bg-muted py-2.5 px-4 rounded-full transition-colors text-foreground/85 hover:text-foreground"
-            >
-              Become a host
-            </Link>
-          )}
+          <Link 
+            href="/host/new"
+            className="hidden sm:inline-block text-sm font-bold hover:bg-muted py-2.5 px-4 rounded-full transition-colors text-foreground/85 hover:text-foreground"
+          >
+            Become a host
+          </Link>
 
           {/* Language Selector */}
           <div className="flex items-center gap-1 text-foreground/70">
@@ -153,9 +151,13 @@ export default function Navbar() {
                     <Link href="/dashboard" className="px-4 py-2 hover:bg-muted text-left transition-colors">
                       My Dashboard
                     </Link>
-                    {user.role === "host" && (
+                    {user.role === "host" ? (
                       <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
                         Create Host Space
+                      </Link>
+                    ) : (
+                      <Link href="/host/new" className="px-4 py-2 hover:bg-muted text-left transition-colors">
+                        Become a Host
                       </Link>
                     )}
                     <button 

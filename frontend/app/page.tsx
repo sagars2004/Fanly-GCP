@@ -218,7 +218,7 @@ export default function Home() {
             <div className="space-y-4">
               <div className="flex items-center justify-between border-b pb-2.5">
                 <h2 className="text-lg md:text-xl font-black text-foreground flex items-center gap-2">
-                  <span>⚽</span> Celebrate the FIFA World Cup 26™
+                  Celebrate the FIFA World Cup 26™
                 </h2>
                 <span className="text-xs font-bold text-muted-foreground uppercase bg-muted px-2.5 py-1 rounded-full">
                   {listings.length} {t("resultsCount")}
@@ -228,8 +228,8 @@ export default function Home() {
               {!hasSearched ? (
                 // Gated Initial State
                 <div className="text-center py-16 border border-dashed border-border/80 rounded-2xl bg-card/40 backdrop-blur-md shadow-inner animate-fade-in space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center mx-auto shadow-sm">
-                    <span className="text-3xl animate-bounce">🏟️</span>
+                  <div className="w-20 h-20 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center mx-auto shadow-sm">
+                    <span className="text-5xl animate-spin inline-block select-none" style={{ animationDuration: '3s' }}>⚽</span>
                   </div>
                   <div className="space-y-1.5">
                     <h3 className="font-extrabold text-base text-foreground uppercase tracking-wider">
