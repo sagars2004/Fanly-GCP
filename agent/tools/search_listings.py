@@ -83,7 +83,14 @@ def get_listings_local(query=None, dates=None, max_price=None, languages=None, t
         score = 100.0
         if query:
             query_words = set(query.lower().split())
-            desc_words = set(item["description"].lower().split() + item["title"].lower().split())
+            desc_words = set(
+                item["description"].lower().split() + 
+                item["title"].lower().split() + 
+                item["host_name"].lower().split() +
+                item["location"]["city"].lower().split() +
+                item["location"]["state"].lower().split() +
+                item["location"]["address"].lower().split()
+            )
             intersection = query_words.intersection(desc_words)
             # Add simple score boost for matching words
             score += len(intersection) * 10
@@ -210,7 +217,7 @@ def search_listings(query=None, dates=None, max_price=None, languages=None, team
             body["query"]["bool"]["must"] = {
                 "multi_match": {
                     "query": query,
-                    "fields": ["title^2", "description", "house_rules"]
+                    "fields": ["title^2", "description", "house_rules", "host_name", "location.city", "location.state", "location.address"]
                 }
             }
             
