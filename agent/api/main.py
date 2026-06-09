@@ -495,7 +495,17 @@ def get_listings(
 
 @app.get("/api/listings/{listing_id}")
 def get_listing_by_id(listing_id: str):
-    # Search locally or in memory
+    # 1. Search in Elasticsearch first
+    es = get_es_client()
+    if es:
+        try:
+            if es.exists(index="fanly_listings", id=listing_id):
+                res = es.get(index="fanly_listings", id=listing_id)
+                return res["_source"]
+        except Exception as e:
+            print(f"Error fetching listing by ID from ES: {e}")
+
+    # 2. Fall back to local memory database
     for item in listings_db:
         if item["listing_id"] == listing_id:
             return item
