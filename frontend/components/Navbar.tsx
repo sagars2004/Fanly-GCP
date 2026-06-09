@@ -161,7 +161,7 @@ export default function Navbar() {
                       </Link>
                     )}
                     <button 
-                      onClick={() => { logout(); setShowDropdown(false); router.push("/"); }}
+                      onClick={() => { logout(); setShowDropdown(false); }}
                       className="px-4 py-2 hover:bg-muted text-left border-t border-border/40 mt-1 pt-2 transition-colors font-extrabold text-[11px] text-red-500 uppercase tracking-wider"
                     >
                       {t("logout")}

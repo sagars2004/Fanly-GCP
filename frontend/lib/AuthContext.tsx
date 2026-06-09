@@ -40,6 +40,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(newUser);
       localStorage.setItem("fanly-user", JSON.stringify(newUser));
       setIsLoginModalOpen(false);
+      
+      // Clear search session state on new session
+      sessionStorage.removeItem("saved_has_searched");
+      sessionStorage.removeItem("saved_listings");
+      sessionStorage.removeItem("saved_search_params");
+      
+      window.location.reload();
       return { success: true };
     } catch (err: any) {
       return { success: false, error: err.message || "Failed to register." };
@@ -52,6 +59,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(loggedUser);
       localStorage.setItem("fanly-user", JSON.stringify(loggedUser));
       setIsLoginModalOpen(false);
+      
+      // Clear search session state on new session
+      sessionStorage.removeItem("saved_has_searched");
+      sessionStorage.removeItem("saved_listings");
+      sessionStorage.removeItem("saved_search_params");
+      
+      window.location.reload();
       return { success: true };
     } catch (err: any) {
       return { success: false, error: err.message || "Invalid email or password." };
@@ -61,6 +75,20 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const logout = () => {
     setUser(null);
     localStorage.removeItem("fanly-user");
+    localStorage.removeItem("team_rooting_for");
+    
+    // Clear search session state on session end
+    sessionStorage.removeItem("saved_has_searched");
+    sessionStorage.removeItem("saved_listings");
+    sessionStorage.removeItem("saved_search_params");
+    
+    if (typeof window !== "undefined") {
+      if (window.location.pathname === "/") {
+        window.location.reload();
+      } else {
+        window.location.href = "/";
+      }
+    }
   };
 
   return (
