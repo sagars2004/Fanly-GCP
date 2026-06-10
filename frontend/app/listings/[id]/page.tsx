@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useAuth } from "@/lib/AuthContext";
-import { fetchListingById, createBookingRequest, Listing } from "@/lib/agentClient";
+import { fetchListingById, createBookingRequest, fetchBookings, Listing } from "@/lib/agentClient";
 import MatchScheduleOverlay from "@/components/MatchScheduleOverlay";
 import { ArrowLeft, MapPin, ShieldCheck, Clock, Calendar, Users, CheckCircle, Check } from "lucide-react";
 import Link from "next/link";
@@ -82,6 +82,19 @@ export default function ListingDetail() {
     }
     setIsSubmitting(true);
     try {
+      // Check if this fan already has a pending/requested booking for this listing
+      const existingBookings = await fetchBookings(user.id, "fan");
+      const hasPending = existingBookings.some(
+        (b) => b.listing_id === listing.listing_id && 
+               (b.status.toLowerCase() === "requested" || b.status.toLowerCase() === "pending")
+      );
+
+      if (hasPending) {
+        alert("you already have a pending request for this listing");
+        setIsSubmitting(false);
+        return;
+      }
+
       const teamRootingFor = localStorage.getItem("team_rooting_for") || undefined;
       await createBookingRequest({
         listing_id: listing.listing_id,
